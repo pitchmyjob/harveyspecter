@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AlertContainer from '../../alert/containers/AlertContainer'
+
 export default class App extends React.Component {
     componentDidMount() {
         this.props.retrieveUserFromToken()
@@ -20,7 +22,10 @@ export default class App extends React.Component {
         }
 
         return (
-            <div>{this.props.children}</div>
+            <div>
+                {this.props.children}
+                <AlertContainer />
+            </div>
         )
     }
 }

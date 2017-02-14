@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 
 import UserActivate from '../components/UserActivate'
 import { activateUser } from '../UserActions'
-import { formatErrors  } from '../../utils/forms/formatters'
 
 const mapStateToProps = (state) => {
     return {

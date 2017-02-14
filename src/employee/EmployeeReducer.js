@@ -1,4 +1,4 @@
-import { LIST_EMPLOYEE_PENDING, LIST_EMPLOYEE_FULFILLED, LIST_EMPLOYEE_REJECTED } from './EmployeeConstant'
+import { LIST_EMPLOYEE_PENDING, LIST_EMPLOYEE_FULFILLED, LIST_EMPLOYEE_REJECTED } from './EmployeeConstants'
 
 const INITIAL_STATE = {
     fetching: false,

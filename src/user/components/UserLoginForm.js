@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { Field } from 'redux-form'
 
 import { renderAuthInput  } from '../../utils/forms/renderers'
@@ -31,6 +32,9 @@ export default class UserLoginForm extends React.Component {
                         placeholder="Mot de passe" />
                     <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Connexion</button>
                 </form>
+                <p>
+                    <Link to="/register/">M'inscrire</Link>
+                </p>
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { Field } from 'redux-form'
 
 import { renderAuthInput, renderAuthCheckbox  } from '../../utils/forms/renderers'
@@ -67,6 +68,9 @@ export default class ProCreateForm extends React.Component {
                         label="Accepter les conditions générales d'utilisation" />
                     <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Inscription</button>
                 </form>
+                <p>
+                    Déjà inscrit ? <Link to="/login/">Connexion</Link>
+                </p>
             </div>
         )
     }

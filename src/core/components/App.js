@@ -6,9 +6,9 @@ export default class App extends React.Component {
     }
 
     render() {
-        const { fetching, error } = this.props.currentUser
+        const { fetching, errorRetrieve } = this.props.currentUser
 
-        if (error) {
+        if (errorRetrieve) {
             return (
                 <p>Error user loading</p>
             )

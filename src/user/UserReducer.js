@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     activated: false,
     fetching: false,
     fetched: false,
+    errorRetrieve: null,
     error: null,
     currentUser: null,
 }
@@ -27,7 +28,7 @@ export default (state=INITIAL_STATE, action) => {
         case RETRIEVE_FROM_TOKEN_USER_FULFILLED:
             return {...state, fetching: false, fetched: true, currentUser: action.payload.data}
         case RETRIEVE_FROM_TOKEN_USER_REJECTED:
-            return {...state, fetching: false, error: action.payload.response.data}
+            return {...state, fetching: false, errorRetrieve: action.payload.response.data}
 
         // DEFAULT
         default:

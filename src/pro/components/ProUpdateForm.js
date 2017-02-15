@@ -2,7 +2,8 @@ import React from 'react'
 import { Field } from 'redux-form'
 
 import { renderInput, renderSelect, renderTextarea } from '../../utils/forms/renderers'
-import { isRequired } from '../../utils/forms/validators'
+import ImageBase64Field from '../../utils/forms/Fields/ImageBase64Field'
+import { isRequired, maxSize } from '../../utils/forms/validators'
 
 export default class ProUpdateForm extends React.Component {
     componentDidMount(){
@@ -18,6 +19,11 @@ export default class ProUpdateForm extends React.Component {
             <div>
                 <h3 className="font-size-24">Modifier la page pro</h3>
                 <form onSubmit={handleSubmit} role="form" autoComplete="off">
+                    <Field
+                        name="logo"
+                        component={ImageBase64Field}
+                        validate={isRequired}
+                        label="Logo" />
                     <Field
                         name="company"
                         component={renderInput}

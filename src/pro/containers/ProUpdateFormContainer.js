@@ -1,4 +1,4 @@
-import { SubmissionError, reduxForm, initialize } from 'redux-form'
+import { SubmissionError, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import ProUpdateForm from '../components/ProUpdateForm'

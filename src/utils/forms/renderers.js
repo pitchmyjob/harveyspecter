@@ -38,7 +38,7 @@ export const renderSelect = (field) => {
         <div className={"form-group form-material" + (field.meta.touched && field.meta.error ? ' has-danger' : '')} data-plugin="formMaterial">
             <label className="form-control-label" htmlFor={field.name}>{field.label}</label>
             <select {...field.input} className="form-control">
-                {field.placeholder && (<option value="">{field.placeholder}</option>)}
+                {field.placeholder && <option value="">{field.placeholder}</option>}
                 {field.options.map((option) => {
                     return <option value={option.id} key={option.id}>{option.name}</option>
                 })}

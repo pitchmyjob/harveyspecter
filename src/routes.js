@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router'
 import { loginRequired, logoutRequired } from './utils/auth'
 
 import AppContainer from './core/containers/AppContainer'
+import CollaboratorPage from './collaborator/components/CollaboratorPage'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
 import ProCreateFormContainer from './pro/containers/ProCreateFormContainer'
 import ProUpdateFormContainer from './pro/containers/ProUpdateFormContainer'
@@ -15,6 +16,7 @@ export default (
         <IndexRoute component={DashboardContainer} onEnter={loginRequired} />
         <Route onEnter={loginRequired}>
             <Route path="/profile/" component={ProUpdateFormContainer} />
+            <Route path="/collaborators/" component={CollaboratorPage} />
         </Route>
         <Route onEnter={logoutRequired}>
             <Route path="/register/" component={ProCreateFormContainer} />

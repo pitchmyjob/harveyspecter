@@ -3,7 +3,8 @@ import { Field } from 'redux-form'
 
 import { renderInput, renderSelect, renderTextarea } from '../../utils/forms/renderers'
 import ImageBase64Field from '../../utils/forms/Fields/ImageBase64Field'
-import { isRequired, maxSize } from '../../utils/forms/validators'
+import LocationField from '../../utils/forms/Fields/LocationField'
+import { isRequired } from '../../utils/forms/validators'
 
 export default class ProUpdateForm extends React.Component {
     componentDidMount(){
@@ -30,6 +31,12 @@ export default class ProUpdateForm extends React.Component {
                         type="text"
                         validate={isRequired}
                         label="Raison sociale" />
+                    <Field
+                        name="address"
+                        component={LocationField}
+                        validate={isRequired}
+                        label="Adresse"
+                        placeholder="Saisiez l'adresse du siège social" />
                     <Field
                         name="website"
                         component={renderInput}

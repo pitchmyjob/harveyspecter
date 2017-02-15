@@ -19,6 +19,6 @@ export function createPro(values) {
 export function updatePro(values) {
     return {
         type: UPDATE_PRO,
-        payload: request.put('/pro/me/', values)
+        payload: request.patch('/pro/me/', values)
     }
 }

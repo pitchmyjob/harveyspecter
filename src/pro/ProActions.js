@@ -17,8 +17,6 @@ export function createPro(values) {
 }
 
 export function updatePro(values) {
-    delete values['logo']
-
     return {
         type: UPDATE_PRO,
         payload: request.put('/pro/me/', values)

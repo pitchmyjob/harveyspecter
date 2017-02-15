@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-import { ACTIVATE_USER, LOGIN_USER, RETRIEVE_FROM_TOKEN_USER } from './UserConstants'
+import { ACTIVATE_USER, LOGIN_USER, RETRIEVE_FROM_TOKEN_USER, FORGET_PASSWORD_REQUEST_USER } from './UserConstants'
 
 export function activateUser(email, token) {
     return {
@@ -17,10 +17,15 @@ export function loginUser(values) {
 }
 
 export const retrieveUserFromToken = (token) => {
-    request.defaults.headers.common['Authorization'] = 'Token ' + token;
-
     return {
         type: RETRIEVE_FROM_TOKEN_USER,
         payload: request.get('/auth/me/')
+    }
+}
+
+export const forgetPasswordRequestUser = (values) => {
+    return {
+        type: FORGET_PASSWORD_REQUEST_USER,
+        payload: request.put('/auth/forget-password-request/', values)
     }
 }

@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
     return {
         employee: state.employee,
         industry: state.industry,
+        pro: state.pro.pro,
         initialValues: state.pro.pro,
     }
 }
@@ -34,6 +35,12 @@ const config = {
     form: 'ProUpdateForm',
     enableReinitialize: true,
     onSubmit: (values, dispatch, props) => {
+        // TODO: find something to handle file / image upload
+        // If logo unchanged, do not pass it to PUT request
+        if (values['logo'] === props.pro['logo']) {
+            delete values['logo']
+        }
+
         return dispatch(updatePro(values))
             .then((response) => {
                 dispatch(addAlertSuccess('Pro modifié'))

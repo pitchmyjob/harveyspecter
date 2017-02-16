@@ -20,7 +20,7 @@ export default (state=INITIAL_STATE, action) => {
         case LIST_COLLABORATOR_FULFILLED:
             return {...state, fetching: false, fetched: true, collaborators: action.payload.data}
         case LIST_COLLABORATOR_REJECTED:
-            return {...state, fetching: false, error: action.payload.response.data}
+            return {...state, fetching: false, error: action.payload.response}
 
         // CREATE
         case CREATE_COLLABORATOR_FULFILLED:
@@ -38,7 +38,7 @@ export default (state=INITIAL_STATE, action) => {
                 collaborators: state.collaborators.filter((collaborator) => { return collaborator.id !== action.meta.id })
             }
         case DESTROY_COLLABORATOR_REJECTED:
-            return {...state, error: action.payload.response.data}
+            return {...state, error: action.payload.response}
 
         // DEFAULT
         default:

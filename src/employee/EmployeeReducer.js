@@ -14,7 +14,7 @@ export default (state=INITIAL_STATE, action) => {
         case LIST_EMPLOYEE_FULFILLED:
             return {...state, fetching: false, fetched: true, employees: action.payload.data}
         case LIST_EMPLOYEE_REJECTED:
-            return {...state, fetching: false, error: action.payload.response.data}
+            return {...state, fetching: false, error: action.payload.response}
         default:
             return state
     }

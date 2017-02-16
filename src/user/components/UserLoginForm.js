@@ -33,7 +33,7 @@ export default class UserLoginForm extends React.Component {
                     <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Connexion</button>
                 </form>
                 <p>
-                    <Link to="/register/">M'inscrire</Link>
+                    <Link to="/register/">M'inscrire</Link> - <Link to="/forget-password-request/">Mot de passe oublié ?</Link>
                 </p>
             </div>
         )

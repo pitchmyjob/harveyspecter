@@ -1,7 +1,6 @@
 import { SubmissionError } from 'redux-form'
 
 export const handleFormErrors = (response, handleNotFound=false) => {
-    console.log(response)
     if (response) {
         let formErrors = {}
 

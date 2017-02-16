@@ -1,6 +1,6 @@
 import React from 'react'
 import Geosuggest from 'react-geosuggest'
-import { change } from 'redux-form';
+import { change } from 'redux-form'
 
 export default class LocationField extends React.Component {
     handleChange(value) {

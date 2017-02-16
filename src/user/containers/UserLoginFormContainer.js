@@ -3,7 +3,7 @@ import { SubmissionError, reduxForm } from 'redux-form'
 import UserLoginForm from '../components/UserLoginForm'
 import { loginUser } from '../UserActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
-import { formatErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const config = {
     form: 'UserLoginForm',
@@ -15,7 +15,7 @@ const config = {
                 props.router.push('/')
             })
             .catch((error) => {
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response)
             })
     },
 }

@@ -1,5 +1,5 @@
 import { LIST_COLLABORATOR_PENDING, LIST_COLLABORATOR_FULFILLED, LIST_COLLABORATOR_REJECTED,
-         CREATE_COLLABORATOR_FULFILLED, CREATE_COLLABORATOR_REJECTED,
+         CREATE_COLLABORATOR_FULFILLED,
          DESTROY_COLLABORATOR_FULFILLED, DESTROY_COLLABORATOR_REJECTED
 } from './CollaboratorConstants'
 
@@ -29,8 +29,6 @@ export default (state=INITIAL_STATE, action) => {
                 created: true,
                 collaborators: state.collaborators.concat(action.payload.data)
             }
-        case CREATE_COLLABORATOR_REJECTED:
-            return {...state, error: action.payload.response.data}
 
         // DESTROY
         case DESTROY_COLLABORATOR_FULFILLED:

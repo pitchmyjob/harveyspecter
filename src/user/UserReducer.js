@@ -1,6 +1,7 @@
 import { ACTIVATE_USER_PENDING, ACTIVATE_USER_FULFILLED, ACTIVATE_USER_REJECTED,
          RETRIEVE_FROM_TOKEN_USER_PENDING, RETRIEVE_FROM_TOKEN_USER_FULFILLED, RETRIEVE_FROM_TOKEN_USER_REJECTED,
-         FORGET_PASSWORD_REQUEST_USER_FULFILLED, FORGET_PASSWORD_REQUEST_USER_REJECTED
+         FORGET_PASSWORD_REQUEST_USER_FULFILLED, FORGET_PASSWORD_REQUEST_USER_REJECTED,
+         FORGET_PASSWORD_CONFIRM_USER_FULFILLED, FORGET_PASSWORD_CONFIRM_USER_REJECTED
 } from './UserConstants'
 
 const INITIAL_STATE = {
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
     fetching: false,
     fetched: false,
     forgetPasswordRequested: false,
+    forgetPasswordConfirmed: false,
     errorRetrieve: null,
     error: null,
     currentUser: null,
@@ -37,6 +39,12 @@ export default (state=INITIAL_STATE, action) => {
             return {...state, forgetPasswordRequested: true}
         case FORGET_PASSWORD_REQUEST_USER_REJECTED:
             return {...state, error: action.payload.response.data}
+
+        // FOREGET PASSWORD CONFIRM
+        case FORGET_PASSWORD_CONFIRM_USER_FULFILLED:
+            return {...state, forgetPasswordConfirmed: true}
+        case FORGET_PASSWORD_CONFIRM_USER_REJECTED:
+            return {...state, error: action.payload.response}
 
         // DEFAULT
         default:

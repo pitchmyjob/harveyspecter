@@ -1,9 +1,10 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import UserLoginForm from '../components/UserLoginForm'
+import request from '../../utils/request'
 import { loginUser } from '../UserActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
-import { formatErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const config = {
     form: 'UserLoginForm',
@@ -11,11 +12,12 @@ const config = {
         return dispatch(loginUser(values))
             .then((response) => {
                 localStorage.setItem('token', response.action.payload.data.token)
+                request.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem('token')
                 dispatch(addAlertSuccess('Vous êtes connecté'))
                 props.router.push('/')
             })
             .catch((error) => {
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response)
             })
     },
 }

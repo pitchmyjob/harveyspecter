@@ -1,5 +1,5 @@
 import { RETRIEVE_PRO_PENDING, RETRIEVE_PRO_FULFILLED, RETRIEVE_PRO_REJECTED,
-         CREATE_PRO_FULFILLED, CREATE_PRO_REJECTED,
+         CREATE_PRO_FULFILLED,
          UPDATE_PRO_FULFILLED, UPDATE_PRO_REJECTED
 } from './ProConstants'
 
@@ -19,19 +19,17 @@ export default (state=INITIAL_STATE, action) => {
         case RETRIEVE_PRO_FULFILLED:
             return {...state, fetching: false, fetched: true, pro: action.payload.data}
         case RETRIEVE_PRO_REJECTED:
-            return {...state, fetching: false, error: action.payload.response.data}
+            return {...state, fetching: false, error: action.payload.response}
 
         // CREATE
         case CREATE_PRO_FULFILLED:
             return {...state, created: true, pro: action.payload.data}
-        case CREATE_PRO_REJECTED:
-            return {...state, error: action.payload.response.data}
 
         // UPDATE
         case UPDATE_PRO_FULFILLED:
             return {...state, pro: action.payload.data}
         case UPDATE_PRO_REJECTED:
-            return {...state, error: action.payload.response.data}
+            return {...state, error: action.payload.response}
 
         // DEFAULT
         default:

@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-import { ACTIVATE_USER, LOGIN_USER, RETRIEVE_FROM_TOKEN_USER, FORGET_PASSWORD_REQUEST_USER, FORGET_PASSWORD_CONFIRM_USER } from './UserConstants'
+import { ACTIVATE_USER, LOGIN_USER, RETRIEVE_FROM_TOKEN_USER, FORGET_PASSWORD_REQUEST_USER, FORGET_PASSWORD_CONFIRM_USER, EMAIL_EXISTS_USER } from './UserConstants'
 
 export function activateUser(email, token) {
     return {
@@ -34,5 +34,12 @@ export const forgetPasswordConfirmUser = (values) => {
     return {
         type: FORGET_PASSWORD_CONFIRM_USER,
         payload: request.put('/auth/forget-password-confirm/', values)
+    }
+}
+
+export const emailExistsUser = (values) => {
+    return {
+        type: EMAIL_EXISTS_USER,
+        payload: request.post('/auth/email-exists/', values)
     }
 }

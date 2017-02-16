@@ -8,9 +8,9 @@ import { isRequired } from '../../utils/forms/validators'
 
 export default class ProUpdateForm extends React.Component {
     componentDidMount(){
-        this.props.listEmployee();
-        this.props.listIndustry();
-        this.props.retrievePro();
+        this.props.listEmployee()
+        this.props.listIndustry()
+        this.props.retrievePro()
     }
 
     render() {

@@ -1,8 +1,8 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import CollaboratorCreateForm from '../components/CollaboratorCreateForm'
-import { formatErrors  } from '../../utils/forms/formatters'
-import { listCollaborator, createCollaborator } from '../CollaboratorActions'
+import { handleFormErrors  } from '../../utils/forms/formatters'
+import { createCollaborator } from '../CollaboratorActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
 
 const config = {
@@ -10,12 +10,11 @@ const config = {
     onSubmit: (values, dispatch, props) => {
         return dispatch(createCollaborator(values))
             .then((response) => {
-                dispatch(listCollaborator())
                 dispatch(addAlertSuccess('Collaborateur ajouté'))
                 props.reset()
             })
             .catch((error) => {
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response)
             })
     }
 }

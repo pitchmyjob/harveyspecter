@@ -24,7 +24,7 @@ export default (state=INITIAL_STATE, action) => {
         case ACTIVATE_USER_FULFILLED:
             return {...state, activating: false, activated: true}
         case ACTIVATE_USER_REJECTED:
-            return {...state, activating: false, error: action.payload.response.data}
+            return {...state, activating: false, error: action.payload.response}
 
         // RETRIEVE FROM TOKEN
         case RETRIEVE_FROM_TOKEN_USER_PENDING:
@@ -38,7 +38,7 @@ export default (state=INITIAL_STATE, action) => {
         case FORGET_PASSWORD_REQUEST_USER_FULFILLED:
             return {...state, forgetPasswordRequested: true}
         case FORGET_PASSWORD_REQUEST_USER_REJECTED:
-            return {...state, error: action.payload.response.data}
+            return {...state, error: action.payload.response}
 
         // FOREGET PASSWORD CONFIRM
         case FORGET_PASSWORD_CONFIRM_USER_FULFILLED:

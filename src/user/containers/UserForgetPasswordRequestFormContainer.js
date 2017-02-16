@@ -1,9 +1,9 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import UserForgetPasswordRequestForm from '../components/UserForgetPasswordRequestForm'
 import { forgetPasswordRequestUser } from '../UserActions'
-import { formatErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const mapStateToProps = (state) => {
     return {
@@ -17,7 +17,7 @@ const config = {
         return dispatch(forgetPasswordRequestUser(values))
             .catch((error) => {
                 // TODO: handle "detail" error corresponding to "not found"
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response, true)
             })
     },
 }

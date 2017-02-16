@@ -1,4 +1,4 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import ProUpdateForm from '../components/ProUpdateForm'
@@ -6,7 +6,7 @@ import { listEmployee } from '../../employee/EmployeeActions'
 import { listIndustry } from '../../industry/IndustryActions'
 import { retrievePro, updatePro } from '../ProActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
-import { formatErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const mapStateToProps = (state) => {
     return {
@@ -46,7 +46,7 @@ const config = {
                 dispatch(addAlertSuccess('Pro modifié'))
             })
             .catch((error) => {
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response)
             })
     },
 }

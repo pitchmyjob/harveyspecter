@@ -1,9 +1,10 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import ProCreateForm from '../components/ProCreateForm'
 import { createPro } from '../ProActions'
-import { formatErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors  } from '../../utils/forms/formatters'
+import { asyncValidateEmailExists  } from '../../utils/forms/validators'
 
 const mapStateToProps = (state) => {
     return {
@@ -16,9 +17,11 @@ const config = {
     onSubmit: (values, dispatch, props) => {
         return dispatch(createPro(values))
             .catch((error) => {
-                throw new SubmissionError(formatErrors(error.response.data))
+                handleFormErrors(error.response)
             })
     },
+    asyncValidate: asyncValidateEmailExists,
+    asyncBlurFields: ['email'],
 }
 
 export default connect(mapStateToProps, null)(reduxForm(config)(ProCreateForm))

@@ -3,7 +3,7 @@ import React from 'react'
 export default class UserActivate extends React.Component {
     componentDidMount() {
         const { email, token } = this.props.params
-        this.props.activateUser(email, token);
+        this.props.activateUser(email, token)
     }
 
     render() {

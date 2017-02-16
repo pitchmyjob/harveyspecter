@@ -1,5 +1,5 @@
 import React from 'react'
-import { NotificationStack } from 'react-notification';
+import { NotificationStack } from 'react-notification'
 
 export default class Alert extends React.Component {
     render() {

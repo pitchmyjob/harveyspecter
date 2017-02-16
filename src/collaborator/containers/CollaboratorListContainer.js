@@ -17,7 +17,6 @@ const mapDispatchToProps = (dispatch) => {
         },
         destroyCollaborator: (id) => {
             return dispatch(destroyCollaborator(id)).then((response) => {
-                dispatch(listCollaborator())
                 dispatch(addAlertSuccess('Collaborateur supprimé'))
             })
         },

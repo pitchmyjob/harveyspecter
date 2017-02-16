@@ -1,5 +1,5 @@
 import { LIST_COLLABORATOR_PENDING, LIST_COLLABORATOR_FULFILLED, LIST_COLLABORATOR_REJECTED,
-         CREATE_COLLABORATOR_FULFILLED, CREATE_COLLABORATOR_REJECTED,
+         CREATE_COLLABORATOR_FULFILLED,
          DESTROY_COLLABORATOR_FULFILLED, DESTROY_COLLABORATOR_REJECTED
 } from './CollaboratorConstants'
 
@@ -20,7 +20,7 @@ export default (state=INITIAL_STATE, action) => {
         case LIST_COLLABORATOR_FULFILLED:
             return {...state, fetching: false, fetched: true, collaborators: action.payload.data}
         case LIST_COLLABORATOR_REJECTED:
-            return {...state, fetching: false, error: action.payload.response.data}
+            return {...state, fetching: false, error: action.payload.response}
 
         // CREATE
         case CREATE_COLLABORATOR_FULFILLED:
@@ -29,14 +29,16 @@ export default (state=INITIAL_STATE, action) => {
                 created: true,
                 collaborators: state.collaborators.concat(action.payload.data)
             }
-        case CREATE_COLLABORATOR_REJECTED:
-            return {...state, error: action.payload.response.data}
 
         // DESTROY
         case DESTROY_COLLABORATOR_FULFILLED:
-            return {...state, deleted: true}
+            return {
+                ...state,
+                deleted: true,
+                collaborators: state.collaborators.filter((collaborator) => { return collaborator.id !== action.meta.id })
+            }
         case DESTROY_COLLABORATOR_REJECTED:
-            return {...state, error: action.payload.response.data}
+            return {...state, error: action.payload.response}
 
         // DEFAULT
         default:

@@ -34,7 +34,6 @@ export default (state=INITIAL_STATE, action) => {
 
         // DESTROY
         case DESTROY_COLLABORATOR_FULFILLED:
-            console.log(action)
             return {...state, deleted: true}
         case DESTROY_COLLABORATOR_REJECTED:
             return {...state, error: action.payload.response.data}

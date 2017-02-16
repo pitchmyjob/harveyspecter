@@ -6,7 +6,7 @@ import { isRequired, isEmail } from '../../utils/forms/validators'
 
 export default class UserForgetPasswordRequestForm extends React.Component {
     render() {
-        const { handleSubmit, pristine, submitting, forgetPasswordRequested } = this.props
+        const { handleSubmit, pristine, submitting, forgetPasswordRequested, error } = this.props
 
         if (forgetPasswordRequested) {
             return (
@@ -19,6 +19,7 @@ export default class UserForgetPasswordRequestForm extends React.Component {
         return (
             <div>
                 <h3 className="font-size-24">Mot de passe oublié</h3>
+                {error && <p>{error}</p>}
                 <form onSubmit={handleSubmit} role="form" autoComplete="off">
                     <Field
                         name="email"

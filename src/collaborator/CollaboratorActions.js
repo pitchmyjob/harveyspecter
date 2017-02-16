@@ -19,6 +19,9 @@ export const createCollaborator = (values) => {
 export const destroyCollaborator = (id) => {
     return {
         type: DESTROY_COLLABORATOR,
-        payload: request.delete('/pro/collaborators/' + id + '/')
+        payload: request.delete('/pro/collaborators/' + id + '/'),
+        meta: {
+            id: id,
+        },
     }
 }

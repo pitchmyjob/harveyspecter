@@ -32,7 +32,11 @@ export default (state=INITIAL_STATE, action) => {
 
         // DESTROY
         case DESTROY_COLLABORATOR_FULFILLED:
-            return {...state, deleted: true}
+            return {
+                ...state,
+                deleted: true,
+                collaborators: state.collaborators.filter((collaborator) => { return collaborator.id !== action.meta.id })
+            }
         case DESTROY_COLLABORATOR_REJECTED:
             return {...state, error: action.payload.response.data}
 

@@ -1,4 +1,4 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import UserLoginForm from '../components/UserLoginForm'
 import { loginUser } from '../UserActions'

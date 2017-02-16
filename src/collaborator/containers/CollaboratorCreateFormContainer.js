@@ -1,4 +1,4 @@
-import { SubmissionError, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import CollaboratorCreateForm from '../components/CollaboratorCreateForm'
 import { handleFormErrors  } from '../../utils/forms/formatters'

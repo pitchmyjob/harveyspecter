@@ -6,6 +6,7 @@ import { loginRequired, logoutRequired } from './utils/auth'
 import AppContainer from './core/containers/AppContainer'
 import CollaboratorPage from './collaborator/components/CollaboratorPage'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
+import JobListContainer from './job/containers/JobListContainer'
 import ProCreateFormContainer from './pro/containers/ProCreateFormContainer'
 import ProUpdateFormContainer from './pro/containers/ProUpdateFormContainer'
 import UserActivateContainer from './user/containers/UserActivateContainer'
@@ -21,6 +22,7 @@ export default (
             <Route path="/company/edit/" component={ProUpdateFormContainer} />
             <Route path="/collaborators/" component={CollaboratorPage} />
             <Route path="/me/edit/" component={UserUpdateFormContainer} />
+            <Route path="/jobs/" component={JobListContainer} />
         </Route>
         <Route onEnter={logoutRequired}>
             <Route path="/register/" component={ProCreateFormContainer} />

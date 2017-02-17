@@ -12,13 +12,15 @@ import UserActivateContainer from './user/containers/UserActivateContainer'
 import UserForgetPasswordConfirmFormContainer from './user/containers/UserForgetPasswordConfirmFormContainer'
 import UserForgetPasswordRequestFormContainer from './user/containers/UserForgetPasswordRequestFormContainer'
 import UserLoginFormContainer from './user/containers/UserLoginFormContainer'
+import UserUpdateFormContainer from './user/containers/UserUpdateFormContainer'
 
 export default (
     <Route path="/" component={AppContainer}>
         <IndexRoute component={DashboardContainer} onEnter={loginRequired} />
         <Route onEnter={loginRequired}>
-            <Route path="/profile/" component={ProUpdateFormContainer} />
+            <Route path="/company/profile/" component={ProUpdateFormContainer} />
             <Route path="/collaborators/" component={CollaboratorPage} />
+            <Route path="/me/edit/" component={UserUpdateFormContainer} />
         </Route>
         <Route onEnter={logoutRequired}>
             <Route path="/register/" component={ProCreateFormContainer} />

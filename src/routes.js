@@ -18,7 +18,7 @@ export default (
     <Route path="/" component={AppContainer}>
         <IndexRoute component={DashboardContainer} onEnter={loginRequired} />
         <Route onEnter={loginRequired}>
-            <Route path="/company/profile/" component={ProUpdateFormContainer} />
+            <Route path="/company/edit/" component={ProUpdateFormContainer} />
             <Route path="/collaborators/" component={CollaboratorPage} />
             <Route path="/me/edit/" component={UserUpdateFormContainer} />
         </Route>

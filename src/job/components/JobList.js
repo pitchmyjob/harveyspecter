@@ -31,6 +31,7 @@ export default class JobList extends React.Component {
                             {job.created} - {job.contract_types_extra.join(', ')}
                         </td>
                         <td>
+                            <Link to={'/jobs/edit/' + job.id + '/'}>Modifier</Link>
                             <button onClick={() => destroyJob(job.id)}>Supprimer</button>
                         </td>
                     </tr>

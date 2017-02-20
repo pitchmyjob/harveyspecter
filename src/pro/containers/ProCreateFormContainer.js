@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ProCreateForm from '../components/ProCreateForm'
 import { createPro } from '../ProActions'
 import { handleFormErrors  } from '../../utils/forms/formatters'
-import { asyncValidateEmailExists  } from '../../utils/forms/validators'
+import { asyncValidateEmailNotExists  } from '../../utils/forms/validators'
 
 const mapStateToProps = (state) => {
     return {
@@ -20,7 +20,7 @@ const config = {
                 handleFormErrors(error.response)
             })
     },
-    asyncValidate: asyncValidateEmailExists,
+    asyncValidate: asyncValidateEmailNotExists,
     asyncBlurFields: ['email'],
 }
 

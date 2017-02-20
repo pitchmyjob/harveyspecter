@@ -1,4 +1,4 @@
-import { emailExistsUser } from '../../user/UserActions'
+import { emailNotExistsUser } from '../../user/UserActions'
 
 export const isRequired = (value) => {
     return value ? undefined : 'Obligatoire'
@@ -14,8 +14,8 @@ export const minLength = (min) => {
     }
 }
 
-export const asyncValidateEmailExists = (values, dispatch) => {
-    return dispatch(emailExistsUser(values)).then((response) => {
+export const asyncValidateEmailNotExists = (values, dispatch) => {
+    return dispatch(emailNotExistsUser(values)).catch((error) => {
         // eslint-disable-next-line
         throw {email: 'Cet adresse e-mail n\'est pas disponible.'}
     })

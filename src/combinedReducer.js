@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 
 import AlertReducer from './alert/AlertReducer'
 import CollaboratorReducer from './collaborator/CollaboratorReducer'
+import ContractTypeReducer from './contracttype/ContractTypeReducer'
 import EmployeeReducer from './employee/EmployeeReducer'
 import IndustryReducer from './industry/IndustryReducer'
 import JobReducer from './job/JobReducer'
@@ -14,6 +15,7 @@ const combinedReducer = combineReducers({
     form : formReducer,
     alert: AlertReducer,
     collaborator: CollaboratorReducer,
+    contractType: ContractTypeReducer,
     employee: EmployeeReducer,
     industry: IndustryReducer,
     job: JobReducer,

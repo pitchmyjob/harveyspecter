@@ -13,7 +13,7 @@ if (!!localStorage.token) {
 
 export default axios.create({
     baseURL: API_ROOT_URL,
-    timeout: 5000,
+    timeout: 10000,
     withCredentials: true,
     headers: HEADERS,
 })

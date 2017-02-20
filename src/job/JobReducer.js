@@ -1,5 +1,6 @@
 import { LIST_JOB_PENDING, LIST_JOB_FULFILLED, LIST_JOB_REJECTED,
          RETRIEVE_JOB_PENDING, RETRIEVE_JOB_FULFILLED, RETRIEVE_JOB_REJECTED,
+         UPDATE_JOB_FULFILLED, UPDATE_JOB_REJECTED,
          DESTROY_JOB_FULFILLED, DESTROY_JOB_REJECTED
 } from './JobConstants'
 
@@ -28,6 +29,12 @@ export default (state=INITIAL_STATE, action) => {
             return {...state, fetching: false, fetched: true, currentJob: action.payload.data}
         case RETRIEVE_JOB_REJECTED:
             return {...state, fetching: false, error: action.payload.response}
+
+        // UPDATE
+        case UPDATE_JOB_FULFILLED:
+            return {...state, currentJob: action.payload.data}
+        case UPDATE_JOB_REJECTED:
+            return {...state, error: action.payload.response}
 
         // DESTROY
         case DESTROY_JOB_FULFILLED:

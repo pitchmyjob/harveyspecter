@@ -46,7 +46,9 @@ const config = {
             delete values['logo']
         }
 
-        values['skills'] = values['skills'].split(',')
+        if (!Array.isArray(values['skills'])) {
+            values['skills'] = values['skills'].split(',')
+        }
 
         return dispatch(updateJob(props.job.id, values))
             .then((response) => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default class JobList extends React.Component {
     componentDidMount() {
@@ -6,6 +7,7 @@ export default class JobList extends React.Component {
     }
 
     render() {
+        const { destroyJob } = this.props
         const { fetching, error, jobs } = this.props.job
 
         let jobList = null;
@@ -28,8 +30,9 @@ export default class JobList extends React.Component {
                             {job.title}<br />
                             {job.created} - {job.contract_types_extra.join(', ')}
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <button onClick={() => destroyJob(job.id)}>Supprimer</button>
+                        </td>
                     </tr>
                 )
             })
@@ -37,11 +40,13 @@ export default class JobList extends React.Component {
 
         return (
             <div>
+                <p>
+                    <Link to="/jobs/create/">Ajouter une offre</Link>
+                </p>
                 <table>
                     <thead>
                         <tr>
                             <th>Annonces</th>
-                            <th></th>
                             <th>Actions</th>
                         </tr>
                     </thead>

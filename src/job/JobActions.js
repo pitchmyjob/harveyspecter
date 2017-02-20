@@ -15,3 +15,13 @@ export const createJob = (values) => {
         payload: request.post('/jobs/', values)
     }
 }
+
+export const destroyJob = (id) => {
+    return {
+        type: DESTROY_JOB,
+        payload: request.delete('/jobs/' + id + '/'),
+        meta: {
+            id: id,
+        },
+    }
+}

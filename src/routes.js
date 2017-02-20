@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 
 import { loginRequired, logoutRequired } from './utils/auth'
 
+import LayoutLoggedContainer from './core/containers/LayoutLoggedContainer'
 import AppContainer from './core/containers/AppContainer'
 import CollaboratorPage from './collaborator/components/CollaboratorPage'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
@@ -16,8 +17,8 @@ import UserUpdateFormContainer from './user/containers/UserUpdateFormContainer'
 
 export default (
     <Route path="/" component={AppContainer}>
-        <IndexRoute component={DashboardContainer} onEnter={loginRequired} />
-        <Route onEnter={loginRequired}>
+        <Route onEnter={loginRequired} component={LayoutLoggedContainer}>
+            <IndexRoute component={DashboardContainer} onEnter={loginRequired} />
             <Route path="/company/profile/" component={ProUpdateFormContainer} />
             <Route path="/collaborators/" component={CollaboratorPage} />
             <Route path="/me/edit/" component={UserUpdateFormContainer} />

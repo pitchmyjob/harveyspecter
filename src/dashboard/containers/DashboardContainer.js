@@ -5,11 +5,6 @@ import { addAlertSuccess } from '../../alert/AlertActions'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        logoutUser: () => {
-            localStorage.removeItem('token')
-            dispatch(addAlertSuccess('Vous êtes deconnecté'))
-            ownProps.router.push('/login/')
-        },
     }
 }
 

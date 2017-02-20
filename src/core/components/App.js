@@ -22,7 +22,7 @@ export default class App extends React.Component {
         }
 
         return (
-            <div>
+            <div className="full-height">
                 {this.props.children}
                 <AlertContainer />
             </div>

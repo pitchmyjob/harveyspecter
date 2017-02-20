@@ -1,22 +1,64 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js css-menubar">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tag above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <link rel="apple-touch-icon" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/images/favicon.ico">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/css/site.min.css">
+    <!-- Plugins -->
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/flag-icon-css/flag-icon.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/chartist/chartist.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/examples/css/widgets/chart.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/examples/css/dashboard/v1.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/examples/css/uikit/modals.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/fonts/web-icons/web-icons.min.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/fonts/material-design/material-design.min.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/fonts/brand-icons/brand-icons.min.css">
+
+
+
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/examples/css/pages/login-v3.css">
+
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/css/custom.css">
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
+    <!--[if lt IE 9]>
+      <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/html5shiv/html5shiv.min.js"></script>
+      <![endif]-->
+    <!--[if lt IE 10]>
+      <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/media-match/media.match.min.js"></script>
+      <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/respond/respond.min.js"></script>
+      <![endif]-->
+    <!-- Scripts -->
+     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/breakpoints/breakpoints.js"></script>
+
+
+    <style>
+
+
+      
+    </style>
+
+
     <title>React App</title>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="animsition">
+    <div id="root" class="full-height"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -28,5 +70,54 @@
       To create a production bundle, use `npm run build`.
     -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwGyNL0CFzOMQt4viTCfgCAjlnaFXvNM&amp;libraries=places"></script>
+
+    <!-- Core  -->
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/jquery/jquery.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/tether/tether.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/bootstrap/bootstrap.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/animsition/animsition.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/mousewheel/jquery.mousewheel.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/asscrollbar/jquery-asScrollbar.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/asscrollable/jquery-asScrollable.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+    <!-- Plugins -->
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/switchery/switchery.min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/intro-js/intro.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/screenfull/screenfull.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/slidepanel/jquery-slidePanel.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/jvectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/matchheight/jquery.matchHeight-min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/vendor/peity/jquery.peity.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/State.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Component.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Base.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Config.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Section/Menubar.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Section/GridMenu.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Section/Sidebar.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Section/PageAside.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Plugin/menu.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/config/colors.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/config/tour.js"></script>
+
+    <!-- Page -->
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/js/Site.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin/asscrollable.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin/slidepanel.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin/switchery.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin/matchheight.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/js/Plugin/peity.js"></script>
+
+    <script>
+        $(document).ready(function($) {
+          Site.run();
+        });
+    </script>
+
+
   </body>
 </html>

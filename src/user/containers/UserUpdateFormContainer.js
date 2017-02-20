@@ -7,7 +7,6 @@ import { addAlertSuccess } from '../../alert/AlertActions'
 import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const mapStateToProps = (state) => {
-    console.log(state.user)
     return {
         user: state.user.currentUser,
         initialValues: state.user.currentUser,

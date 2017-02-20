@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-import { LIST_JOB, CREATE_JOB } from './JobConstants'
+import { LIST_JOB, CREATE_JOB, DESTROY_JOB } from './JobConstants'
 
 export const listJob = () => {
     return {

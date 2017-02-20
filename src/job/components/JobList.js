@@ -26,7 +26,7 @@ export default class JobList extends React.Component {
                     <tr key={job.id}>
                         <td>
                             {job.title}<br />
-                            {job.created}
+                            {job.created} - {job.contract_types_extra.join(', ')}
                         </td>
                         <td></td>
                         <td></td>

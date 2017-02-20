@@ -25,7 +25,6 @@ export default class JobForm extends React.Component {
         const { handleSubmit, pristine, submitting, contractType, experience, studyLevel } = this.props
         const labelForm = this.props.params.hasOwnProperty('id') ? 'Modifier' : 'Ajouter'
 
-
         return (
             <div>
                 <h3 className="font-size-24">{labelForm} une offre</h3>

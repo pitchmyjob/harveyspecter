@@ -8,6 +8,7 @@ import CollaboratorPage from './collaborator/components/CollaboratorPage'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
 import JobCreateFormContainer from './job/containers/JobCreateFormContainer'
 import JobListContainer from './job/containers/JobListContainer'
+import JobUpdateFormContainer from './job/containers/JobUpdateFormContainer'
 import ProCreateFormContainer from './pro/containers/ProCreateFormContainer'
 import ProUpdateFormContainer from './pro/containers/ProUpdateFormContainer'
 import UserActivateContainer from './user/containers/UserActivateContainer'
@@ -25,6 +26,7 @@ export default (
             <Route path="/me/edit/" component={UserUpdateFormContainer} />
             <Route path="/jobs/" component={JobListContainer} />
             <Route path="/jobs/create/" component={JobCreateFormContainer} />
+            <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
         </Route>
         <Route onEnter={logoutRequired}>
             <Route path="/register/" component={ProCreateFormContainer} />

@@ -1,4 +1,5 @@
 import { LIST_JOB_PENDING, LIST_JOB_FULFILLED, LIST_JOB_REJECTED,
+         RETRIEVE_JOB_PENDING, RETRIEVE_JOB_FULFILLED, RETRIEVE_JOB_REJECTED,
          DESTROY_JOB_FULFILLED, DESTROY_JOB_REJECTED
 } from './JobConstants'
 
@@ -7,6 +8,7 @@ const INITIAL_STATE = {
     fetched: false,
     error: null,
     jobs: [],
+    currentJob: null,
 }
 
 export default (state=INITIAL_STATE, action) => {
@@ -17,6 +19,14 @@ export default (state=INITIAL_STATE, action) => {
         case LIST_JOB_FULFILLED:
             return {...state, fetching: false, fetched: true, jobs: action.payload.data}
         case LIST_JOB_REJECTED:
+            return {...state, fetching: false, error: action.payload.response}
+
+        // RETRIEVE
+        case RETRIEVE_JOB_PENDING:
+            return {...state, fetching: true}
+        case RETRIEVE_JOB_FULFILLED:
+            return {...state, fetching: false, fetched: true, currentJob: action.payload.data}
+        case RETRIEVE_JOB_REJECTED:
             return {...state, fetching: false, error: action.payload.response}
 
         // DESTROY

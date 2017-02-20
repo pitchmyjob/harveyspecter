@@ -15,14 +15,20 @@ export default class JobForm extends React.Component {
         this.props.listContractType()
         this.props.listExperience()
         this.props.listStudyLevel()
+
+        if (this.props.params.hasOwnProperty('id')) {
+            this.props.retrieveJob(this.props.params.id)
+        }
     }
 
     render() {
         const { handleSubmit, pristine, submitting, contractType, experience, studyLevel } = this.props
+        const labelForm = this.props.params.hasOwnProperty('id') ? 'Modifier' : 'Ajouter'
+
 
         return (
             <div>
-                <h3 className="font-size-24">Ajout d'une offre</h3>
+                <h3 className="font-size-24">{labelForm} une offre</h3>
                 <form onSubmit={handleSubmit} role="form" autoComplete="off">
                     <Field
                         name="logo"
@@ -84,7 +90,7 @@ export default class JobForm extends React.Component {
                         component={renderTextarea}
                         validate={isRequired}
                         label="Description" />
-                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Ajouter</button>
+                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>{labelForm}</button>
                 </form>
             </div>
         )

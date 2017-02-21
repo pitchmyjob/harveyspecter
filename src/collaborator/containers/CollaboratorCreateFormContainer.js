@@ -1,7 +1,7 @@
 import { reduxForm } from 'redux-form'
 
 import CollaboratorCreateForm from '../components/CollaboratorCreateForm'
-import { handleFormErrors  } from '../../utils/forms/formatters'
+import { handleFormErrors } from '../../utils/forms/formatters'
 import { createCollaborator } from '../CollaboratorActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
 

@@ -1,13 +1,8 @@
 import { connect } from 'react-redux'
-import SideBar from '../components/SideBar'
-import { addAlertSuccess } from '../../alert/AlertActions'
 import { browserHistory } from 'react-router'
 
-
-const mapStateToProps = (state) => {
-    return {
-    }
-}
+import SideBar from '../components/SideBar'
+import { addAlertSuccess } from '../../alert/AlertActions'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -18,6 +13,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
     }
 }
-
 
 export default connect(null, mapDispatchToProps)(SideBar)

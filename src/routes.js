@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router'
 import { loginRequired, logoutRequired } from './utils/auth'
 
 import LayoutLoggedContainer from './core/containers/LayoutLoggedContainer'
+import LayoutNotLoggedContainer from './core/containers/LayoutNotLoggedContainer'
 import AppContainer from './core/containers/AppContainer'
 import CollaboratorPage from './collaborator/components/CollaboratorPage'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
@@ -29,7 +30,7 @@ export default (
             <Route path="/jobs/create/" component={JobCreateFormContainer} />
             <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
         </Route>
-        <Route onEnter={logoutRequired}>
+        <Route onEnter={logoutRequired} component={LayoutNotLoggedContainer}>
             <Route path="/register/" component={ProCreateFormContainer} />
             <Route path="/user/activate/:email/:token/" component={UserActivateContainer} />
             <Route path="/login/" component={UserLoginFormContainer} />

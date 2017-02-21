@@ -18,8 +18,8 @@ export default class UserForgetPasswordRequestForm extends React.Component {
 
         return (
             <div>
-                <h3 className="font-size-24">Mot de passe oublié</h3>
-                {error && <p>{error}</p>}
+                <p>Mot de passe oublié</p>
+                {error && <p className="text-danger">Aucun compte lié à cette adresse e-mail n'à pu être trouvé</p>}
                 <form onSubmit={handleSubmit} role="form" autoComplete="off">
                     <Field
                         name="email"

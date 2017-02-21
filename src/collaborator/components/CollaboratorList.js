@@ -9,7 +9,6 @@ export default class CollaboratorList extends React.Component {
         const { destroyCollaborator } = this.props
         const { fetching, error, collaborators } = this.props.collaborator
 
-
         if (error) {
             return (
                 <p>Error list</p>

@@ -2,10 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 
 export default class SideBar extends React.Component {
-     static contextTypes = {
-        router: React.PropTypes.object.isRequired
-    }
-
     render() {
         const { logoutUser } = this.props
 

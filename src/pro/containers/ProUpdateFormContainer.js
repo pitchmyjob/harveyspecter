@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     return {
         employee: state.employee,
         industry: state.industry,
-        pro: state.pro.pro,
+        pro: state.pro,
         initialValues: state.pro.pro,
     }
 }
@@ -37,7 +37,7 @@ const config = {
     onSubmit: (values, dispatch, props) => {
         // TODO: find something to handle file / image upload
         // If logo unchanged, do not pass it to PUT request
-        if (values['logo'] === props.pro['logo']) {
+        if (values['logo'] === props.pro['pro']['logo']) {
             delete values['logo']
         }
 

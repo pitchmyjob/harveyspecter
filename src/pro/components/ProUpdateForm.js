@@ -1,10 +1,10 @@
 import React from 'react'
 import { Field } from 'redux-form'
 
-import { renderInput, renderSelect } from '../../utils/forms/renderers'
+import { renderInput, renderSelect, renderTextarea } from '../../utils/forms/renderers'
 // import ImageBase64Field from '../../utils/forms/Fields/ImageBase64Field'
 import LocationField from '../../utils/forms/Fields/LocationField'
-import SummernoteField from '../../utils/forms/Fields/SummernoteField'
+// import SummernoteField from '../../utils/forms/Fields/SummernoteField'
 import { isRequired } from '../../utils/forms/validators'
 
 export default class ProUpdateForm extends React.Component {
@@ -112,7 +112,7 @@ export default class ProUpdateForm extends React.Component {
                                     <div className="panel-body container-fluid">
                                         <Field
                                             name="description"
-                                            component={SummernoteField}
+                                            component={renderTextarea}
                                             validate={isRequired} />
                                     </div>
                                 </div>

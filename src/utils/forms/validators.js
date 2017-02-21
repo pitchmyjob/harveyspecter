@@ -15,8 +15,12 @@ export const minLength = (min) => {
 }
 
 export const asyncValidateEmailNotExists = (values, dispatch) => {
-    return dispatch(emailNotExistsUser(values)).catch((error) => {
-        // eslint-disable-next-line
-        throw {email: 'Cet adresse e-mail n\'est pas disponible.'}
-    })
+    return dispatch(emailNotExistsUser(values))
+        .then((response) => {
+            return true
+        })
+        .catch((error) => {
+            // eslint-disable-next-line
+            throw {email: 'Cet adresse e-mail n\'est pas disponible.'}
+        })
 }

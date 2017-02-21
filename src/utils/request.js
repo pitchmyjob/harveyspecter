@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_ROOT_URL = 'http://pitchmyjob.dev:8000/api/'
+const API_ROOT_URL = 'http://barneystinson.eu-west-1.elasticbeanstalk.com/api/'
 
 let HEADERS = {
     'Accept': 'application/json',

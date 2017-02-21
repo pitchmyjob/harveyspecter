@@ -14,35 +14,37 @@ export default class Dashboard extends React.Component {
                                 </div>
                                 <p className="font-size-20 blue-grey-700">Spitch</p>
                                 <p className="blue-grey-400 m-b-20">Recrutement</p>
-                                <p className="m-b-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                                <p className="m-b-10">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                                     nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
                                 </p>
-                                <p className="m-b-35">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                                <p className="m-b-35">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                                     nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
                                 </p>
                                 <ul className="list-inline font-size-18 m-b-35">
                                     <li className="list-inline-item">
-                                        <a className="blue-grey-400" href="javascript:void(0)">
-                                        <i className="icon bd-twitter" aria-hidden="true"></i>
+                                        <a className="blue-grey-400" href="#">
+                                            <i className="icon bd-twitter" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item m-l-10">
-                                        <a className="blue-grey-400" href="javascript:void(0)">
-                                        <i className="icon bd-facebook" aria-hidden="true"></i>
+                                        <a className="blue-grey-400" href="#">
+                                            <i className="icon bd-facebook" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item m-l-10">
-                                        <a className="blue-grey-400" href="javascript:void(0)">
-                                        <i className="icon bd-dribbble" aria-hidden="true"></i>
+                                        <a className="blue-grey-400" href="#">
+                                            <i className="icon bd-dribbble" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li className="list-inline-item m-l-10">
-                                        <a className="blue-grey-400" href="javascript:void(0)">
-                                        <i className="icon bd-instagram" aria-hidden="true"></i>
+                                        <a className="blue-grey-400" href="#">
+                                            <i className="icon bd-instagram" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                 </ul>
-                                <Link to="/company/profile/">
+                                <Link to="/company/edit/">
                                     <button type="button" className="btn btn-primary p-x-40">Modifier</button>
                                 </Link>
                             </div>
@@ -87,14 +89,13 @@ export default class Dashboard extends React.Component {
                                                 <li className="list-group-item">
                                                     <div className="media">
                                                         <div className="media-left">
-                                                            <a className="avatar avatar-online" href="javascript:void(0)">
-                                                            <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
-                                                            <i></i>
+                                                            <a className="avatar avatar-online" href="#">
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
+                                                                <i></i>
                                                             </a>
                                                         </div>
                                                         <div className="media-body">
-                                                            <div className="pull-xs-right">
-                                                            </div>
+                                                            <div className="pull-xs-right"></div>
                                                             <div>
                                                                 <span>Willard Wood</span>
                                                             </div>
@@ -105,14 +106,13 @@ export default class Dashboard extends React.Component {
                                                 <li className="list-group-item">
                                                     <div className="media">
                                                         <div className="media-left">
-                                                            <a className="avatar avatar-online" href="javascript:void(0)">
-                                                            <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
-                                                            <i></i>
+                                                            <a className="avatar avatar-online" href="#">
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
+                                                                <i></i>
                                                             </a>
                                                         </div>
                                                         <div className="media-body">
-                                                            <div className="pull-xs-right">
-                                                            </div>
+                                                            <div className="pull-xs-right"></div>
                                                             <div>
                                                                 <span>Martial Dahan </span>
                                                             </div>
@@ -124,26 +124,29 @@ export default class Dashboard extends React.Component {
                                         </div>
                                     </ul>
                                     <Link to="/collaborators/">
-                                    <button type="button" className="btn btn-block btn-primary"> Ajouter </button> </Link>
+                                        <button type="button" className="btn btn-block btn-primary">Ajouter</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-6 col-xs-12">
                             <div className="panel" id="daily-feed">
                                 <div className="panel-heading">
-                                    <h3 className="panel-title"> Activités </h3>
+                                    <h3 className="panel-title">Activités</h3>
                                 </div>
                                 <div className="panel-body">
                                     <ul className="list-group list-group-dividered list-group-full">
                                         <li className="list-group-item">
                                             <div className="media">
                                                 <div className="media-left">
-                                                    <a className="avatar avatar-online" href="javascript:void(0)">
-                                                    <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" /><i></i></a>
+                                                    <a className="avatar avatar-online" href="#">
+                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" />
+                                                        <i></i>
+                                                    </a>
                                                 </div>
                                                 <div className="media-body">
                                                     <h4 className="media-heading">
-                                                        <a  href="" className="name">Edward Fletcher</a> a publié l'offre <a href=""> Developpeur Python</a>
+                                                        <a href="" className="name">Edward Fletcher</a> a publié l'offre <a href=""> Developpeur Python</a>
                                                     </h4>
                                                     <small>Today 5:50 pm - 12.04.2017</small>
                                                 </div>
@@ -152,8 +155,10 @@ export default class Dashboard extends React.Component {
                                         <li className="list-group-item">
                                             <div className="media">
                                                 <div className="media-left">
-                                                    <a className="avatar avatar-online" href="javascript:void(0)">
-                                                    <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" /><i></i></a>
+                                                    <a className="avatar avatar-online" href="#">
+                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" />
+                                                        <i></i>
+                                                    </a>
                                                 </div>
                                                 <div className="media-body">
                                                     <h4 className="media-heading">

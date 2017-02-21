@@ -31,7 +31,9 @@ export default class JobList extends React.Component {
                         </td>
                         <td className="subject">
                             <div className="table-content">
-                                <p className="blue-grey-500">{job.title}</p>
+                                <p className="blue-grey-500">
+                                    <Link to={'/jobs/' + job.id + '/candidacies/'}>{job.title}</Link>
+                                </p>
                                 <span className="blue-grey-400">{job.created} - {job.contract_types_extra.join(', ')}</span>
                             </div>
                         </td>

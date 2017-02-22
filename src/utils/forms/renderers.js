@@ -26,7 +26,7 @@ export const renderAuthCheckbox = (field) => {
 
 export const renderInput = (field) => {
     return (
-        <div className={'form-group form-material' + (field.meta.touched && field.meta.error ? ' has-error' : '')} data-plugin="formMaterial">
+        <div className={'form-group form-material' + (field.meta.touched && field.meta.error ? ' has-danger' : '')} data-plugin="formMaterial">
             <label className="form-control-label" htmlFor={field.name}>{field.label}</label>
             <input {...field.input} type={field.type} className="form-control" />
             {field.meta.touched && field.meta.error && <small className="help-block">{field.meta.error}</small>}
@@ -66,7 +66,7 @@ export const renderSelectMultiple = (field) => {
 
 export const renderTextarea = (field) => {
     return (
-        <div className={'form-group form-material' + (field.meta.touched && field.meta.error ? ' has-error' : '')} data-plugin="formMaterial">
+        <div className={'form-group form-material' + (field.meta.touched && field.meta.error ? ' has-danger' : '')} data-plugin="formMaterial">
             <label className="form-control-label" htmlFor={field.name}>{field.label}</label>
             <textarea {...field.input} className="form-control auto-size"></textarea>
             {field.meta.touched && field.meta.error && <small className="help-block">{field.meta.error}</small>}

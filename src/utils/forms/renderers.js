@@ -2,7 +2,7 @@ import React from 'react'
 
 export const renderAuthInput = (field) => {
     return (
-        <div data-plugin="formMaterial" className={'form-group form-material floating' + (field.meta.touched && field.meta.error ? ' has-danger' : '')}>
+        <div data-plugin="formMaterial" className={'text-xs-left form-group form-material floating' + (field.meta.touched && field.meta.error ? ' has-danger' : '')}>
 
             <input {...field.input} type={field.type} className="form-control" />
             <label className="floating-label">{field.placeholder}</label>
@@ -13,7 +13,7 @@ export const renderAuthInput = (field) => {
 
 export const renderAuthCheckbox = (field) => {
     return (
-        <div data-plugin="formMaterial" className={'form-group form-material clearfix' + (field.meta.touched && field.meta.error ? ' has-danger' : '')}>
+        <div data-plugin="formMaterial" className={'text-xs-left form-group form-material clearfix' + (field.meta.touched && field.meta.error ? ' has-danger' : '')}>
             <div className="checkbox-custom checkbox-inline checkbox-primary pull-left">
                 <input {...field.input} type="checkbox" />
                 <label htmlFor={field.name}></label>

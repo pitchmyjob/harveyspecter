@@ -12,7 +12,7 @@ export default class SideBar extends React.Component {
                         <div>
                             <ul className="site-menu" data-plugin="menu">
                                 <li className="site-menu-category">General</li>
-                                <li className="site-menu-item has-sub active open">
+                                <li className="site-menu-item has-sub">
                                     <Link to="/">
                                         <i className="site-menu-icon wb-dashboard" aria-hidden="true"></i>
                                         <span className="site-menu-title">Dashboard</span>

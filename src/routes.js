@@ -7,7 +7,7 @@ import LayoutLoggedContainer from './core/containers/LayoutLoggedContainer'
 import LayoutNotLoggedContainer from './core/containers/LayoutNotLoggedContainer'
 import AppContainer from './core/containers/AppContainer'
 import CandidacyListContainer from './candidacy/containers/CandidacyListContainer'
-import CollaboratorPage from './collaborator/components/CollaboratorPage'
+import CollaboratorCreateFormContainer from './collaborator/containers/CollaboratorCreateFormContainer'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
 import JobCreateFormContainer from './job/containers/JobCreateFormContainer'
 import JobListContainer from './job/containers/JobListContainer'
@@ -25,7 +25,7 @@ export default (
         <Route onEnter={loginRequired} component={LayoutLoggedContainer}>
             <IndexRoute component={DashboardContainer} />
             <Route path="/company/edit/" component={ProUpdateFormContainer} />
-            <Route path="/collaborators/" component={CollaboratorPage} />
+            <Route path="/collaborators/create/" component={CollaboratorCreateFormContainer} />
             <Route path="/me/edit/" component={UserUpdateFormContainer} />
             <Route path="/jobs/" component={JobListContainer} />
             <Route path="/jobs/create/" component={JobCreateFormContainer} />

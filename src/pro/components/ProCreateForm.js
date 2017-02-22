@@ -66,7 +66,7 @@ export default class ProCreateForm extends React.Component {
                         component={renderAuthCheckbox}
                         validate={isRequired}
                         label="Accepter les conditions générales d'utilisation" />
-                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Inscription</button>
+                    <button type="submit" className="btn btn-primary btn-block btn-lg m-t-40 ladda-button" disabled={pristine || submitting}>Inscription</button>
                 </form>
                 <p>
                     Déjà inscrit ? <Link to="/login/">Connexion</Link>

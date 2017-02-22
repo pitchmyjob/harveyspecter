@@ -35,7 +35,7 @@ export default class UserForgetPasswordConfirmForm extends React.Component {
                         type="password"
                         validate={[isRequired, minLength(6)]}
                         placeholder="Nouveau mot de passe" />
-                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Réinitialiser</button>
+                    <button type="submit" className="btn btn-primary btn-block btn-lg m-t-40 ladda-button" disabled={pristine || submitting}>Réinitialiser</button>
                 </form>
             </div>
         )

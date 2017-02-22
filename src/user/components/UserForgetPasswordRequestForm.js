@@ -27,7 +27,7 @@ export default class UserForgetPasswordRequestForm extends React.Component {
                         type="email"
                         validate={[isRequired, isEmail]}
                         placeholder="Adresse e-mail" />
-                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Envoyer</button>
+                    <button type="submit" className="btn btn-primary btn-block btn-lg m-t-40 ladda-button" disabled={pristine || submitting}>Envoyer</button>
                 </form>
             </div>
         )

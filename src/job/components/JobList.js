@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import Loader from '../../core/components/Loader'
+import LoadingError from '../../core/components/LoadingError'
+
 export default class JobList extends React.Component {
     componentDidMount() {
         this.props.listJob()
@@ -8,21 +11,13 @@ export default class JobList extends React.Component {
 
     render() {
         const { destroyJob } = this.props
-        const { fetching, error, jobs } = this.props.job
+        const { fetched, error, jobs } = this.props.job
 
         let jobList = null;
-
         if (error) {
-            return (
-                <p>Error list</p>
-            )
+            jobList = <LoadingError />
         }
-        else if (fetching) {
-            jobList = (
-                <tr><td colSpan="4">Chargement...</td></tr>
-            )
-        }
-        else {
+        else if (fetched) {
             jobList = jobs.map((job) => {
                 return (
                     <tr key={job.id}>
@@ -42,29 +37,13 @@ export default class JobList extends React.Component {
                             <Link to={'/jobs/edit/' + job.id + '/'}>Modifier</Link>
                             <button onClick={() => destroyJob(job.id)}>Supprimer</button>
                         </td>
-                        <td>
-                            <div className="btn-group">
-                                <span className="icon wb-menu" data-toggle="dropdown" aria-expanded="false"></span>
-                                <ul className="dropdown-menu" role="menu">
-                                    <li role="presentation">
-                                        <a href="javascript:void(0)" role="menuitem">Action</a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="javascript:void(0)" role="menuitem">Another action</a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="javascript:void(0)" role="menuitem">Something else here</a>
-                                    </li>
-                                    <li className="divider" role="presentation"></li>
-                                    <li role="presentation">
-                                        <a href="javascript:void(0)" role="menuitem">Separated link</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td></td>
                     </tr>
                 )
             })
+        }
+        else {
+            jobList = <Loader />
         }
 
         return (

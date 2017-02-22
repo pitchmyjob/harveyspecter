@@ -37,10 +37,30 @@ export default class JobList extends React.Component {
                                 <span className="blue-grey-400">{job.created} - {job.contract_types_extra.join(', ')}</span>
                             </div>
                         </td>
-                        <td></td>
+                        <td className="text-xs-center"><span className="tag tag-pill tag-danger">0</span></td>
                         <td>
                             <Link to={'/jobs/edit/' + job.id + '/'}>Modifier</Link>
                             <button onClick={() => destroyJob(job.id)}>Supprimer</button>
+                        </td>
+                        <td>
+                            <div className="btn-group">
+                                <span className="icon wb-menu" data-toggle="dropdown" aria-expanded="false"></span>
+                                <ul className="dropdown-menu" role="menu">
+                                    <li role="presentation">
+                                        <a href="javascript:void(0)" role="menuitem">Action</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="javascript:void(0)" role="menuitem">Another action</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="javascript:void(0)" role="menuitem">Something else here</a>
+                                    </li>
+                                    <li className="divider" role="presentation"></li>
+                                    <li role="presentation">
+                                        <a href="javascript:void(0)" role="menuitem">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 )
@@ -73,10 +93,10 @@ export default class JobList extends React.Component {
                                 </li>
                             </ul>
                         </div>
-                        <p>
-                            <Link to="/jobs/create/">Ajouter une offre</Link>
-                        </p>
                         <div className="panel-body">
+                            <p>
+                                <Link to="/jobs/create/" className="btn btn-success">Ajouter une offre</Link>
+                            </p>
                             <table className="table">
                                 <thead>
                                     <tr>

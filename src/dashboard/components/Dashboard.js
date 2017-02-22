@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import CollaboratorListContainer from '../../collaborator/containers/CollaboratorListContainer'
+
 export default class Dashboard extends React.Component {
     render() {
         return (
@@ -83,47 +85,8 @@ export default class Dashboard extends React.Component {
                                     </h3>
                                 </div>
                                 <div className="panel-body">
-                                    <ul className="list-group list-group-dividered list-group-full h-250" data-plugin="scrollable">
-                                        <div data-role="container">
-                                            <div data-role="content">
-                                                <li className="list-group-item">
-                                                    <div className="media">
-                                                        <div className="media-left">
-                                                            <a className="avatar avatar-online" href="#">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
-                                                                <i></i>
-                                                            </a>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <div className="pull-xs-right"></div>
-                                                            <div>
-                                                                <span>Willard Wood</span>
-                                                            </div>
-                                                            <small>CEO</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li className="list-group-item">
-                                                    <div className="media">
-                                                        <div className="media-left">
-                                                            <a className="avatar avatar-online" href="#">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/9.jpg" alt=""/>
-                                                                <i></i>
-                                                            </a>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <div className="pull-xs-right"></div>
-                                                            <div>
-                                                                <span>Martial Dahan </span>
-                                                            </div>
-                                                            <small>DG</small>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                    <Link to="/collaborators/">
+                                    <CollaboratorListContainer />
+                                    <Link to="/collaborators/create/">
                                         <button type="button" className="btn btn-block btn-primary">Ajouter</button>
                                     </Link>
                                 </div>

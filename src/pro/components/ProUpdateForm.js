@@ -1,6 +1,8 @@
 import React from 'react'
 import { Field } from 'redux-form'
 
+import Loader from '../../core/components/Loader'
+import LoadingError from '../../core/components/LoadingError'
 import { renderInput, renderSelect, renderTextarea } from '../../utils/forms/renderers'
 // import ImageBase64Field from '../../utils/forms/Fields/ImageBase64Field'
 import LocationField from '../../utils/forms/Fields/LocationField'
@@ -16,12 +18,13 @@ export default class ProUpdateForm extends React.Component {
 
     render() {
         const { handleSubmit, pristine, submitting, employee, industry } = this.props
-        const { fetched, pro } = this.props.pro
+        const { fetched, error, pro } = this.props.pro
 
-        if (!fetched) {
-            return (
-                <p>Chargement...</p>
-            )
+        if (error) {
+            return <LoadingError />
+        }
+        else if (!fetched) {
+            return <Loader />
         }
 
         return (

@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import Loader from '../../core/components/Loader'
+import LoadingError from '../../core/components/LoadingError'
+
 export default class JobList extends React.Component {
     componentDidMount() {
         this.props.listJob()
@@ -8,21 +11,13 @@ export default class JobList extends React.Component {
 
     render() {
         const { destroyJob } = this.props
-        const { fetching, error, jobs } = this.props.job
+        const { fetched, error, jobs } = this.props.job
 
         let jobList = null;
-
         if (error) {
-            return (
-                <p>Error list</p>
-            )
+            jobList = <LoadingError />
         }
-        else if (fetching) {
-            jobList = (
-                <tr><td colSpan="4">Chargement...</td></tr>
-            )
-        }
-        else {
+        else if (fetched) {
             jobList = jobs.map((job) => {
                 return (
                     <tr key={job.id}>
@@ -31,18 +26,24 @@ export default class JobList extends React.Component {
                         </td>
                         <td className="subject">
                             <div className="table-content">
-                                <p className="blue-grey-500">{job.title}</p>
+                                <p className="blue-grey-500">
+                                    <Link to={'/jobs/' + job.id + '/candidacies/'}>{job.title}</Link>
+                                </p>
                                 <span className="blue-grey-400">{job.created} - {job.contract_types_extra.join(', ')}</span>
                             </div>
                         </td>
-                        <td></td>
+                        <td className="text-xs-center"><span className="tag tag-pill tag-danger">0</span></td>
                         <td>
                             <Link to={'/jobs/edit/' + job.id + '/'}>Modifier</Link>
                             <button onClick={() => destroyJob(job.id)}>Supprimer</button>
                         </td>
+                        <td></td>
                     </tr>
                 )
             })
+        }
+        else {
+            jobList = <Loader />
         }
 
         return (
@@ -71,10 +72,10 @@ export default class JobList extends React.Component {
                                 </li>
                             </ul>
                         </div>
-                        <p>
-                            <Link to="/jobs/create/">Ajouter une offre</Link>
-                        </p>
                         <div className="panel-body">
+                            <p>
+                                <Link to="/jobs/create/" className="btn btn-success">Ajouter une offre</Link>
+                            </p>
                             <table className="table">
                                 <thead>
                                     <tr>

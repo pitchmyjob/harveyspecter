@@ -36,8 +36,33 @@ export default class JobForm extends React.Component {
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="panel">
+                            <div className="panel-body">
+                                <div className="pearls row">
+                                    <div className="pearl current col-xs-4" aria-expanded="true">
+                                        <div className="pearl-icon">
+                                            <i className="icon wb-clipboard" aria-hidden="true"></i>
+                                        </div>
+                                        <span className="pearl-title">Offre</span>
+                                    </div>
+                                    <div className="pearl col-xs-4 disabled" aria-expanded="false">
+                                        <div className="pearl-icon">
+                                            <i className="icon wb-help" aria-hidden="true"></i>
+                                        </div>
+                                        <span className="pearl-title">Question</span>
+                                    </div>
+                                    <div className="pearl col-xs-4 disabled" aria-expanded="false">
+                                        <div className="pearl-icon">
+                                            <i className="icon wb-payment" aria-hidden="true"></i>
+                                        </div>
+                                        <span className="pearl-title">Paiement</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="panel">
                             <div className="panel-heading">
-                                <h3 className="panel-title">Information entreprise</h3>
+                                <h3 className="panel-title">Information sur l'offre</h3>
                             </div>
                             <div className="panel-body container-fluid">
                                 <form onSubmit={handleSubmit} role="form" autoComplete="off">
@@ -68,22 +93,19 @@ export default class JobForm extends React.Component {
                                         component={renderSelectMultiple}
                                         options={contractType.contractTypes}
                                         validate={isRequired}
-                                        label="Contrat(s)"
-                                        placeholder="Choisissez un ou plusieurs contrats" />
+                                        label="Contrat(s)" />
                                     <Field
                                         name="experiences"
                                         component={renderSelectMultiple}
                                         options={experience.experiences}
                                         validate={isRequired}
-                                        label="Expérience(s)"
-                                        placeholder="Choisissez un ou plusieurs expériences" />
+                                        label="Expérience(s)" />
                                     <Field
                                         name="study_levels"
                                         component={renderSelectMultiple}
                                         options={studyLevel.studyLevels}
                                         validate={isRequired}
-                                        label="Niveau d'études"
-                                        placeholder="Choisissez un ou plusieurs niveau d'études" />
+                                        label="Niveau d'études" />
                                     <Field
                                         name="salary"
                                         component={renderInput}

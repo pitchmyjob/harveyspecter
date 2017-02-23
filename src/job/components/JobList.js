@@ -15,7 +15,11 @@ export default class JobList extends React.Component {
 
         let jobList = null;
         if (error) {
-            jobList = <LoadingError />
+            jobList = (
+                <tr>
+                    <td colSpan="5"><LoadingError /></td>
+                </tr>
+            )
         }
         else if (fetched) {
             jobList = jobs.map((job) => {
@@ -43,7 +47,11 @@ export default class JobList extends React.Component {
             })
         }
         else {
-            jobList = <Loader />
+            jobList = (
+                <tr>
+                    <td colSpan="5"><Loader /></td>
+                </tr>
+            )
         }
 
         return (

@@ -5,6 +5,7 @@ import JobForm from '../components/JobForm'
 import { listContractType } from '../../contracttype/ContractTypeActions'
 import { listExperience } from '../../experience/ExperienceActions'
 import { listStudyLevel } from '../../studylevel/StudyLevelActions'
+import { retrievePro } from '../../pro/ProActions'
 import { createJob } from '../JobActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
 import { handleFormErrors  } from '../../utils/forms/formatters'
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => {
         contractType: state.contractType,
         experience: state.experience,
         studyLevel: state.studyLevel,
+        pro: state.pro.pro,
     }
 }
 
@@ -28,13 +30,24 @@ const mapDispatchToProps = (dispatch) => {
         listStudyLevel: () => {
             return dispatch(listStudyLevel())
         },
+        retrievePro: () => {
+            return dispatch(retrievePro())
+        },
     }
 }
 
 const config = {
     form: 'JobCreateForm',
     onSubmit: (values, dispatch, props) => {
-        values['skills'] = values['skills'].split(',')
+        // TODO: find something to handle file / image upload
+        // If logo unchanged, do not pass it to PUT request
+        if (values['logo'] === props.pro['logo']) {
+            delete values['logo']
+        }
+
+        if (!Array.isArray(values['skills'])) {
+            values['skills'] = values['skills'].split(',')
+        }
 
         return dispatch(createJob(values))
             .then((response) => {

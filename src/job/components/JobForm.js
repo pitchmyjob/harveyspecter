@@ -19,6 +19,12 @@ export default class JobForm extends React.Component {
         if (this.props.params.hasOwnProperty('id')) {
             this.props.retrieveJob(this.props.params.id)
         }
+        else {
+            this.props.retrievePro().then((response) => {
+                // Initialize form logo field with pro logo
+                this.props.initialize({logo: response.value.data.logo})
+            })
+        }
     }
 
     render() {

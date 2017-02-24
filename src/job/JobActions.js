@@ -1,18 +1,33 @@
 import request from '../utils/request'
 
-import { LIST_JOB, RETRIEVE_JOB, CREATE_JOB, UPDATE_JOB, DESTROY_JOB } from './JobConstants'
+import { LIST_JOB, RETRIEVE_JOB, RETRIEVE_COUNTER_JOB, CREATE_JOB, UPDATE_JOB, DESTROY_JOB } from './JobConstants'
 
-export const listJob = () => {
+export const listJob = (page = null, search = null) => {
+    let args = {params: {}}
+    if (page) {
+        args['params']['page'] = page
+    }
+    if (search) {
+        args['params']['search'] = search
+    }
+
     return {
         type: LIST_JOB,
-        payload: request.get('/jobs/')
+        payload: request.get('/jobs/', args)
     }
 }
 
-export function retrieveJob(id) {
+export const retrieveJob = (id) => {
     return {
         type: RETRIEVE_JOB,
         payload: request.get('/jobs/' + id + '/')
+    }
+}
+
+export const retrieveCounterJob = (id) => {
+    return {
+        type: RETRIEVE_COUNTER_JOB,
+        payload: request.get('/jobs/count/')
     }
 }
 
@@ -23,7 +38,7 @@ export const createJob = (values) => {
     }
 }
 
-export function updateJob(id, values) {
+export const updateJob = (id, values) => {
     return {
         type: UPDATE_JOB,
         payload: request.patch('/jobs/' + id + '/', values)

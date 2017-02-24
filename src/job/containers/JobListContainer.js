@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import JobList from '../components/JobList'
-import { listJob, destroyJob } from '../JobActions'
+import { listJob, retrieveCounterJob, destroyJob } from '../JobActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
 
 const mapStateToProps = (state) => {
@@ -12,11 +12,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        listJob: () => {
-            return dispatch(listJob())
+        listJob: (page = null, search = null) => {
+            return dispatch(listJob(page, search))
+        },
+        retrieveCounterJob: () => {
+            return dispatch(retrieveCounterJob())
         },
         destroyJob: (id) => {
             return dispatch(destroyJob(id)).then((response) => {
+                dispatch(retrieveCounterJob())
                 dispatch(addAlertSuccess('Job supprimé'))
             })
         },

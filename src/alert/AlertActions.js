@@ -1,19 +1,19 @@
 import { CREATE_ALERT, DESTROY_ALERT } from './AlertConstants'
 
-export const addAlert = (alertType, message) => {
+export const addAlert = (message, className='info') => {
     return {
         type: CREATE_ALERT,
-        alertType: alertType,
         message: message,
+        className: 'notification-bar-just-text notification-bar-' + className
     }
 }
 
 export const addAlertSuccess = (message) => {
-    return addAlert('SUCCESS', message)
+    return addAlert(message, 'success')
 }
 
 export const addAlertError = (message) => {
-    return addAlert('DANGER', message)
+    return addAlert(message, 'error')
 }
 
 export const hideAlert = (key) => {

@@ -27,7 +27,9 @@ export default (
             <Route path="/company/edit/" component={ProUpdateFormContainer} />
             <Route path="/collaborators/create/" component={CollaboratorCreateFormContainer} />
             <Route path="/me/edit/" component={UserUpdateFormContainer} />
-            <Route path="/jobs/" component={JobListContainer} />
+            <Route path="/jobs/" component={JobListContainer}>
+                <Route path="/jobs/:page/" />
+            </Route>
             <Route path="/jobs/create/" component={JobCreateFormContainer} />
             <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
             <Route path="/jobs/:id/candidacies/" component={CandidacyListContainer} />

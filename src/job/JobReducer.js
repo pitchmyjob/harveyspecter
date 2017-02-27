@@ -8,10 +8,7 @@ import { LIST_JOB_PENDING, LIST_JOB_FULFILLED, LIST_JOB_REJECTED,
 
 const INITIAL_STATE = {
     jobList: {pending: false, fulfilled: false, error: null, jobs: [], pagination: null},
-    jobRetrieve: {pending: false, fulfilled: false, error: null, job: null},
-    jobCreate: {pending: false, fulfilled: false, error: null, job: null},
-    jobUpdate: {pending: false, fulfilled: false, error: null, job: null},
-    jobDestroy: {pending: false, fulfilled: false, error: null, job: null},
+    jobActive: {pending: false, fulfilled: false, error: null, job: null},
     jobCounter: {pending: false, fulfilled: false, error: null, results: {pending: null, visible: null, expired: null} }
 }
 
@@ -27,35 +24,35 @@ export default (state=INITIAL_STATE, action) => {
 
         // RETRIEVE
         case RETRIEVE_JOB_PENDING:
-            return {...state, jobRetrieve: {pending: true, fetched: false, error: null, job: null}}
+            return {...state, jobActive: {pending: true, fetched: false, error: null, job: null}}
         case RETRIEVE_JOB_FULFILLED:
-            return {...state, jobRetrieve: {pending: false, fetched: true, error: null, job: action.payload.data}}
+            return {...state, jobActive: {pending: false, fetched: true, error: null, job: action.payload.data}}
         case RETRIEVE_JOB_REJECTED:
-            return {...state, jobRetrieve: {pending: false, fetched: false, error: action.payload.response, job: null}}
+            return {...state, jobActive: {pending: false, fetched: false, error: action.payload.response, job: null}}
 
         // CREATE
         case CREATE_JOB_PENDING:
-            return {...state, jobCreate: {pending: true, fetched: false, error: null, job: null}}
+            return {...state, jobActive: {pending: true, fetched: false, error: null, job: null}}
         case CREATE_JOB_FULFILLED:
-            return {...state, jobCreate: {pending: false, fetched: true, error: null, job: action.payload.data}}
+            return {...state, jobActive: {pending: false, fetched: true, error: null, job: action.payload.data}}
         case CREATE_JOB_REJECTED:
-            return {...state, jobCreate: {pending: false, fetched: false, error: action.payload.response, job: null}}
+            return {...state, jobActive: {pending: false, fetched: false, error: action.payload.response, job: null}}
 
         // UPDATE
         case UPDATE_JOB_PENDING:
-            return {...state, jobUpdate: {pending: true, fetched: false, error: null, job: null}}
+            return {...state, jobActive: {pending: true, fetched: false, error: null, job: null}}
         case UPDATE_JOB_FULFILLED:
-            return {...state, jobUpdate: {pending: false, fetched: true, error: null, job: action.payload.data}}
+            return {...state, jobActive: {pending: false, fetched: true, error: null, job: action.payload.data}}
         case UPDATE_JOB_REJECTED:
-            return {...state, jobUpdate: {pending: false, fetched: false, error: action.payload.response, job: null}}
+            return {...state, jobActive: {pending: false, fetched: false, error: action.payload.response, job: null}}
 
         // DESTROY
         case DESTROY_JOB_PENDING:
-            return {...state, jobDestroy: {pending: true, fetched: false, error: null, job: null}}
+            return {...state, jobActive: {pending: true, fetched: false, error: null, job: state.jobList.jobs.find((job) => { return job.id === action.meta.id })}}
         case DESTROY_JOB_FULFILLED:
-            return {...state, jobDestroy: {pending: false, fetched: true, error: null, job: action.payload.data}}
+            return {...state, jobActive: {pending: false, fetched: true, error: null, job: null}, jobList: {...state.jobList, jobs: state.jobList.jobs.filter((job) => { return job.id !== action.meta.id })}}
         case DESTROY_JOB_REJECTED:
-            return {...state, jobDestroy: {pending: false, fetched: false, error: action.payload.response, job: null}}
+            return {...state, jobActive: {pending: false, fetched: false, error: action.payload.response, job: null}}
 
         // RETRIEVE COUNTER
         case RETRIEVE_COUNTER_JOB_PENDING:

@@ -6,10 +6,30 @@ import { toLocaleDateString } from '../../utils/date'
 
 export default class JobListItem extends React.Component {
     render() {
-        const { job, destroyJob } = this.props
+        const { job, destroyJob, deleted } = this.props
+
+        let action = null;
+        if (deleted) {
+            action = <span className="loader loader-circle"></span>
+        }
+        else {
+            action = (
+                <div className="btn-group">
+                    <span className="icon wb-menu dropdown-toggle" data-toggle="dropdown" aria-expanded="false" disabled="disabled"></span>
+                    <ul role="menu" className="dropdown-menu dropdown-menu-right">
+                        <li role="presentation">
+                            <Link to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" role="menuitem" onClick={() => destroyJob(job.id)}>Supprimer</a>
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
 
         return (
-            <tr>
+            <tr className={deleted ? 'active' : ''}>
                 <td className="work-status">
                     <span className={'tag tag-' + getTagClass(job.state.code)}>{job.state.label}</span>
                 </td>
@@ -23,19 +43,7 @@ export default class JobListItem extends React.Component {
                 </td>
                 <td className="text-xs-center"><span className="tag tag-pill tag-danger">{job.candidacy_count}</span></td>
                 <td>{getButtonAction(job.state.code, job.id)}</td>
-                <td className="text-xs-center">
-                    <div className="btn-group">
-                        <span className="icon wb-menu dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></span>
-                        <ul role="menu" className="dropdown-menu dropdown-menu-right">
-                            <li role="presentation">
-                                <Link to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
-                            </li>
-                            <li role="presentation">
-                                <a href="#" role="menuitem" onClick={() => destroyJob(job.id)}>Supprimer</a>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
+                <td className="text-xs-center">{action}</td>
             </tr>
         )
     }

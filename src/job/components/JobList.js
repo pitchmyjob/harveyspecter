@@ -72,7 +72,7 @@ export default class JobList extends React.Component {
 
     render() {
         const { destroyJob } = this.props
-        const { jobList, jobCounter } = this.props
+        const { jobList, jobCounter, jobActive } = this.props
 
         let jobListResult = null
         if (jobList.error) {
@@ -85,7 +85,8 @@ export default class JobList extends React.Component {
         else if (jobList.fetched) {
             if (jobList.jobs.length > 0) {
                 jobListResult = jobList.jobs.map((job) => {
-                    return <JobListItem key={job.id} job={job} destroyJob={destroyJob.bind(this)} />
+                    const deleted = (jobActive.job === job)
+                    return <JobListItem key={job.id} job={job} destroyJob={destroyJob.bind(this)} deleted={deleted} />
                 })
             }
             else {

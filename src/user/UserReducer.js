@@ -35,13 +35,13 @@ export default (state=INITIAL_STATE, action) => {
         case RETRIEVE_FROM_TOKEN_USER_REJECTED:
             return {...state, fetching: false, errorRetrieve: action.payload.response.data}
 
-        // FOREGET PASSWORD REQUEST
+        // FORGET PASSWORD REQUEST
         case FORGET_PASSWORD_REQUEST_USER_FULFILLED:
             return {...state, forgetPasswordRequested: true}
         case FORGET_PASSWORD_REQUEST_USER_REJECTED:
             return {...state, error: action.payload.response}
 
-        // FOREGET PASSWORD CONFIRM
+        // FORGET PASSWORD CONFIRM
         case FORGET_PASSWORD_CONFIRM_USER_FULFILLED:
             return {...state, forgetPasswordConfirmed: true}
         case FORGET_PASSWORD_CONFIRM_USER_REJECTED:

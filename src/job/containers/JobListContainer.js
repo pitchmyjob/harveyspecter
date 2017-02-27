@@ -6,7 +6,8 @@ import { addAlertSuccess } from '../../alert/AlertActions'
 
 const mapStateToProps = (state) => {
     return {
-        job: state.job,
+        jobList: state.job.jobList,
+        jobCounter: state.job.jobCounter,
     }
 }
 

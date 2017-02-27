@@ -19,7 +19,6 @@ export default class Pagination extends React.Component {
                 previousLinkClassName={'page-link'}
                 nextClassName={'pagination-items page-item'}
                 nextLinkClassName={'page-link'}
-                initialPage={9}
                 activeClassName={'active'} />
         )
     }

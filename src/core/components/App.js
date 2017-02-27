@@ -7,10 +7,6 @@ export default class App extends React.Component {
         document.body.classList.remove('layout-full');
     }
 
-    componentDidMount() {
-        this.props.retrieveUserFromToken()
-    }
-
     render() {
         return (
             <div className="full-height">

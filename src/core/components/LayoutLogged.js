@@ -5,13 +5,14 @@ import NavBarContainer from '../containers/NavBarContainer'
 import SideBarContainer from '../containers/SideBarContainer'
 
 export default class LayoutLogged extends React.Component {
-    render() {
-        const { fetched, errorRetrieve } = this.props.currentUser
+    componentDidMount() {
+        this.props.retrieveUserFromToken()
+    }
 
-        if (errorRetrieve) {
-            this.props.router.push('/login/')
-        }
-        else if (fetched) {
+    render() {
+        const { fetched } = this.props.currentUser
+
+        if (fetched) {
             return (
                 <div>
                     <NavBarContainer />

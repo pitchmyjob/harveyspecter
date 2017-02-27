@@ -2,4 +2,10 @@ import { connect } from 'react-redux'
 
 import LayoutLogged from '../components/LayoutLogged'
 
-export default connect(null, null)(LayoutLogged)
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.user,
+    }
+}
+
+export default connect(mapStateToProps, null)(LayoutLogged)

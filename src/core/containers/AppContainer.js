@@ -3,12 +3,6 @@ import { connect } from 'react-redux'
 import App from '../components/App'
 import { retrieveUserFromToken } from '../../user/UserActions'
 
-const mapStateToProps = (state) => {
-    return {
-        currentUser: state.user,
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         retrieveUserFromToken: () => {
@@ -25,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)

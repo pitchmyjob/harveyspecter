@@ -32,9 +32,7 @@ export default (
                 <Route path="/jobs/create/" component={JobCreateFormContainer} />
                 <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
                 <Route path="/jobs/:id/candidacies/" component={CandidacyListContainer} />
-                <Route path="/jobs/" component={JobListContainer}>
-                    <Route path="/jobs/:page/" />
-                </Route>
+                <Route path="/jobs/(:page/)" component={JobListContainer} />
             </Route>
             <Route onEnter={logoutRequired} component={LayoutNotLoggedContainer}>
                 <Route path="/register/" component={ProCreateFormContainer} />

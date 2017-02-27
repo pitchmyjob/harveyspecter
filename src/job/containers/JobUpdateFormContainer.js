@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
         contractType: state.contractType,
         experience: state.experience,
         studyLevel: state.studyLevel,
-        job: state.job.currentJob,
-        initialValues: state.job.currentJob,
+        job: state.job.jobActive.job,
+        initialValues: state.job.jobActive.job,
     }
 }
 

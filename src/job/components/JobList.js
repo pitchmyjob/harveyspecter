@@ -4,22 +4,24 @@ import { Link } from 'react-router'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import Pagination from '../../core/components/Pagination'
-import { getTagClass, getButtonAction } from '../utils'
-import { toLocaleDateString } from '../../utils/date'
+import JobListItem from './JobListItem'
 
 export default class JobList extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {searchTerm: ''};
+        super(props)
 
-        this.searchUpdated = this.searchUpdated.bind(this);
-        this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
-        this.handlePageClick = this.handlePageClick.bind(this);
+        this.state = {
+            searchTerm: this.props.location.query.search || '',
+            page: this.props.params.page - 1 || 0,
+        }
+
+        this.searchUpdated = this.searchUpdated.bind(this)
+        this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this)
+        this.handlePageClick = this.handlePageClick.bind(this)
     }
 
     componentDidMount() {
-        this.initialPage = this.props.params.page - 1 || 0
-        this.props.listJob(this.props.params.page || null)
+        this.props.listJob(this.props.params.page || null, this.state.searchTerm)
         this.props.retrieveCounterJob()
     }
 
@@ -27,70 +29,76 @@ export default class JobList extends React.Component {
         this.setState({searchTerm: event.target.value})
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location.action === 'POP') {
+            if (this.props.params.page !== nextProps.params.page) {
+                this.handlePageClick({selected: parseInt(nextProps.params.page - 1 || 0, 10)})
+            }
+        }
+    }
+
     handleSearchFormSubmit(event) {
         event.preventDefault()
+        this.setState({page: 0})
         this.props.listJob(null, this.state.searchTerm)
-        this.props.router.replace({
-            pathname: '/jobs/' + (this.state.searchTerm ? '?search=' + this.state.searchTerm : '')
+
+        let query = {}
+        if (this.state.searchTerm) {
+            query['search'] = this.state.searchTerm
+        }
+
+        this.props.router.push({
+            pathname: '/jobs/',
+            query: query
         })
     }
 
     handlePageClick(data) {
         let newPage = data.selected + 1
+
+        this.setState({page: data.selected})
         this.props.listJob(newPage, this.state.searchTerm)
-        this.props.router.replace({
-            pathname: '/jobs/' + newPage + '/' + (this.state.searchTerm ? '?search=' + this.state.searchTerm : '')
+
+        let query = {}
+        if (this.state.searchTerm) {
+            query['search'] = this.state.searchTerm
+        }
+
+        this.props.router.push({
+            pathname: '/jobs/' + newPage + '/',
+            query: query
         })
     }
 
     render() {
         const { destroyJob } = this.props
-        const { fetched, error, jobs, counter } = this.props.job
+        const { jobList, jobCounter, jobActive } = this.props
 
-        let jobList = null
-        if (error) {
-            jobList = (
+        let jobListResult = null
+        if (jobList.error) {
+            jobListResult = (
                 <tr>
                     <td colSpan="5"><LoadingError /></td>
                 </tr>
             )
         }
-        else if (fetched) {
-            jobList = jobs.results.map((job) => {
-                return (
-                    <tr key={job.id}>
-                        <td className="work-status">
-                            <span className={'tag tag-' + getTagClass(job.state.code)}>{job.state.label}</span>
-                        </td>
-                        <td className="subject">
-                            <div className="table-content">
-                                <p className="blue-grey-500">
-                                    <Link to={'/jobs/' + job.id + '/candidacies/'}>{job.title}</Link>
-                                </p>
-                                <span className="blue-grey-400">{toLocaleDateString(job.created)} - {job.contract_types_extra.join(', ')} - {job.locality}</span>
-                            </div>
-                        </td>
-                        <td className="text-xs-center"><span className="tag tag-pill tag-danger">{job.candidacy_count}</span></td>
-                        <td>{getButtonAction(job.state.code, job.id)}</td>
-                        <td className="text-xs-center">
-                            <div className="btn-group">
-                                <span className="icon wb-menu dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></span>
-                                <ul role="menu" className="dropdown-menu dropdown-menu-right">
-                                    <li role="presentation">
-                                        <Link to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="#" role="menuitem" onClick={() => destroyJob(job.id)}>Supprimer</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
+        else if (jobList.fetched) {
+            if (jobList.jobs.length > 0) {
+                jobListResult = jobList.jobs.map((job) => {
+                    const deleted = (jobActive.job === job)
+                    return <JobListItem key={job.id} job={job} destroyJob={destroyJob.bind(this)} deleted={deleted} />
+                })
+            }
+            else {
+                jobListResult = (
+                    <tr>
+                        <td colSpan="5">Aucun résultat</td>
                     </tr>
                 )
-            })
+            }
         }
         else {
-            jobList = (
+            jobListResult = (
                 <tr>
                     <td colSpan="5"><Loader /></td>
                 </tr>
@@ -105,20 +113,20 @@ export default class JobList extends React.Component {
                             <form className="panel-search-form" role="search" style={{paddingLeft: 0, marginLeft: 0}} onSubmit={this.handleSearchFormSubmit}>
                                 <div className="input-search">
                                     <i className="input-search-icon md-search" aria-hidden="true"></i>
-                                    <input type="text" className="form-control" id="inputSearch" name="search" placeholder="Rechercher..." onChange={this.searchUpdated} />
+                                    <input type="text" className="form-control" id="inputSearch" name="search" value={this.state.searchTerm} placeholder="Rechercher..." onChange={this.searchUpdated} />
                                 </div>
                             </form>
                             <ul className="panel-info">
                                 <li>
-                                    <div className="num green-600">{counter.fetched ? counter.results.visible : '...'}</div>
+                                    <div className="num green-600">{jobCounter.results.visible || '...'}</div>
                                     <p>En cours</p>
                                 </li>
                                 <li>
-                                    <div className="num red-600">{counter.fetched ? counter.results.expired : '...'}</div>
+                                    <div className="num red-600">{jobCounter.results.expired || '...'}</div>
                                     <p>Expirées</p>
                                 </li>
                                 <li>
-                                    <div className="num orange-600">{counter.fetched ? counter.results.pending : '...'}</div>
+                                    <div className="num orange-600">{jobCounter.results.pending || '...'}</div>
                                     <p>En attente</p>
                                 </li>
                             </ul>
@@ -138,16 +146,16 @@ export default class JobList extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {jobList}
+                                    {jobListResult}
                                 </tbody>
                             </table>
                         </div>
                         <div className="panel-footer">
                             <nav>
-                                {jobs && !error &&
+                                {jobList.pagination && jobList.pagination.count > 0 &&
                                     <Pagination
-                                        forcePage={this.initialPage}
-                                        pageCount={jobs.num_pages}
+                                        forcePage={this.state.page}
+                                        pageCount={jobList.pagination.num_pages}
                                         marginPagesDisplayed={1}
                                         pageRangeDisplayed={2}
                                         onPageChange={this.handlePageClick} />

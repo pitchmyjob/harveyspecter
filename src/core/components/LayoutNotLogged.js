@@ -9,7 +9,7 @@ export default class LayoutNotLogged extends React.Component {
                         <div className="panel">
                             <div className="panel-body">
                                 <div className="brand">
-                                    <img className="brand-img" src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/images/logo-blue.png" alt="..." />
+                                    <img className="brand-img" src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/base/assets/images/logo-blue.png" alt="..." />
                                     <h2 className="brand-text font-size-18">Spitch</h2>
                                 </div>
                                 {this.props.children}

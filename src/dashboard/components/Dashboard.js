@@ -12,7 +12,7 @@ export default class Dashboard extends React.Component {
                         <div className="card card-shadow">
                             <div className="card-block text-xs-center bg-white p-40">
                                 <div className="avatar avatar-100 m-b-20">
-                                    <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/assets/images/logopitch.png" alt="" />
+                                    <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/base/assets/images/logopitch.png" alt="" />
                                 </div>
                                 <p className="font-size-20 blue-grey-700">Spitch</p>
                                 <p className="blue-grey-400 m-b-20">Recrutement</p>
@@ -103,7 +103,7 @@ export default class Dashboard extends React.Component {
                                             <div className="media">
                                                 <div className="media-left">
                                                     <a className="avatar avatar-online" href="#">
-                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" />
+                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/5.jpg" alt="" />
                                                         <i></i>
                                                     </a>
                                                 </div>
@@ -119,7 +119,7 @@ export default class Dashboard extends React.Component {
                                             <div className="media">
                                                 <div className="media-left">
                                                     <a className="avatar avatar-online" href="#">
-                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/portraits/5.jpg" alt="" />
+                                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/5.jpg" alt="" />
                                                         <i></i>
                                                     </a>
                                                 </div>

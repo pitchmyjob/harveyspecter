@@ -53,8 +53,8 @@ export default class SideBar extends React.Component {
                     <a href="#" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
                         <span className="icon wb-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a href="#" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
-                        <span className="icon wb-power" aria-hidden="true" onClick={() => logoutUser()} ></span>
+                    <a href="#" data-placement="top" data-toggle="tooltip" data-original-title="Logout" onClick={() => logoutUser()}>
+                        <span className="icon wb-power" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>

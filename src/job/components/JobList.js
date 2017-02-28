@@ -118,15 +118,15 @@ export default class JobList extends React.Component {
                             </form>
                             <ul className="panel-info">
                                 <li>
-                                    <div className="num green-600">{jobCounter.results.visible || '...'}</div>
+                                    <div className="num green-600">{jobCounter.fetched ? jobCounter.results.visible : '...'}</div>
                                     <p>En cours</p>
                                 </li>
                                 <li>
-                                    <div className="num red-600">{jobCounter.results.expired || '...'}</div>
+                                    <div className="num red-600">{jobCounter.fetched ? jobCounter.results.expired : '...'}</div>
                                     <p>Expirées</p>
                                 </li>
                                 <li>
-                                    <div className="num orange-600">{jobCounter.results.pending || '...'}</div>
+                                    <div className="num orange-600">{jobCounter.fetched ? jobCounter.results.pending : '...'}</div>
                                     <p>En attente</p>
                                 </li>
                             </ul>

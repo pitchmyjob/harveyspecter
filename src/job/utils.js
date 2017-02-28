@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export const getTagClass = (code) => {
     switch (code) {
@@ -17,7 +18,7 @@ export const getButtonAction = (code, id) => {
     switch (code) {
         case 'P':
             return (
-                <button className="btn btn-block btn-primary">Publier</button>
+                <Link to={'/jobs/' + id + '/publish/'} className="btn btn-block btn-primary">Publier</Link>
             )
         case 'V':
             return (
@@ -25,7 +26,7 @@ export const getButtonAction = (code, id) => {
             )
         case 'E':
             return (
-                <button className="btn btn-block btn-warning">Republier</button>
+                <Link to={'/jobs/' + id + '/publish/'} className="btn btn-block btn-warning">Republier</Link>
             )
         default:
             return

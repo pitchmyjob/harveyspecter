@@ -52,7 +52,7 @@ const config = {
         return dispatch(createJob(values))
             .then((response) => {
                 dispatch(addAlertSuccess('Job créé'))
-                props.router.push('/jobs/')
+                props.router.push('/jobs/' + response.value.data.id + '/question/')
             })
             .catch((error) => {
                 handleFormErrors(error.response)

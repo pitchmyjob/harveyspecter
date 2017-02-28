@@ -21,6 +21,9 @@ export default class JobListItem extends React.Component {
                             <Link to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
                         </li>
                         <li role="presentation">
+                            <Link to={'/jobs/' + job.id + '/question/'} role="menuitem">Modifier la question</Link>
+                        </li>
+                        <li role="presentation">
                             <a href="#" role="menuitem" onClick={() => destroyJob(job.id)}>Supprimer</a>
                         </li>
                     </ul>

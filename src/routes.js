@@ -13,6 +13,7 @@ import DashboardContainer from './dashboard/containers/DashboardContainer'
 import JobCreateFormContainer from './job/containers/JobCreateFormContainer'
 import JobListContainer from './job/containers/JobListContainer'
 import JobUpdateFormContainer from './job/containers/JobUpdateFormContainer'
+import JobPublishFormContainer from './job/containers/JobPublishFormContainer'
 import JobQuestionFormContainer from './jobquestion/containers/JobQuestionFormContainer'
 import ProCreateFormContainer from './pro/containers/ProCreateFormContainer'
 import ProUpdateFormContainer from './pro/containers/ProUpdateFormContainer'
@@ -34,6 +35,7 @@ export default (
                 <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
                 <Route path="/jobs/:id/candidacies/" component={CandidacyListContainer} />
                 <Route path="/jobs/:jobId/question/" component={JobQuestionFormContainer} />
+                <Route path="/jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="/jobs/(:page/)" component={JobListContainer} />
             </Route>
             <Route onEnter={logoutRequired} component={LayoutNotLoggedContainer}>

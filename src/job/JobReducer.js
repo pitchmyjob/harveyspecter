@@ -3,13 +3,14 @@ import { LIST_JOB_PENDING, LIST_JOB_FULFILLED, LIST_JOB_REJECTED,
          RETRIEVE_COUNTER_JOB_PENDING, RETRIEVE_COUNTER_JOB_FULFILLED, RETRIEVE_COUNTER_JOB_REJECTED,
          CREATE_JOB_PENDING, CREATE_JOB_FULFILLED, CREATE_JOB_REJECTED,
          UPDATE_JOB_PENDING, UPDATE_JOB_FULFILLED, UPDATE_JOB_REJECTED,
-         DESTROY_JOB_PENDING, DESTROY_JOB_FULFILLED, DESTROY_JOB_REJECTED
+         DESTROY_JOB_PENDING, DESTROY_JOB_FULFILLED, DESTROY_JOB_REJECTED,
+         PUBLISH_JOB_PENDING, PUBLISH_JOB_FULFILLED, PUBLISH_JOB_REJECTED
 } from './JobConstants'
 
 const INITIAL_STATE = {
-    jobList: {pending: false, fulfilled: false, error: null, jobs: [], pagination: null},
-    jobActive: {pending: false, fulfilled: false, error: null, job: null},
-    jobCounter: {pending: false, fulfilled: false, error: null, results: {pending: null, visible: null, expired: null} }
+    jobList: {pending: false, fetched: false, error: null, jobs: [], pagination: null},
+    jobActive: {pending: false, fetched: false, error: null, job: null},
+    jobCounter: {pending: false, fetched: false, error: null, results: {pending: null, visible: null, expired: null} }
 }
 
 export default (state=INITIAL_STATE, action) => {
@@ -61,6 +62,14 @@ export default (state=INITIAL_STATE, action) => {
             return {...state, jobCounter: {pending: false, fetched: true, error: null, results: action.payload.data}}
         case RETRIEVE_COUNTER_JOB_REJECTED:
             return {...state, jobCounter: {pending: false, fetched: false, error: action.payload.response, results: {pending: null, visible: null, expired: null}}}
+
+        // PUBLISH
+        case PUBLISH_JOB_PENDING:
+            return {...state, jobActive: {pending: true, fetched: false, error: null, job: null}}
+        case PUBLISH_JOB_FULFILLED:
+            return {...state, jobActive: {pending: false, fetched: true, error: null, job: action.payload.data}}
+        case PUBLISH_JOB_REJECTED:
+            return {...state, jobActive: {pending: false, fetched: false, error: action.payload.response, job: null}}
 
         // DEFAULT
         default:

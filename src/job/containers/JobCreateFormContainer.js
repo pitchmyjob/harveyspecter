@@ -7,7 +7,6 @@ import { listExperience } from '../../experience/ExperienceActions'
 import { listStudyLevel } from '../../studylevel/StudyLevelActions'
 import { retrievePro } from '../../pro/ProActions'
 import { createJob } from '../JobActions'
-import { addAlertSuccess } from '../../alert/AlertActions'
 import { handleFormErrors  } from '../../utils/forms/formatters'
 
 const mapStateToProps = (state) => {
@@ -51,8 +50,10 @@ const config = {
 
         return dispatch(createJob(values))
             .then((response) => {
-                dispatch(addAlertSuccess('Job créé'))
-                props.router.push('/jobs/' + response.value.data.id + '/question/')
+                props.router.push({
+                    pathname: '/jobs/' + response.value.data.id + '/question/',
+                    state: { creatingProcess: true },
+                })
             })
             .catch((error) => {
                 handleFormErrors(error.response)

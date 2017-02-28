@@ -17,9 +17,22 @@ const mapDispatchToProps = (dispatch) => {
 const config = {
     form: 'JobQuestionForm',
     onSubmit: (values, dispatch, props) => {
+        let isCreatingProcess = false
+        if (props.location.state !== undefined) {
+            isCreatingProcess = props.location.state.hasOwnProperty('creatingProcess')
+        }
+
         return dispatch(updateJobQuestion(values['id'], values))
             .then((response) => {
-                dispatch(addAlertSuccess('Question modifié'))
+                if (isCreatingProcess) {
+                    props.router.push({
+                        pathname: '/jobs/' + props.params.jobId + '/publish/',
+                        state: { creatingProcess: true },
+                    })
+                }
+                else {
+                    dispatch(addAlertSuccess('Question modifié'))
+                }
             })
             .catch((error) => {
                 handleFormErrors(error.response)

@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         retrieveJob: (id) => {
             return dispatch(retrieveJob(id))
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         publishJob: (id) => {
             return dispatch(publishJob(id))
                 .then((response) => {
+                    ownProps.router.push('/jobs/')
                     dispatch(addAlertSuccess('L\'offre a été publié'))
                 })
                 .catch((error) => {

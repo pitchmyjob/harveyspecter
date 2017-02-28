@@ -29,36 +29,40 @@ export default class JobForm extends React.Component {
 
     render() {
         const { handleSubmit, pristine, submitting, contractType, experience, studyLevel } = this.props
-        const labelForm = this.props.params.hasOwnProperty('id') ? 'Modifier' : 'Ajouter'
+
+        const isCreatingProcess = !this.props.params.hasOwnProperty('id')
+        const labelForm = isCreatingProcess ? 'Suivant' : 'Modifier'
 
         return (
             <div className="page-content container-fluid">
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel">
-                            <div className="panel-body">
-                                <div className="pearls row">
-                                    <div className="pearl current col-xs-4" aria-expanded="true">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-clipboard" aria-hidden="true"></i>
+                        {isCreatingProcess &&
+                            <div className="panel">
+                                <div className="panel-body">
+                                    <div className="pearls row">
+                                        <div className="pearl current col-xs-4" aria-expanded="true">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-clipboard" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Offre</span>
                                         </div>
-                                        <span className="pearl-title">Offre</span>
-                                    </div>
-                                    <div className="pearl col-xs-4 disabled" aria-expanded="false">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-help" aria-hidden="true"></i>
+                                        <div className="pearl col-xs-4 disabled" aria-expanded="false">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-help" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Question</span>
                                         </div>
-                                        <span className="pearl-title">Question</span>
-                                    </div>
-                                    <div className="pearl col-xs-4 disabled" aria-expanded="false">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-payment" aria-hidden="true"></i>
+                                        <div className="pearl col-xs-4 disabled" aria-expanded="false">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Paiement</span>
                                         </div>
-                                        <span className="pearl-title">Paiement</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
 
                         <div className="panel">
                             <div className="panel-heading">

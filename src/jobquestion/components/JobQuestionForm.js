@@ -18,34 +18,44 @@ export default class JobForm extends React.Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props
 
+
+        let isCreatingProcess = false
+        if (this.props.location.state !== undefined) {
+            isCreatingProcess = this.props.location.state.hasOwnProperty('creatingProcess')
+        }
+
+        const labelForm = isCreatingProcess ? 'Suivant' : 'Modifier'
+
         return (
             <div className="page-content container-fluid">
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel">
-                            <div className="panel-body">
-                                <div className="pearls row">
-                                    <div className="pearl col-xs-4 done" aria-expanded="true">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-clipboard" aria-hidden="true"></i>
+                        {isCreatingProcess &&
+                            <div className="panel">
+                                <div className="panel-body">
+                                    <div className="pearls row">
+                                        <div className="pearl col-xs-4 done" aria-expanded="true">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-clipboard" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Offre</span>
                                         </div>
-                                        <span className="pearl-title">Offre</span>
-                                    </div>
-                                    <div className="pearl col-xs-4 current" aria-expanded="false">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-help" aria-hidden="true"></i>
+                                        <div className="pearl col-xs-4 current" aria-expanded="false">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-help" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Question</span>
                                         </div>
-                                        <span className="pearl-title">Question</span>
-                                    </div>
-                                    <div className="pearl col-xs-4 disabled" aria-expanded="false">
-                                        <div className="pearl-icon">
-                                            <i className="icon wb-payment" aria-hidden="true"></i>
+                                        <div className="pearl col-xs-4 disabled" aria-expanded="false">
+                                            <div className="pearl-icon">
+                                                <i className="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span className="pearl-title">Paiement</span>
                                         </div>
-                                        <span className="pearl-title">Paiement</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
 
                         <div className="panel">
                             <div className="panel-heading">
@@ -58,7 +68,7 @@ export default class JobForm extends React.Component {
                                         component={renderTextarea}
                                         validate={isRequired}
                                         label="Question" />
-                                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Modifier</button>
+                                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>{labelForm}</button>
                                 </form>
                             </div>
                         </div>

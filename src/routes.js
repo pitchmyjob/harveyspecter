@@ -33,7 +33,7 @@ export default (
                 <Route path="/me/edit/" component={UserUpdateFormContainer} />
                 <Route path="/jobs/create/" component={JobCreateFormContainer} />
                 <Route path="/jobs/edit/:id/" component={JobUpdateFormContainer} />
-                <Route path="/jobs/:id/candidacies/" component={CandidacyListContainer} />
+                <Route path="/jobs/:jobId/candidacies/:status/(:page/)" component={CandidacyListContainer} />
                 <Route path="/jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="/jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="/jobs/(:page/)" component={JobListContainer} />

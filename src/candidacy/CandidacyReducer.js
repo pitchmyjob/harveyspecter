@@ -3,11 +3,7 @@ import { LIST_CANDIDACY_PENDING, LIST_CANDIDACY_FULFILLED, LIST_CANDIDACY_REJECT
 } from './CandidacyConstants'
 
 const INITIAL_STATE = {
-    fetching: false,
-    fetched: false,
-    error: null,
-    candidacies: [],
-    currentCandidacy: null,
+    candidacyList: {pending: false, fetched: false, error: null, candidacies: [], pagination: null},
     candidacyCounter: {pending: false, fetched: false, error: null, results: {not_selected: null, like: null, request: null, video: null, selected: null} }
 }
 
@@ -15,11 +11,11 @@ export default (state=INITIAL_STATE, action) => {
     switch (action.type) {
         // LIST
         case LIST_CANDIDACY_PENDING:
-            return {...state, fetching: true}
+            return {...state, candidacyList: {...state.candidacyList, pending: true, fetched: false, error: null, candidacies: []}}
         case LIST_CANDIDACY_FULFILLED:
-            return {...state, fetching: false, fetched: true, candidacies: action.payload.data}
+            return {...state, candidacyList: {pending: false, fetched: true, error: null, candidacies: action.payload.data.results, pagination: {...action.payload.data, results: undefined}}}
         case LIST_CANDIDACY_REJECTED:
-            return {...state, fetching: false, error: action.payload.response}
+            return {...state, candidacyList: {pending: false, fetched: false, error: action.payload.response, candidacies: [], pagination: null}}
 
         // RETRIEVE COUNTER
         case RETRIEVE_COUNTER_CANDIDACY_PENDING:

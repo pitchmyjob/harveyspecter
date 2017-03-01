@@ -15,7 +15,7 @@ export default class Error404 extends React.Component {
                             <p>Page non trouvée !</p>
                         </header>
                         <p className="error-advise">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
-                        <a className="btn btn-primary btn-round" href="../index.html">Retour à la page d'accueil</a>
+                        <a className="btn btn-primary btn-round" href="/">Retour à la page d'accueil</a>
                         <footer className="page-copyright">
                             <p>WEBSITE BY amazingSurge</p>
                             <p>© 2017. All RIGHT RESERVED.</p>

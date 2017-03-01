@@ -22,7 +22,7 @@ export const getButtonAction = (code, id) => {
             )
         case 'V':
             return (
-                <button className="btn btn-block btn-success">Inviter par e-mail</button>
+                <button data-toggle="slidePanel" className="btn btn-block btn-success">Inviter par e-mail</button>
             )
         case 'E':
             return (

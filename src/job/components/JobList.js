@@ -145,7 +145,7 @@ export default class JobList extends React.Component {
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="no-underline">
                                     {jobListResult}
                                 </tbody>
                             </table>

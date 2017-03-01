@@ -15,17 +15,16 @@ export default class JobListItem extends React.Component {
         else {
             action = (
                 <div className="btn-group">
-                    <span className="icon wb-menu dropdown-toggle" data-toggle="dropdown" aria-expanded="false" disabled="disabled"></span>
+
+                    <button type="button" className="btn btn-outline btn-default dropdown-toggle" id="exampleSizingDropdown2" data-toggle="dropdown" aria-expanded="false">
+                      <span className="icon wb-menu"></span>
+                    </button>
+
                     <ul role="menu" className="dropdown-menu dropdown-menu-right">
-                        <li role="presentation">
-                            <Link to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
-                        </li>
-                        <li role="presentation">
-                            <Link to={'/jobs/' + job.id + '/question/'} role="menuitem">Modifier la question</Link>
-                        </li>
-                        <li role="presentation">
-                            <a href="#" role="menuitem" onClick={() => destroyJob(job.id)}>Supprimer</a>
-                        </li>
+                        <Link className="dropdown-item" to={'/jobs/edit/' + job.id + '/'} role="menuitem">Modifier l'offre</Link>
+                        <Link className="dropdown-item" to={'/jobs/' + job.id + '/question/'} role="menuitem">Modifier la question</Link>
+                        <div className="dropdown-divider"></div>
+                        <a href="#" role="menuitem" className="dropdown-item" onClick={() => destroyJob(job.id)}>Supprimer</a>
                     </ul>
                 </div>
             )

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_ROOT_URL = 'http://barneystinson.eu-west-1.elasticbeanstalk.com/api/'
+const API_ROOT_URL = 'http://163.172.28.221:8000/api/'
 
 let HEADERS = {
     'Accept': 'application/json',

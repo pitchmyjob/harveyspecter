@@ -272,6 +272,12 @@
     <div id="root" class="full-height"></div>
 
 
+    <div class="slidePanel slidePanel-right" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="slidePanel-scrollable scrollable is-enabled scrollable-vertical" style="position: relative;">
+        <div class="scrollable-container" style="height: 1021px; width: 717px;"><div class="slidePanel-content scrollable-content" style="width: 700px;"></div></div>
+      <div class="scrollable-bar scrollable-bar-vertical is-disabled scrollable-bar-hide" draggable="false"><div class="scrollable-bar-handle"></div></div></div>
+      <div class="slidePanel-handler"></div>
+    <div class="slidePanel-loading"></div></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -333,7 +339,7 @@
         $(document).ready(function($) {
             Site.run();
 
-            $('.slidePanel').slidePanel();
+              $('.slidePanel').slidePanel();
 
             $(document).on('click', '[data-toggle="slidePanel"]', function (e) {
                  $('.slidePanel').slidePanel('show');

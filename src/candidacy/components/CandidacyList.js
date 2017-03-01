@@ -5,11 +5,15 @@ import LoadingError from '../../core/components/LoadingError'
 
 export default class CandidacyList extends React.Component {
     componentDidMount() {
-        this.props.listCandidacy(this.props.params.id)
+        const jobId = this.props.params.id
+
+        this.props.listCandidacy(jobId)
+        this.props.retrieveCounterCandidacy(jobId)
     }
 
     render() {
         const { fetched, error, candidacies } = this.props.candidacy
+        const { candidacyCounter } = this.props
 
         let candidacyList = null;
         if (error) {
@@ -59,27 +63,36 @@ export default class CandidacyList extends React.Component {
                             </form>
                             <div className="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
                                 <ul className="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-
                                     <li className="nav-item" role="presentation">
-                                        <a href="#" className="active nav-link" data-toggle="tab" href="#like" aria-controls="like" role="tab">Ils ont aimé votre offre</a>
+                                        <a href="#" className="active nav-link" data-toggle="tab" href="#like" aria-controls="like" role="tab">
+                                            Ils ont aimé votre offre
+                                            <span className="tag tag-pill tag-default">{candidacyCounter.fetched ? candidacyCounter.results.like : '...'}</span>
+                                        </a>
                                     </li>
-
                                     <li className="nav-item" role="presentation">
-                                        <a href="#" className="nav-link" data-toggle="tab" href="#waiting" aria-controls="waiting" role="tab">Vidéo en attente</a>
+                                        <a href="#" className="nav-link" data-toggle="tab" href="#waiting" aria-controls="waiting" role="tab">
+                                            Vidéo en attente
+                                            <span className="tag tag-pill tag-warning">{candidacyCounter.fetched ? candidacyCounter.results.request : '...'}</span>
+                                        </a>
                                     </li>
-
                                     <li className="nav-item" role="presentation">
-                                        <a href="#" className="nav-link" data-toggle="tab" href="#video" aria-controls="video" role="tab">Vidéo reçu</a>
+                                        <a href="#" className="nav-link" data-toggle="tab" href="#video" aria-controls="video" role="tab">
+                                            Vidéo reçu
+                                            <span className="tag tag-pill tag-primary">{candidacyCounter.fetched ? candidacyCounter.results.video : '...'}</span>
+                                        </a>
                                     </li>
-
                                     <li className="nav-item" role="presentation">
-                                        <a href="#" className="nav-link" data-toggle="tab" href="#accepted" aria-controls="accepted" role="tab">Candidat retenu</a>
+                                        <a href="#" className="nav-link" data-toggle="tab" href="#accepted" aria-controls="accepted" role="tab">
+                                            Candidat retenu
+                                            <span className="tag tag-pill tag-success">{candidacyCounter.fetched ? candidacyCounter.results.selected : '...'}</span>
+                                        </a>
                                     </li>
-
                                     <li className="nav-item" role="presentation">
-                                        <a href="#" className="nav-link" data-toggle="tab" href="#rejected" aria-controls="rejected" role="tab">Candidat non retenu</a>
+                                        <a href="#" className="nav-link" data-toggle="tab" href="#rejected" aria-controls="rejected" role="tab">
+                                            Candidat non retenu
+                                            <span className="tag tag-pill tag-danger">{candidacyCounter.fetched ? candidacyCounter.results.not_selected : '...'}</span>
+                                        </a>
                                     </li>
-
                                 </ul>
                                 <div className="tab-content">
                                     <ul className="list-group">

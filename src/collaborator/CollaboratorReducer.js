@@ -1,6 +1,6 @@
 import { LIST_COLLABORATOR_PENDING, LIST_COLLABORATOR_FULFILLED, LIST_COLLABORATOR_REJECTED,
          CREATE_COLLABORATOR_FULFILLED,
-         DESTROY_COLLABORATOR_FULFILLED, DESTROY_COLLABORATOR_REJECTED
+         DESTROY_COLLABORATOR_PENDING, DESTROY_COLLABORATOR_FULFILLED, DESTROY_COLLABORATOR_REJECTED
 } from './CollaboratorConstants'
 
 const INITIAL_STATE = {
@@ -31,14 +31,12 @@ export default (state=INITIAL_STATE, action) => {
             }
 
         // DESTROY
+        case DESTROY_COLLABORATOR_PENDING:
+            return {...state, deleted: state.collaborators.find((collaborator) => { return collaborator.id === action.meta.id })}
         case DESTROY_COLLABORATOR_FULFILLED:
-            return {
-                ...state,
-                deleted: true,
-                collaborators: state.collaborators.filter((collaborator) => { return collaborator.id !== action.meta.id })
-            }
+            return {...state, deleted: null, collaborators: state.collaborators.filter((collaborator) => { return collaborator.id !== action.meta.id })}
         case DESTROY_COLLABORATOR_REJECTED:
-            return {...state, error: action.payload.response}
+            return {...state, error: action.payload.response, deleted: null}
 
         // DEFAULT
         default:

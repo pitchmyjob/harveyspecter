@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default class NavBar extends React.Component {
     render() {
@@ -249,9 +250,8 @@ export default class NavBar extends React.Component {
                                     </span>
                                 </a>
                                 <div className="dropdown-menu" role="menu">
-                                    <a className="dropdown-item" href="#" role="menuitem"><i className="icon wb-user" aria-hidden="true"></i> Profile</a>
+                                    <Link to="/me/edit/" className="dropdown-item" role="menuitem"><i className="icon wb-user" aria-hidden="true"></i> Mon profil</Link>
                                     <a className="dropdown-item" href="#" role="menuitem"><i className="icon wb-payment" aria-hidden="true"></i> Billing</a>
-                                    <a className="dropdown-item" href="#" role="menuitem"><i className="icon wb-settings" aria-hidden="true"></i> Settings</a>
                                 </div>
                             </li>
                         </ul>

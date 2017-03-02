@@ -24,7 +24,7 @@ export const retrieveJob = (id) => {
     }
 }
 
-export const retrieveCounterJob = (id) => {
+export const retrieveCounterJob = () => {
     return {
         type: RETRIEVE_COUNTER_JOB,
         payload: request.get('/jobs/count/')

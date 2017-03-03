@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-import { LIST_NOTIFICATION, TOGGLE_NOTIFICATION } from './NotificationConstants'
+import { LIST_NOTIFICATION, RETRIEVE_COUNTER_NOTIFICATION } from './NotificationConstants'
 
 export const listNotification = () => {
     return {
@@ -9,8 +9,9 @@ export const listNotification = () => {
     }
 }
 
-export const toggleNotification = () => {
+export const retrieveCounterNotification = () => {
     return {
-        type: TOGGLE_NOTIFICATION,
+        type: RETRIEVE_COUNTER_NOTIFICATION,
+        payload: request.get('/notifications/unread-count/')
     }
 }

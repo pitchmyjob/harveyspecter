@@ -10,7 +10,7 @@ export default class NavBar extends React.Component {
     }
 
     render() {
-        const { currentUser, notificationList, notificationCounter } = this.props
+        const { currentUser, notificationList, notificationCounter, marketAsReadNotification } = this.props
 
         return (
             <nav className="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse" role="navigation">
@@ -54,7 +54,7 @@ export default class NavBar extends React.Component {
                             </li>
                         </ul>
                         <ul className="nav navbar-toolbar navbar-right navbar-toolbar-right">
-                            <NotificationNavBar notifications={notificationList} counter={notificationCounter} />
+                            <NotificationNavBar notifications={notificationList} counter={notificationCounter} onMarkAsRead={marketAsReadNotification} />
                             <li className="nav-item dropdown ">
                                 <a className="nav-link" data-toggle="dropdown" href="#" title="Messages" aria-expanded="false" data-animation="scale-up" role="button">
                                     <i className="icon wb-envelope" aria-hidden="true"></i>

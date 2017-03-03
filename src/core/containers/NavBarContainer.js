@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import NavBar from '../components/NavBar'
-import { listNotification, retrieveCounterNotification } from '../../notification/NotificationActions'
+import { listNotification, retrieveCounterNotification, marketAsReadNotification } from '../../notification/NotificationActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         retrieveCounterNotification: () => {
             return dispatch(retrieveCounterNotification())
+        },
+        marketAsReadNotification: (id) => {
+            return dispatch(marketAsReadNotification(id))
         },
     }
 }

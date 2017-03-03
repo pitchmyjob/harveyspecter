@@ -8,7 +8,7 @@ import { toLocaleString } from '../../utils/date'
 
 export default class NotificationCard extends React.Component {
     render() {
-        const { notifications, counter } = this.props
+        const { notifications, counter, onMarkAsRead } = this.props
 
         let notificationResult = null
         if (notifications.error) {
@@ -23,8 +23,9 @@ export default class NotificationCard extends React.Component {
         else if (notifications.fetched) {
             if (notifications.notifications.length > 0) {
                 notificationResult = notifications.notifications.map((notification) => {
+                    let className = 'list-group-item dropdown-item' + (notification.is_unread ? ' list-group-item-unread' : '')
                     return (
-                        <Link key={notification.id} to={getNotificationURL(notification)} className="list-group-item dropdown-item" role="menuitem">
+                        <Link key={notification.id} to={getNotificationURL(notification)} className={className} role="menuitem" onClick={() => onMarkAsRead(notification.id)}>
                             <div className="media">
                                 <div className="media-left">
                                     <div className="avatar">

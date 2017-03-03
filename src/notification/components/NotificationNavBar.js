@@ -81,11 +81,13 @@ export default class NotificationCard extends React.Component {
                             <div data-role="content">{notificationResult}</div>
                         </div>
                     </div>
+                    {/*
                     <div className="dropdown-menu-footer">
                         <Link to="#" className="dropdown-item" role="menuitem">
                             Toutes les notifications
                         </Link>
                     </div>
+                    */}
                 </div>
             </li>
         )

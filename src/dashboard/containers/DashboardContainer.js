@@ -4,6 +4,7 @@ import Dashboard from '../components/Dashboard'
 import { retrieveCounterJob } from '../../job/JobActions'
 import { retrievePro } from '../../pro/ProActions'
 import { listCollaborator, destroyCollaborator } from '../../collaborator/CollaboratorActions'
+import { listNotification } from '../../notification/NotificationActions'
 import { addAlertSuccess } from '../../alert/AlertActions'
 
 const mapStateToProps = (state) => {
@@ -12,6 +13,7 @@ const mapStateToProps = (state) => {
         jobCounter: state.job.jobCounter,
         collaborator: state.collaborator,
         currentUser: state.user.currentUser,
+        notificationList: state.notification.notificationList,
     }
 }
 
@@ -30,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
             return dispatch(destroyCollaborator(id)).then((response) => {
                 dispatch(addAlertSuccess('Collaborateur supprimé'))
             })
+        },
+        listNotification: () => {
+            return dispatch(listNotification())
         },
     }
 }

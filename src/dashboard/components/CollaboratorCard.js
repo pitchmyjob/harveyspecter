@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 
-export default class Dashboard extends React.Component {
+export default class CollaboratorCard extends React.Component {
     render() {
         const { onDelete, collaborators, currentUser } = this.props
 

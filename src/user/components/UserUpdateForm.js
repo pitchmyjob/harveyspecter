@@ -10,27 +10,37 @@ export default class UserUpdateForm extends React.Component {
         const { handleSubmit, pristine, submitting } = this.props
 
         return (
-            <div>
-                <h3 className="font-size-24">Modifier mes informations</h3>
-                <form onSubmit={handleSubmit} role="form" autoComplete="off">
-                    <Field
-                        name="photo"
-                        component={ImageBase64Field}
-                        validate={isRequired}
-                        label="Photo" />
-                    <Field
-                        name="first_name"
-                        component={renderInput}
-                        type="text"
-                        validate={isRequired}
-                        label="Prénom" />
-                    <Field
-                        name="last_name"
-                        component={renderInput}
-                        validate={isRequired}
-                        label="Nom" />
-                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Modifier</button>
-                </form>
+            <div className="page-content container-fluid">
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div className="panel">
+                            <div className="panel-heading">
+                                <h3 className="panel-title">Modification de mes informations</h3>
+                            </div>
+                            <div className="panel-body container-fluid">
+                                <form onSubmit={handleSubmit} role="form" autoComplete="off">
+                                    <Field
+                                        name="photo"
+                                        component={ImageBase64Field}
+                                        validate={isRequired}
+                                        label="Photo" />
+                                    <Field
+                                        name="first_name"
+                                        component={renderInput}
+                                        type="text"
+                                        validate={isRequired}
+                                        label="Prénom" />
+                                    <Field
+                                        name="last_name"
+                                        component={renderInput}
+                                        validate={isRequired}
+                                        label="Nom" />
+                                    <button type="submit" className="btn btn-primary btn-block" disabled={pristine || submitting}>Modifier</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

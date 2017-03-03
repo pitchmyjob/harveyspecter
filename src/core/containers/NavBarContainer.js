@@ -2,4 +2,10 @@ import { connect } from 'react-redux'
 
 import NavBar from '../components/NavBar'
 
-export default connect(null, null)(NavBar)
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.user.currentUser,
+    }
+}
+
+export default connect(mapStateToProps, null)(NavBar)

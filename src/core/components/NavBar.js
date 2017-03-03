@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 
 export default class NavBar extends React.Component {
     render() {
+        const { currentUser } = this.props
+
         return (
             <nav className="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse" role="navigation">
                 <div className="navbar-header">
@@ -245,7 +247,7 @@ export default class NavBar extends React.Component {
                             <li className="nav-item dropdown">
                                 <a className="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                                     <span className="avatar avatar-online">
-                                        <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/5.jpg" alt="..." />
+                                        <img src={currentUser.photo} alt="..." />
                                         <i></i>
                                     </span>
                                 </a>

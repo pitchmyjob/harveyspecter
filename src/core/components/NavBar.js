@@ -23,7 +23,7 @@ export default class NavBar extends React.Component {
                         <i className="icon wb-more-horizontal" aria-hidden="true"></i>
                     </button>
                     <div className="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                        <img className="navbar-brand-logo" src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/base/assets/images/logo.png" title="Remark" alt="Remark" />
+                        <img className="navbar-brand-logo" src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/images/logo.png" title="Remark" alt="Remark" />
                         <span className="navbar-brand-text hidden-xs-down"> Remark</span>
                     </div>
                     <button type="button" className="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
@@ -72,7 +72,7 @@ export default class NavBar extends React.Component {
                                                     <div className="media">
                                                         <div className="media-left p-r-10">
                                                             <span className="avatar avatar-sm avatar-online">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/2.jpg" alt="..." />
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/2.jpg" alt="..." />
                                                                 <i></i>
                                                             </span>
                                                         </div>
@@ -89,7 +89,7 @@ export default class NavBar extends React.Component {
                                                     <div className="media">
                                                         <div className="media-left p-r-10">
                                                             <span className="avatar avatar-sm avatar-off">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/3.jpg" alt="..." />
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/3.jpg" alt="..." />
                                                                 <i></i>
                                                             </span>
                                                         </div>
@@ -106,7 +106,7 @@ export default class NavBar extends React.Component {
                                                     <div className="media">
                                                         <div className="media-left p-r-10">
                                                             <span className="avatar avatar-sm avatar-busy">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/4.jpg" alt="..." />
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/4.jpg" alt="..." />
                                                                 <i></i>
                                                             </span>
                                                         </div>
@@ -123,7 +123,7 @@ export default class NavBar extends React.Component {
                                                     <div className="media">
                                                         <div className="media-left p-r-10">
                                                             <span className="avatar avatar-sm avatar-away">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/static/global/portraits/5.jpg" alt="..." />
+                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/5.jpg" alt="..." />
                                                                 <i></i>
                                                             </span>
                                                         </div>

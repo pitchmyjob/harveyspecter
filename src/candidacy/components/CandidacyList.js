@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import $ from 'jquery'
+import 'jquery-slidePanel'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
@@ -100,13 +102,19 @@ export default class CandidacyList extends React.Component {
 
         const statusParams = convertStatusAPIToParams(this.state.status)
         this.props.router.push({
-            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/',
+            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/1/',
             query: query
         })
     }
 
     handleCandidacyClick(candidacy) {
+        console.log('-- handleCandidacyClick --')
+        let content = $('[data-slide-panel="' + candidacy.id + '"]').html()
         console.log(candidacy)
+        console.log(content)
+        $.slidePanel.show({
+            content: content,
+        })
     }
 
     render() {
@@ -123,7 +131,7 @@ export default class CandidacyList extends React.Component {
         else if (candidacyList.fetched) {
             if (candidacyList.candidacies.length > 0) {
                 candidacyListResult = candidacyList.candidacies.map((candidacy) => {
-                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} handleCandidacyClick={this.handleCandidacyClick} />
+                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} handleCandidacyClick={this.handleCandidacyClick} params={this.props.params} />
                 })
             }
             else {
@@ -206,6 +214,7 @@ export default class CandidacyList extends React.Component {
                         </div>
                     </div>
                 </div>
+                {this.props.children}
             </div>
         )
     }

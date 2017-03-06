@@ -1,11 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default class CandidacyListItem extends React.Component {
     render() {
         const { candidacy, handleCandidacyClick } = this.props
+        const { jobId, status, page } = this.props.params
 
         return (
-            <li className="list-group-item" key={candidacy.id}  data-toggle="slidePanel" onClick={() => handleCandidacyClick(candidacy)}>
+            <li className="list-group-item" key={candidacy.id}>
                 <div className="media">
                     <div className="media-left">
                         <div className="avatar">
@@ -14,7 +16,9 @@ export default class CandidacyListItem extends React.Component {
                     </div>
                     <div className="media-body">
                         <h4 className="media-heading">
-                            {candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}
+                            <Link to={'/jobs/' + jobId + '/candidacies/' + status + '/' + page + '/cv/' + candidacy.id + '/'} onClick={() => handleCandidacyClick(candidacy)}>
+                                {candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}
+                            </Link>
                         </h4>
                         <p>
                             {candidacy.applicant.title}

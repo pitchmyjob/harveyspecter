@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import Pagination from '../../core/components/Pagination'
+import CandidacyListItem from './CandidacyListItem'
 import { convertStatusParamsToAPI, convertStatusAPIToParams } from '../utils'
 
 export default class CandidacyList extends React.Component {
@@ -20,6 +21,7 @@ export default class CandidacyList extends React.Component {
         this.handlePageClick = this.handlePageClick.bind(this)
         this.searchUpdated = this.searchUpdated.bind(this)
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this)
+        this.handleCandidacyClick = this.handleCandidacyClick.bind(this)
     }
 
     componentDidMount() {
@@ -43,7 +45,7 @@ export default class CandidacyList extends React.Component {
     }
 
     handleTabClick(status, page=1, pushRoute=true) {
-        page = parseInt(page)
+        page = parseInt(page, 10)
 
         this.setState({status: status, page: (page - 1), search: ''})
         this.props.listCandidacy(this.props.params.jobId, status, (page || null), null)
@@ -103,6 +105,10 @@ export default class CandidacyList extends React.Component {
         })
     }
 
+    handleCandidacyClick(candidacy) {
+        console.log(candidacy)
+    }
+
     render() {
         const { candidacyList, candidacyCounter } = this.props
 
@@ -117,28 +123,7 @@ export default class CandidacyList extends React.Component {
         else if (candidacyList.fetched) {
             if (candidacyList.candidacies.length > 0) {
                 candidacyListResult = candidacyList.candidacies.map((candidacy) => {
-                    return (
-                        <li className="list-group-item" key={candidacy.id}  data-toggle="slidePanel">
-                            <div className="media">
-                                <div className="media-left">
-                                    <div className="avatar">
-                                        <img src={candidacy.applicant.user.photo} alt="..." />
-                                    </div>
-                                </div>
-                                <div className="media-body">
-                                    <h4 className="media-heading">
-                                        {candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}
-                                    </h4>
-                                    <p>
-                                        {candidacy.applicant.title}
-                                    </p>
-                                </div>
-                                <div className="media-right">
-                                    {candidacy.date_request}
-                                </div>
-                            </div>
-                        </li>
-                    )
+                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} handleCandidacyClick={this.handleCandidacyClick} />
                 })
             }
             else {

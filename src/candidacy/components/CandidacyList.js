@@ -31,28 +31,55 @@ export default class CandidacyList extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.location.action === 'POP') {
-            if (this.props.params.page !== nextProps.params.page) {
-                this.handlePageClick({selected: parseInt(nextProps.params.page - 1 || 0, 10)})
+            if (this.props.params.status !== nextProps.params.status) {
+                let status = convertStatusParamsToAPI(nextProps.params.status)
+                let page = parseInt(nextProps.params.page || 0, 10)
+                this.handleTabClick(status, page, false)
+            }
+            else if (this.props.params.page !== nextProps.params.page || this.props.params.status !== nextProps.params.status) {
+                this.handlePageClick({selected: parseInt(nextProps.params.page - 1 || 0, 10)}, false)
             }
         }
     }
 
-    handleTabClick(status) {
-        this.setState({status: status, page: 0, search: ''})
-        this.props.listCandidacy(this.props.params.jobId, status, null, null)
+    handleTabClick(status, page=1, pushRoute=true) {
+        page = parseInt(page)
+
+        this.setState({status: status, page: (page - 1), search: ''})
+        this.props.listCandidacy(this.props.params.jobId, status, (page || null), null)
+
+        const statusParams = convertStatusAPIToParams(status)
+        const route = {
+            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/' + page + '/',
+            query: this.props.location.query
+        }
+
+        if (pushRoute) {
+            this.props.router.push(route)
+        }
+        else {
+            this.props.router.replace(route)
+        }
     }
 
-    handlePageClick(data) {
+    handlePageClick(data, pushRoute=true) {
         let newPage = data.selected + 1
 
         this.setState({page: data.selected})
         this.props.listCandidacy(this.props.params.jobId, this.state.status, newPage, this.state.search)
 
         const statusParams = convertStatusAPIToParams(this.state.status)
-        this.props.router.push({
+        const route = {
             pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/' + newPage + '/',
             query: this.props.location.query
-        })
+        }
+
+        if (pushRoute) {
+            this.props.router.push(route)
+        }
+        else {
+            this.props.router.replace(route)
+        }
     }
 
     searchUpdated(event) {
@@ -145,31 +172,31 @@ export default class CandidacyList extends React.Component {
                             <div className="nav-tabs-horizontal nav-tabs-animate">
                                 <ul className="nav nav-tabs nav-tabs-line">
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/liked/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('L')}>
+                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('L')}>
                                             Ils ont aimé votre offre
                                             <span className="tag tag-pill tag-default">{candidacyCounter.fetched ? candidacyCounter.results.like : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/pending/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('R')}>
+                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('R')}>
                                             Vidéo en attente
                                             <span className="tag tag-pill tag-warning">{candidacyCounter.fetched ? candidacyCounter.results.request : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/to-validate/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('V')}>
+                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('V')}>
                                             Vidéo reçu
                                             <span className="tag tag-pill tag-primary">{candidacyCounter.fetched ? candidacyCounter.results.video : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/accepted/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('S')}>
+                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('S')}>
                                             Candidat retenu
                                             <span className="tag tag-pill tag-success">{candidacyCounter.fetched ? candidacyCounter.results.selected : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/rejected/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('N')}>
+                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('N')}>
                                             Candidat non retenu
                                             <span className="tag tag-pill tag-danger">{candidacyCounter.fetched ? candidacyCounter.results.not_selected : '...'}</span>
                                         </Link>

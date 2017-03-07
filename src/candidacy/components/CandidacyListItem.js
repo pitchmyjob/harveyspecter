@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 export default class CandidacyListItem extends React.Component {
     render() {
-        const { candidacy, handleCandidacyClick } = this.props
+        const { candidacy } = this.props
         const { jobId, status, page } = this.props.params
 
         return (
@@ -16,7 +16,7 @@ export default class CandidacyListItem extends React.Component {
                     </div>
                     <div className="media-body">
                         <h4 className="media-heading">
-                            <Link to={'/jobs/' + jobId + '/candidacies/' + status + '/' + page + '/cv/' + candidacy.id + '/'} onClick={() => handleCandidacyClick(candidacy)}>
+                            <Link to={'/jobs/' + jobId + '/candidacies/' + status + '/' + page + '/cv/' + candidacy.id + '/'}>
                                 {candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}
                             </Link>
                         </h4>

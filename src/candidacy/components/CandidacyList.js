@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import $ from 'jquery'
-import 'jquery-slidePanel'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
@@ -23,7 +21,6 @@ export default class CandidacyList extends React.Component {
         this.handlePageClick = this.handlePageClick.bind(this)
         this.searchUpdated = this.searchUpdated.bind(this)
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this)
-        this.handleCandidacyClick = this.handleCandidacyClick.bind(this)
     }
 
     componentDidMount() {
@@ -107,20 +104,10 @@ export default class CandidacyList extends React.Component {
         })
     }
 
-    handleCandidacyClick(candidacy) {
-        console.log('-- handleCandidacyClick --')
-        let content = $('[data-slide-panel="' + candidacy.id + '"]').html()
-        console.log(candidacy)
-        console.log(content)
-        $.slidePanel.show({
-            content: content,
-        })
-    }
-
     render() {
         const { candidacyList, candidacyCounter } = this.props
 
-        let candidacyListResult = null;
+        let candidacyListResult = null
         if (candidacyList.error) {
             candidacyListResult = (
                 <li className="list-group-item">
@@ -131,7 +118,7 @@ export default class CandidacyList extends React.Component {
         else if (candidacyList.fetched) {
             if (candidacyList.candidacies.length > 0) {
                 candidacyListResult = candidacyList.candidacies.map((candidacy) => {
-                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} handleCandidacyClick={this.handleCandidacyClick} params={this.props.params} />
+                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} params={this.props.params} />
                 })
             }
             else {

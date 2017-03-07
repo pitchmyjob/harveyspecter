@@ -138,7 +138,7 @@ export default class CandidacyList extends React.Component {
         }
 
         return (
-            <div className="page-user">
+            <div className="page-user app-work app-candidacy">
                 <div className="page-content">
                     <div className="panel">
                         <div className="panel-body">
@@ -152,40 +152,44 @@ export default class CandidacyList extends React.Component {
                             <div className="nav-tabs-horizontal nav-tabs-animate">
                                 <ul className="nav nav-tabs nav-tabs-line">
                                     <li className="nav-item" role="presentation">
-                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('L')}>
+                                        <Link className={"nav-link " + (this.props.params.status == 'liked' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('L')}>
                                             Ils ont aimé votre offre
                                             <span className="tag tag-pill tag-default">{candidacyCounter.fetched ? candidacyCounter.results.like : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('R')}>
+                                        <Link className={"nav-link " + (this.props.params.status == 'pending' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('R')}>
                                             Vidéo en attente
                                             <span className="tag tag-pill tag-warning">{candidacyCounter.fetched ? candidacyCounter.results.request : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('V')}>
+                                        <Link className={"nav-link " + (this.props.params.status == 'to-validate' ? 'active' : '')}  role="tab" onClick={() => this.handleTabClick('V')}>
                                             Vidéo reçu
                                             <span className="tag tag-pill tag-primary">{candidacyCounter.fetched ? candidacyCounter.results.video : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('S')}>
+                                        <Link className={"nav-link " + (this.props.params.status == 'accepted' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('S')}>
                                             Candidat retenu
                                             <span className="tag tag-pill tag-success">{candidacyCounter.fetched ? candidacyCounter.results.selected : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('N')}>
+                                        <Link className={"nav-link " + (this.props.params.status == 'rejected' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('N')}>
                                             Candidat non retenu
                                             <span className="tag tag-pill tag-danger">{candidacyCounter.fetched ? candidacyCounter.results.not_selected : '...'}</span>
                                         </Link>
                                     </li>
                                 </ul>
-                                <div className="tab-content">
-                                    <ul className="list-group">
-                                        {candidacyListResult}
-                                    </ul>
+                                <div className="tab-content ">
+
+                                    <table className="table">
+                                        <tbody className="no-underline">
+                                            {candidacyListResult}
+                                        </tbody>
+                                    </table>
+
                                     <nav>
                                         {candidacyList.pagination && candidacyList.pagination.count > 0 &&
                                             <Pagination

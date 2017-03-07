@@ -8,7 +8,7 @@ export default class JobListItem extends React.Component {
     render() {
         const { job, destroyJob, deleted } = this.props
 
-        let action = null;
+        let action = null
         if (deleted) {
             action = <span className="loader loader-circle"></span>
         }

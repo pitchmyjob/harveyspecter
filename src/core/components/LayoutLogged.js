@@ -17,7 +17,7 @@ export default class LayoutLogged extends React.Component {
                 <div className="full-height">
                     <NavBarContainer />
                     <SideBarContainer />
-                    <div className="page full-height">{this.props.children}</div>
+                    <div className="page">{this.props.children}</div>
                 </div>
             )
         }

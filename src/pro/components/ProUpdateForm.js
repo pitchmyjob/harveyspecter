@@ -3,7 +3,7 @@ import { Field } from 'redux-form'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
-import { renderInput, renderSelect, renderTextarea } from '../../utils/forms/renderers'
+import { renderInput, renderSelect } from '../../utils/forms/renderers'
 // import ImageBase64Field from '../../utils/forms/Fields/ImageBase64Field'
 import LocationField from '../../utils/forms/Fields/LocationField'
 import DraftWysiwyg from '../../utils/forms/Fields/DraftWysiwyg'
@@ -41,7 +41,7 @@ export default class ProUpdateForm extends React.Component {
                                   <div className="overlay-panel overlay-background overlay-bottom">
                                     <div className="row no-space">
                                       <div className="col-sm-6 col-xs-12">
-                                        <a className="avatar avatar-lg bg-white pull-xs-left m-r-20 " href="javascript:void(0)">
+                                        <a className="avatar avatar-lg bg-white pull-xs-left m-r-20 " href="#">
                                           <img src={pro.logo} alt="" />
                                         </a>
                                         <div>

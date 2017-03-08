@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import Pagination from '../../core/components/Pagination'
+import CandidacyListItem from './CandidacyListItem'
 import { convertStatusParamsToAPI, convertStatusAPIToParams } from '../utils'
 
 export default class CandidacyList extends React.Component {
@@ -31,28 +32,55 @@ export default class CandidacyList extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.location.action === 'POP') {
-            if (this.props.params.page !== nextProps.params.page) {
-                this.handlePageClick({selected: parseInt(nextProps.params.page - 1 || 0, 10)})
+            if (this.props.params.status !== nextProps.params.status) {
+                let status = convertStatusParamsToAPI(nextProps.params.status)
+                let page = parseInt(nextProps.params.page || 0, 10)
+                this.handleTabClick(status, page, false)
+            }
+            else if (this.props.params.page !== nextProps.params.page || this.props.params.status !== nextProps.params.status) {
+                this.handlePageClick({selected: parseInt(nextProps.params.page - 1 || 0, 10)}, false)
             }
         }
     }
 
-    handleTabClick(status) {
-        this.setState({status: status, page: 0, search: ''})
-        this.props.listCandidacy(this.props.params.jobId, status, null, null)
+    handleTabClick(status, page=1, pushRoute=true) {
+        page = parseInt(page, 10)
+
+        this.setState({status: status, page: (page - 1), search: ''})
+        this.props.listCandidacy(this.props.params.jobId, status, (page || null), null)
+
+        const statusParams = convertStatusAPIToParams(status)
+        const route = {
+            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/' + page + '/',
+            query: this.props.location.query
+        }
+
+        if (pushRoute) {
+            this.props.router.push(route)
+        }
+        else {
+            this.props.router.replace(route)
+        }
     }
 
-    handlePageClick(data) {
+    handlePageClick(data, pushRoute=true) {
         let newPage = data.selected + 1
 
         this.setState({page: data.selected})
         this.props.listCandidacy(this.props.params.jobId, this.state.status, newPage, this.state.search)
 
         const statusParams = convertStatusAPIToParams(this.state.status)
-        this.props.router.push({
+        const route = {
             pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/' + newPage + '/',
             query: this.props.location.query
-        })
+        }
+
+        if (pushRoute) {
+            this.props.router.push(route)
+        }
+        else {
+            this.props.router.replace(route)
+        }
     }
 
     searchUpdated(event) {
@@ -71,7 +99,7 @@ export default class CandidacyList extends React.Component {
 
         const statusParams = convertStatusAPIToParams(this.state.status)
         this.props.router.push({
-            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/',
+            pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/1/',
             query: query
         })
     }
@@ -79,59 +107,38 @@ export default class CandidacyList extends React.Component {
     render() {
         const { candidacyList, candidacyCounter } = this.props
 
-        let candidacyListResult = null;
+        let candidacyListResult = null
         if (candidacyList.error) {
             candidacyListResult = (
-                <li className="list-group-item">
-                    <LoadingError />
-                </li>
+                <tr className="list-group-item">
+                    <td><LoadingError /></td>
+                </tr>
             )
         }
         else if (candidacyList.fetched) {
             if (candidacyList.candidacies.length > 0) {
                 candidacyListResult = candidacyList.candidacies.map((candidacy) => {
-                    return (
-                        <li className="list-group-item" key={candidacy.id}  data-toggle="slidePanel">
-                            <div className="media">
-                                <div className="media-left">
-                                    <div className="avatar">
-                                        <img src={candidacy.applicant.user.photo} alt="..." />
-                                    </div>
-                                </div>
-                                <div className="media-body">
-                                    <h4 className="media-heading">
-                                        {candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}
-                                    </h4>
-                                    <p>
-                                        {candidacy.applicant.title}
-                                    </p>
-                                </div>
-                                <div className="media-right">
-                                    {candidacy.date_request}
-                                </div>
-                            </div>
-                        </li>
-                    )
+                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} params={this.props.params} />
                 })
             }
             else {
                 candidacyListResult = (
-                    <li className="list-group-item">
-                        Aucun résultat
-                    </li>
+                    <tr className="list-group-item">
+                        <td>Aucun résultat</td>
+                    </tr>
                 )
             }
         }
         else {
             candidacyListResult = (
-                <li className="list-group-item">
-                    <Loader />
-                </li>
+                <tr className="list-group-item">
+                    <td><Loader /></td>
+                </tr>
             )
         }
 
         return (
-            <div className="page-user">
+            <div className="page-user app-work app-candidacy">
                 <div className="page-content">
                     <div className="panel">
                         <div className="panel-body">
@@ -145,40 +152,44 @@ export default class CandidacyList extends React.Component {
                             <div className="nav-tabs-horizontal nav-tabs-animate">
                                 <ul className="nav nav-tabs nav-tabs-line">
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/liked/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('L')}>
+                                        <Link className={"nav-link " + (this.props.params.status === 'liked' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('L')}>
                                             Ils ont aimé votre offre
                                             <span className="tag tag-pill tag-default">{candidacyCounter.fetched ? candidacyCounter.results.like : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/pending/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('R')}>
+                                        <Link className={"nav-link " + (this.props.params.status === 'pending' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('R')}>
                                             Vidéo en attente
                                             <span className="tag tag-pill tag-warning">{candidacyCounter.fetched ? candidacyCounter.results.request : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/to-validate/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('V')}>
+                                        <Link className={"nav-link " + (this.props.params.status === 'to-validate' ? 'active' : '')}  role="tab" onClick={() => this.handleTabClick('V')}>
                                             Vidéo reçu
                                             <span className="tag tag-pill tag-primary">{candidacyCounter.fetched ? candidacyCounter.results.video : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/accepted/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('S')}>
+                                        <Link className={"nav-link " + (this.props.params.status === 'accepted' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('S')}>
                                             Candidat retenu
                                             <span className="tag tag-pill tag-success">{candidacyCounter.fetched ? candidacyCounter.results.selected : '...'}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item" role="presentation">
-                                        <Link to={'/jobs/' + this.props.params.jobId + '/candidacies/rejected/'} className="nav-link" activeClassName="active" role="tab" onClick={() => this.handleTabClick('N')}>
+                                        <Link className={"nav-link " + (this.props.params.status === 'rejected' ? 'active' : '')} role="tab" onClick={() => this.handleTabClick('N')}>
                                             Candidat non retenu
                                             <span className="tag tag-pill tag-danger">{candidacyCounter.fetched ? candidacyCounter.results.not_selected : '...'}</span>
                                         </Link>
                                     </li>
                                 </ul>
-                                <div className="tab-content">
-                                    <ul className="list-group">
-                                        {candidacyListResult}
-                                    </ul>
+                                <div className="tab-content ">
+
+                                    <table className="table">
+                                        <tbody className="no-underline">
+                                            {candidacyListResult}
+                                        </tbody>
+                                    </table>
+
                                     <nav>
                                         {candidacyList.pagination && candidacyList.pagination.count > 0 &&
                                             <Pagination
@@ -194,6 +205,7 @@ export default class CandidacyList extends React.Component {
                         </div>
                     </div>
                 </div>
+                {this.props.children}
             </div>
         )
     }

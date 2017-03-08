@@ -8,7 +8,7 @@ export default class JobListItem extends React.Component {
     render() {
         const { job, destroyJob, deleted } = this.props
 
-        let action = null;
+        let action = null
         if (deleted) {
             action = <span className="loader loader-circle"></span>
         }
@@ -38,7 +38,7 @@ export default class JobListItem extends React.Component {
                 <td className="subject">
                     <div className="table-content">
                         <p className="blue-grey-500">
-                            <Link to={'/jobs/' + job.id + '/candidacies/to-validate/'}>{job.title}</Link>
+                            <Link to={'/jobs/' + job.id + '/candidacies/to-validate/1/'}>{job.title}</Link>
                         </p>
                         <span className="blue-grey-400">{toLocaleDateString(job.created)} - {job.contract_types_extra.join(', ')} - {job.locality}</span>
                     </div>

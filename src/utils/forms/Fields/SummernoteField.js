@@ -1,6 +1,6 @@
 import React from 'react'
 
-// const randomUid = () => Math.floor(Math.random() * 1000);
+// const randomUid = () => Math.floor(Math.random() * 1000)
 
 export default class SummernoteField extends React.Component {
     handleChange(value) {
@@ -8,18 +8,18 @@ export default class SummernoteField extends React.Component {
     }
 
     // constructor(props) {
-    //     super(props);
-    //     this.uid = `react-summernote-${randomUid()}`;
+    //     super(props)
+    //     this.uid = `react-summernote-${randomUid()}`
     // }
 
     // componentDidMount() {
-    //     this.editor = jQuery(`#{this.uid}`);
-    //     this.editor.summernote();
+    //     this.editor = jQuery(`#{this.uid}`)
+    //     this.editor.summernote()
     // }
 
     // componentWillUnmount() {
     //     if (this.editor) {
-    //       this.editor.summernote('destroy');
+    //       this.editor.summernote('destroy')
     //     }
     // }
 

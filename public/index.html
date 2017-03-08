@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/dashboard/v1.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/uikit/modals.css">
-    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/summernote/summernote.css">
-    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/summernote/summernote.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/uikit/dropdowns.min.css?v2.2.0">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/apps/forum.css">
     <!-- Fonts -->
@@ -42,7 +40,10 @@
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/apps/work.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/pages/user.min.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/pages/errors.min.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/css/quill.snow.css">
+
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/css/custom.css">
+
 
     <style>
         .geosuggest__suggests {
@@ -101,7 +102,7 @@
         }
         .notification-list {
         position: fixed;
-        z-index: 1700;
+        z-index: 999999;
         pointer-events: none;
         top: 86px;
         right: 20px;
@@ -258,6 +259,26 @@
             margin: -1px 0 0 !important;
         }
         .list-group-item-unread { background-color: #eff6fd; }
+
+        .app-candidacy{width:auto !important;}
+        .app-candidacy a{cursor:pointer}
+
+        .cv-panel-3 li{width:33%; text-align:center}
+        .cv-panel-2 li{width:50%; text-align:center}
+
+        .app-panel .timeline-item{     margin-bottom: 10px; }
+
+        .ql-link, .ql-clean{display:none}
+
+        /* Slide panel */
+        .slide-pane__overlay { z-index: 99999 !important; }
+        .slide-pane__header { display: none !important; }
+        .slide-pane__content { padding: 0 !important; }
+        .slide-pane, .slidePanel-right, .slidePanel-left { width: 800px !important; }
+        @media (max-width: 800px) {
+            .slide-pane, .slidePanel-right, .slidePanel-left { width: 100% !important; }
+        }
+        .slidePanel-inner-section { border-bottom: none; }
     </style>
 
     <!--[if lt IE 9]>
@@ -269,97 +290,12 @@
       <![endif]-->
     <!-- Scripts -->
      <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/breakpoints/breakpoints.js"></script>
+
+    <script type="text/javascript">Breakpoints();</script>
     <title>React App</title>
   </head>
   <body class="animsition">
     <div id="root" class="full-height"></div>
-
-
-
-
-    <div class="slidePanel" ><div class="" ><div class="scrollable-container"><div class="slidePanel-content scrollable-content" style="width: 700px;"><header class="slidePanel-header overlay" style="background-image: url('../../../global/photos/city-8-960x640.jpg');')">
-        <div class="overlay-panel overlay-background vertical-align">
-          <div class="slidePanel-actions">
-            <div class="btn-group">
-              <button type="button" class="btn btn-pure icon wb-folder" aria-hidden="true"></button>
-              <button type="button" class="btn btn-pure icon wb-trash" aria-hidden="true"></button>
-              <button type="button" class="btn btn-pure slidePanel-close icon wb-close" aria-hidden="true"></button>
-            </div>
-          </div>
-          <div class="vertical-align-middle">
-            <a class="avatar" href="javascript:void(0)">
-              <img src="../../../global/portraits/2.jpg" alt="...">
-            </a>
-            <h3 class="name">Seevisual</h3>
-            <div class="tags">
-              <button type="button" class="btn btn-outline btn-inverse">Desginer</button>
-              <button type="button" class="btn btn-outline btn-inverse">UI</button>
-              <button type="button" class="btn btn-outline btn-inverse">Rocker</button>
-            </div>
-          </div>
-          <button type="button" class="edit btn btn-success btn-floating" data-toggle="edit">
-            <i class="icon wb-pencil animation-scale-up" aria-hidden="true"></i>
-            <i class="icon wb-close animation-scale-up" aria-hidden="true"></i>
-          </button>
-        </div>
-      </header>
-      <div class="slidePanel-inner">
-  <table class="user-info">
-    <tbody>
-      <tr>
-        <td class="info-label">Email:</td>
-        <td>
-          <span>mazhesee@gmail.com</span>
-          <div class="form-group form-material floating">
-            <input type="email" class="form-control empty" name="inputFloatingEmail" value="mazhesee@gmail.com">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="info-label">Phone:</td>
-        <td>
-          <span>13581729789</span>
-          <div class="form-group form-material floating">
-            <input type="text" class="form-control empty" name="inputFloatingPhone" value="13581729789">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="info-label">Address:</td>
-        <td>
-          <span>Fuzhou</span>
-          <div class="form-group form-material floating">
-            <input type="text" class="form-control empty" name="inputFloatingAddress" value="Fuzhou">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="info-label">Birthday:</td>
-        <td>
-          <span>1990/2/15</span>
-          <div class="form-group form-material floating">
-            <input type="text" class="form-control empty" name="inputFloatingBirthday" value="1990/2/15">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="info-label">URL:</td>
-        <td>
-          <span>http://amazingSurge.com</span>
-          <div class="form-group form-material floating">
-            <input type="text" class="form-control empty" name="inputFloatingURL" value="http://amazingSurge.com">
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div></div></div><div class="scrollable-bar scrollable-bar-vertical is-disabled" draggable="false"><div class="scrollable-bar-handle"></div></div></div><div class="slidePanel-handler"></div><div class="slidePanel-loading"><div class="loader loader-default"></div></div>
-    </div>
-
-
-
-
-
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -387,12 +323,10 @@
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/switchery/switchery.min.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/intro-js/intro.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/screenfull/screenfull.js"></script>
-    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/slidepanel/jquery-slidePanel.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/jvectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/peity/jquery.peity.min.js"></script>
-    <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/vendor/summernote/summernote.min.js"></script>
 
     <!-- Scripts -->
     <script src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/js/State.js"></script>
@@ -420,14 +354,6 @@
     <script>
         $(document).ready(function($) {
             Site.run();
-
-            //$('.slidePanel').slidePanel();
-
-            //$(document).on('click', '[data-toggle="slidePanel"]', function (e) {
-              //   $('.slidePanel').slidePanel('show');
-            //});
-
-
         });
     </script>
   </body>

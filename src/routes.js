@@ -8,6 +8,7 @@ import LayoutLoggedContainer from './core/containers/LayoutLoggedContainer'
 import LayoutNotLoggedContainer from './core/containers/LayoutNotLoggedContainer'
 import AppContainer from './core/containers/AppContainer'
 import CandidacyListContainer from './candidacy/containers/CandidacyListContainer'
+import CandidacyPanelContainer from './candidacy/containers/CandidacyPanelContainer'
 import CollaboratorCreateFormContainer from './collaborator/containers/CollaboratorCreateFormContainer'
 import DashboardContainer from './dashboard/containers/DashboardContainer'
 import JobCreateFormContainer from './job/containers/JobCreateFormContainer'
@@ -33,7 +34,9 @@ export default (
                 <Route path="me/edit/" component={UserUpdateFormContainer} />
                 <Route path="jobs/create/" component={JobCreateFormContainer} />
                 <Route path="jobs/edit/:id/" component={JobUpdateFormContainer} />
-                <Route path="jobs/:jobId/candidacies/:status/(:page/)" component={CandidacyListContainer} />
+                <Route path="jobs/:jobId/candidacies/:status/:page/" component={CandidacyListContainer}>
+                    <Route path="cv/:candidacyId/" component={CandidacyPanelContainer} />
+                </Route>
                 <Route path="jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="jobs/(:page/)" component={JobListContainer} />

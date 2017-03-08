@@ -52,7 +52,7 @@ export default class CandidacyList extends React.Component {
         const statusParams = convertStatusAPIToParams(status)
         const route = {
             pathname: '/jobs/' + this.props.params.jobId + '/candidacies/' + statusParams + '/' + page + '/',
-            query: this.props.location.query
+            query: {...this.props.location.query, search: undefined}
         }
 
         if (pushRoute) {

@@ -101,7 +101,7 @@
         }
         .notification-list {
         position: fixed;
-        z-index: 1700;
+        z-index: 999999;
         pointer-events: none;
         top: 86px;
         right: 20px;
@@ -275,6 +275,7 @@
         @media (max-width: 800px) {
             .slide-pane, .slidePanel-right, .slidePanel-left { width: 100% !important; }
         }
+        .slidePanel-inner-section { border-bottom: none; }
     </style>
 
     <!--[if lt IE 9]>

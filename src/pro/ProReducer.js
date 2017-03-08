@@ -1,6 +1,6 @@
 import { RETRIEVE_PRO_PENDING, RETRIEVE_PRO_FULFILLED, RETRIEVE_PRO_REJECTED,
          CREATE_PRO_FULFILLED,
-         UPDATE_PRO_FULFILLED, UPDATE_PRO_REJECTED
+         UPDATE_PRO_FULFILLED,
 } from './ProConstants'
 
 const INITIAL_STATE = {
@@ -28,8 +28,6 @@ export default (state=INITIAL_STATE, action) => {
         // UPDATE
         case UPDATE_PRO_FULFILLED:
             return {...state, pro: action.payload.data}
-        case UPDATE_PRO_REJECTED:
-            return {...state, error: action.payload.response}
 
         // DEFAULT
         default:

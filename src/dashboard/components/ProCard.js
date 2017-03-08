@@ -19,7 +19,7 @@ export default class ProCard extends React.Component {
                         <img src={pro.pro.logo} alt="" />
                     </div>
                     <p className="font-size-20 blue-grey-700">{pro.pro.company}</p>
-                    <div className="m-b-35">{pro.pro.description}</div>
+                    <div className="m-b-35" dangerouslySetInnerHTML={{__html: pro.pro.description}}/>
                     <Link to="/company/edit/">
                         <button type="button" className="btn btn-primary p-x-40">Modifier</button>
                     </Link>

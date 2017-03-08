@@ -16,15 +16,15 @@ export default class CandidacyListItem extends React.Component {
                              CV Recu &nbsp;
                             </button>
                             <div className="dropdown-menu" aria-labelledby="exampleSizingDropdown3" role="menu">
-                              <a className="dropdown-item" href="javascript:void(0)" role="menuitem">Action</a>
-                              <a className="dropdown-item" href="javascript:void(0)" role="menuitem">Another action</a>
+                              <a className="dropdown-item" href="#" role="menuitem">Action</a>
+                              <a className="dropdown-item" href="#" role="menuitem">Another action</a>
                             </div>
                       </div>
                 </td>
                 <td className="w-50">
                    <div className="media-left">
                         <div className="avatar">
-                            <img src={candidacy.applicant.user.photo} />
+                            <img src={candidacy.applicant.user.photo} alt="..." />
                         </div>
                     </div>
                 </td>

@@ -23,6 +23,7 @@ export default class CandidacyPanel extends React.Component {
         }
         else if (candidacyActive.fetched) {
             const { candidacy } = candidacyActive
+            const showVideoTab = ['V', 'S', 'N'].indexOf(candidacy.status) !== -1
 
             candidacyResult = (
                 <div className="app-work app-panel" >
@@ -55,9 +56,9 @@ export default class CandidacyPanel extends React.Component {
                     <div className="slidePanel-inner p-0">
                         <section className="slidePanel-inner-section p-t-5">
                             <div className="nav-tabs-horizontal" data-plugin="tabs">
-                                <ul className="nav nav-tabs nav-tabs-line cv-panel-3" role="tablist">
+                                <ul className={'nav nav-tabs nav-tabs-line cv-panel-' + (showVideoTab ? '3' : '2')} role="tablist">
                                     <li className="nav-item " role="presentation"><a className="nav-link active" data-toggle="tab" href="#exampleTabsLineOne" aria-controls="exampleTabsLineOne" role="tab" aria-expanded="true">CV du candidat</a></li>
-                                    <li className="nav-item" role="presentation"><a className="nav-link" data-toggle="tab" href="#exampleTabsLineTwo" aria-controls="exampleTabsLineTwo" role="tab" aria-expanded="false">Video</a></li>
+                                    {showVideoTab && <li className="nav-item" role="presentation"><a className="nav-link" data-toggle="tab" href="#exampleTabsLineTwo" aria-controls="exampleTabsLineTwo" role="tab" aria-expanded="false">Video</a></li>}
                                     <li className="nav-item" role="presentation"><a className="nav-link" data-toggle="tab" href="#exampleTabsLineThree" aria-controls="exampleTabsLineThree" role="tab">Commentaires</a></li>
                                 </ul>
                                 <div className="tab-content p-t-20 p-b-20 p-x-20">
@@ -67,16 +68,19 @@ export default class CandidacyPanel extends React.Component {
                                         currentUser={currentUser}
                                         nextCommentsCandidacy={nextCommentsCandidacy}
                                         {...commentsCandidacyList} />
-                                    <div className="tab-pane" id="exampleTabsLineTwo" role="tabpanel" aria-expanded="false">
-                                        <div>Question 1 : Pourquoi voulez-vosu travailler chez nous ? ? </div>
-                                        <div className=" player" data-plugin="plyr">
-                                            <video poster="https://v2-pitchmyjob.s3-eu-west-1.amazonaws.com/static/assets/examples/images/poster.jpg" controls="" crossOrigin="" style={{width: '60%'}}>
-                                                <source type="video/mp4" src="https://cdn.selz.com/plyr/1.0/movie.mp4" />
-                                                <source type="video/webm" src="https://cdn.selz.com/plyr/1.0/movie.webm" />
-                                                <a href="https://cdn.selz.com/plyr/1.0/movie.mp4">Download</a>
-                                            </video>
+                                    {
+                                        showVideoTab &&
+                                        <div className="tab-pane" id="exampleTabsLineTwo" role="tabpanel" aria-expanded="false">
+                                            <div>Question 1 : Pourquoi voulez-vosu travailler chez nous ? ? </div>
+                                            <div className=" player" data-plugin="plyr">
+                                                <video poster="https://v2-pitchmyjob.s3-eu-west-1.amazonaws.com/static/assets/examples/images/poster.jpg" controls="" crossOrigin="" style={{width: '60%'}}>
+                                                    <source type="video/mp4" src="https://cdn.selz.com/plyr/1.0/movie.mp4" />
+                                                    <source type="video/webm" src="https://cdn.selz.com/plyr/1.0/movie.webm" />
+                                                    <a href="https://cdn.selz.com/plyr/1.0/movie.mp4">Download</a>
+                                                </video>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
                                 </div>
                             </div>
                         </section>

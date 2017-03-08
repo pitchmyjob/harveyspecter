@@ -3,7 +3,8 @@ import { LIST_CANDIDACY_PENDING, LIST_CANDIDACY_FULFILLED, LIST_CANDIDACY_REJECT
          RETRIEVE_CANDIDACY_PENDING, RETRIEVE_CANDIDACY_FULFILLED, RETRIEVE_CANDIDACY_REJECTED,
          LIST_COMMENTS_CANDIDACY_PENDING, LIST_COMMENTS_CANDIDACY_FULFILLED, LIST_COMMENTS_CANDIDACY_REJECTED,
          NEXT_COMMENTS_CANDIDACY_PENDING, NEXT_COMMENTS_CANDIDACY_FULFILLED, NEXT_COMMENTS_CANDIDACY_REJECTED,
-         CREATE_COMMENT_CANDIDACY_PENDING, CREATE_COMMENT_CANDIDACY_FULFILLED, CREATE_COMMENT_CANDIDACY_REJECTED
+         CREATE_COMMENT_CANDIDACY_PENDING, CREATE_COMMENT_CANDIDACY_FULFILLED, CREATE_COMMENT_CANDIDACY_REJECTED,
+         UPDATE_STATUS_CANDIDACY_PENDING, UPDATE_STATUS_CANDIDACY_FULFILLED, UPDATE_STATUS_CANDIDACY_REJECTED
 } from './CandidacyConstants'
 
 const INITIAL_STATE = {
@@ -87,6 +88,14 @@ export default (state=INITIAL_STATE, action) => {
             }
         case CREATE_COMMENT_CANDIDACY_REJECTED:
             return {...state, commentCandidacyActive: {pending: false, fetched: false, error: action.payload.response, comment: null}}
+
+        // UPDATE STATUS
+        case UPDATE_STATUS_CANDIDACY_PENDING:
+            return {...state, candidacyActive: {pending: true, fetched: false, error: null, candidacy: state.candidacyList.candidacies.find((candidacy) => { return candidacy.id === action.meta.id })}}
+        case UPDATE_STATUS_CANDIDACY_FULFILLED:
+            return {...state, candidacyActive: {pending: false, fetched: true, error: null, candidacy: null}, candidacyList: {...state.candidacyList, candidacies: state.candidacyList.candidacies.filter((candidacy) => { return candidacy.id !== action.meta.id })}}
+        case UPDATE_STATUS_CANDIDACY_REJECTED:
+            return {...state, candidacyActive: {pending: false, fetched: false, error: action.payload.response, candidacy: null}}
 
         // DEFAULT
         default:

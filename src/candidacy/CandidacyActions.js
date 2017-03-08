@@ -1,6 +1,8 @@
 import request from '../utils/request'
 
-import { LIST_CANDIDACY, RETRIEVE_COUNTER_CANDIDACY, RETRIEVE_CANDIDACY, LIST_COMMENTS_CANDIDACY, NEXT_COMMENTS_CANDIDACY, CREATE_COMMENT_CANDIDACY } from './CandidacyConstants'
+import { LIST_CANDIDACY, RETRIEVE_COUNTER_CANDIDACY, RETRIEVE_CANDIDACY, LIST_COMMENTS_CANDIDACY,
+         NEXT_COMMENTS_CANDIDACY, CREATE_COMMENT_CANDIDACY, UPDATE_STATUS_CANDIDACY
+} from './CandidacyConstants'
 
 export const listCandidacy = (jobId, status, page = null, search = null) => {
     let args = {params: {status: status}}
@@ -58,5 +60,36 @@ export const createCommentCandidacy = (values) => {
     return {
         type: CREATE_COMMENT_CANDIDACY,
         payload: request.post('/pro/candidacy/comments/', values)
+    }
+}
+
+export const requestCandidacy = (jobId, applicantId, candidacyId=null) => {
+    const values = {job: jobId, applicant: applicantId}
+    const meta = (candidacyId ? {id: candidacyId} : {})
+
+    return {
+        type: UPDATE_STATUS_CANDIDACY,
+        payload: request.post('/pro/candidacy/request/', values),
+        meta: meta,
+    }
+}
+
+export const approveCandidacy = (id) => {
+    return {
+        type: UPDATE_STATUS_CANDIDACY,
+        payload: request.put('/pro/candidacy/' + id + '/approve/'),
+        meta: {
+            id: id,
+        },
+    }
+}
+
+export const disapproveCandidacy = (id) => {
+    return {
+        type: UPDATE_STATUS_CANDIDACY,
+        payload: request.put('/pro/candidacy/' + id + '/disapprove/'),
+        meta: {
+            id: id,
+        },
     }
 }

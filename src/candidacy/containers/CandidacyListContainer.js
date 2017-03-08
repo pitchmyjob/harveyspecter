@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 
 import CandidacyList from '../components/CandidacyList'
-import { listCandidacy, retrieveCounterCandidacy } from '../CandidacyActions'
+import { listCandidacy, retrieveCounterCandidacy, requestCandidacy, approveCandidacy, disapproveCandidacy } from '../CandidacyActions'
 
 const mapStateToProps = (state) => {
     return {
         candidacyList: state.candidacy.candidacyList,
+        candidacyActive: state.candidacy.candidacyActive,
         candidacyCounter: state.candidacy.candidacyCounter,
     }
 }
@@ -17,6 +18,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         retrieveCounterCandidacy: (jobId) => {
             return dispatch(retrieveCounterCandidacy(jobId))
+        },
+        requestCandidacy: (jobId, applicantId, candidacyId) => {
+            return dispatch(requestCandidacy(jobId, applicantId, candidacyId))
+        },
+        approveCandidacy: (candidacyId) => {
+            return dispatch(approveCandidacy(candidacyId))
+        },
+        disapproveCandidacy: (candidacyId) => {
+            return dispatch(disapproveCandidacy(candidacyId))
         },
     }
 }

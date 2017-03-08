@@ -105,12 +105,13 @@ export default class CandidacyList extends React.Component {
     }
 
     render() {
-        const { candidacyList, candidacyCounter } = this.props
+        const { requestCandidacy, approveCandidacy, disapproveCandidacy } = this.props
+        const { candidacyList, candidacyActive, candidacyCounter } = this.props
 
         let candidacyListResult = null
         if (candidacyList.error) {
             candidacyListResult = (
-                <tr className="list-group-item">
+                <tr>
                     <td><LoadingError /></td>
                 </tr>
             )
@@ -118,12 +119,19 @@ export default class CandidacyList extends React.Component {
         else if (candidacyList.fetched) {
             if (candidacyList.candidacies.length > 0) {
                 candidacyListResult = candidacyList.candidacies.map((candidacy) => {
-                    return <CandidacyListItem key={candidacy.id} candidacy={candidacy} params={this.props.params} />
+                    return <CandidacyListItem
+                                key={candidacy.id}
+                                candidacy={candidacy}
+                                statusUpdating={candidacyActive.candidacy === candidacy}
+                                params={this.props.params}
+                                requestCandidacy={requestCandidacy}
+                                approveCandidacy={approveCandidacy}
+                                disapproveCandidacy={disapproveCandidacy} />
                 })
             }
             else {
                 candidacyListResult = (
-                    <tr className="list-group-item">
+                    <tr>
                         <td>Aucun résultat</td>
                     </tr>
                 )
@@ -131,7 +139,7 @@ export default class CandidacyList extends React.Component {
         }
         else {
             candidacyListResult = (
-                <tr className="list-group-item">
+                <tr>
                     <td><Loader /></td>
                 </tr>
             )

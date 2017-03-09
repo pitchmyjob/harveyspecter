@@ -25,10 +25,10 @@ export default class SideBar extends React.Component {
                                     </Link>
                                 </li>
                                 <li className="site-menu-item has-sub">
-                                    <a href="#">
+                                    <Link to="/resumes/">
                                         <i className="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                                         <span className="site-menu-title">Cv-theque</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="site-menu-item has-sub">
                                     <Link to="/company/edit/">

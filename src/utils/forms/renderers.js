@@ -15,10 +15,9 @@ export const renderAuthCheckbox = (field) => {
     return (
         <div data-plugin="formMaterial" className={'text-xs-left form-group form-material clearfix' + (field.meta.touched && field.meta.error ? ' has-danger' : '')}>
             <div className="checkbox-custom checkbox-inline checkbox-primary pull-left">
-                <input {...field.input} type="checkbox" />
-                <label htmlFor={field.name}></label>
+                <input {...field.input} type="checkbox" id={field.name} />
+                <label htmlFor={field.name}>{field.label}</label>
             </div>
-            <p className="margin-left-35">{field.label}</p>
             {field.meta.touched && field.meta.error && <small className="help-block">{field.meta.error}</small>}
         </div>
     )

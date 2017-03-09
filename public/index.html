@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/uikit/modals.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/uikit/dropdowns.min.css?v2.2.0">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/apps/forum.css">
+    <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/examples/css/apps/mailbox.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/fonts/web-icons/web-icons.min.css">
     <link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/fonts/material-design/material-design.min.css">
@@ -281,6 +282,27 @@
         .slidePanel-inner-section { border-bottom: none; }
         .app-panel .nav-tabs .nav-item + .nav-item { margin-left: 0; }
         .app-panel .nav-tabs .nav-item + .nav-item { margin-left: 0; }
+
+        .app-candidacy .subject{width:auto}
+
+        .app-mailbox .page-content .table .metas {
+          color: #a3afb7;
+        }
+
+        .app-mailbox .page-content .table .metas > span {
+          position: relative;
+          margin-right: 10px;
+        }
+
+        .app-mailbox .page-content .table .metas > span + span:before {
+          content: "";
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          top: 50%;
+          left: -8px;
+          background-color: #a7b0b8;
+        }
     </style>
 
     <!--[if lt IE 9]>
@@ -296,7 +318,7 @@
     <script type="text/javascript">Breakpoints();</script>
     <title>React App</title>
   </head>
-  <body class="animsition">
+  <body class="animsition ">
     <div id="root" class="full-height"></div>
     <!--
       This HTML file is a template.

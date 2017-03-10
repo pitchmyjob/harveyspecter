@@ -5,12 +5,27 @@ import 'react-sliding-pane/dist/react-sliding-pane.css'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
+import ResumePanelContactForm from './ResumePanelContactForm'
 import { convertStatusAPIToParams } from '../../candidacy/utils'
 
 export default class ResumePanel extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showContactForm: false,
+        }
+
+        this.toggleContactForm = this.toggleContactForm.bind(this)
+    }
+
     componentDidMount() {
         this.props.retrieveResume(this.props.params.applicantId)
         this.props.existsCandidacyResume(this.props.params.jobId, this.props.params.applicantId)
+    }
+
+    toggleContactForm() {
+        this.setState({showContactForm: !this.state.showContactForm})
     }
 
     render() {
@@ -35,7 +50,7 @@ export default class ResumePanel extends React.Component {
             const { resume } = resumeActive
 
             resumeResult = (
-                <div className="app-work app-panel" >
+                <div className="app-work app-panel">
                     <header className="card m-0">
                         <div className="card-header white bg-cyan-600 p-30 clearfix">
                             <a className="avatar avatar-100 pull-xs-left m-r-20 img-bordered bg-white" href="#">
@@ -81,7 +96,7 @@ export default class ResumePanel extends React.Component {
                             {
                                 !btnLoading &&
                                 <div className="col-sm-6">
-                                    <button className="btn btn-primary btn-block">Contacter</button>
+                                    <button className="btn btn-primary btn-block" onClick={() => this.toggleContactForm()}>Contacter</button>
                                 </div>
                             }
                             {
@@ -229,6 +244,10 @@ export default class ResumePanel extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {
+                        this.state.showContactForm &&
+                        <ResumePanelContactForm onClose={this.toggleContactForm}/>
+                    }
                 </div>
             )
         }

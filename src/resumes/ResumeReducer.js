@@ -42,6 +42,7 @@ export default (state=INITIAL_STATE, action) => {
             if (action.meta.action === 'request') {
                 return {...state, existsCandidacy: {pending: false, fetched: true, error: null, candidacy: action.payload.data}}
             }
+            break
 
         // DEFAULT
         default:

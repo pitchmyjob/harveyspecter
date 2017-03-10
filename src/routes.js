@@ -23,6 +23,9 @@ import UserForgetPasswordConfirmFormContainer from './user/containers/UserForget
 import UserForgetPasswordRequestFormContainer from './user/containers/UserForgetPasswordRequestFormContainer'
 import UserLoginFormContainer from './user/containers/UserLoginFormContainer'
 import UserUpdateFormContainer from './user/containers/UserUpdateFormContainer'
+import ResumesListContainer from './resumes/containers/ResumesListContainer'
+import ResumePanelContainer from './resumes/containers/ResumePanelContainer'
+import Resumes from './resumes/containers/ResumesContainer'
 
 export default (
     <div>
@@ -40,6 +43,10 @@ export default (
                 <Route path="jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="jobs/(:page/)" component={JobListContainer} />
+                <Route path="resumes/" component={Resumes} />
+                <Route path="resumes/:jobId/:page/" component={ResumesListContainer}>
+                    <Route path="cv/:applicantId/" component={ResumePanelContainer} />
+                </Route>
             </Route>
             <Route onEnter={logoutRequired} component={LayoutNotLoggedContainer}>
                 <Route path="register/" component={ProCreateFormContainer} />

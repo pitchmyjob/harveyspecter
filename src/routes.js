@@ -44,8 +44,8 @@ export default (
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="jobs/(:page/)" component={JobListContainer} />
                 <Route path="resumes/" component={Resumes} />
-                <Route path="resumes/list/" component={ResumesListContainer}>
-                    <Route path="panel/" component={ResumePanelContainer} />
+                <Route path="resumes/:jobId/:page/" component={ResumesListContainer}>
+                    <Route path="cv/:applicantId/" component={ResumePanelContainer} />
                 </Route>
             </Route>
             <Route onEnter={logoutRequired} component={LayoutNotLoggedContainer}>

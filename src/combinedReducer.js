@@ -12,6 +12,7 @@ import JobReducer from './job/JobReducer'
 import JobQuestionReducer from './jobquestion/JobQuestionReducer'
 import NotificationReducer from './notification/NotificationReducer'
 import ProReducer from './pro/ProReducer'
+import ResumeReducer from './resumes/ResumeReducer'
 import StudyLevelReducer from './studylevel/StudyLevelReducer'
 import UserReducer from './user/UserReducer'
 
@@ -28,6 +29,7 @@ const combinedReducer = combineReducers({
     jobQuestion: JobQuestionReducer,
     notification: NotificationReducer,
     pro: ProReducer,
+    resume: ResumeReducer,
     studyLevel: StudyLevelReducer,
     user: UserReducer,
 })

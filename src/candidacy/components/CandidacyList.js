@@ -153,7 +153,7 @@ export default class CandidacyList extends React.Component {
                             <form className="page-search-form" role="search" onSubmit={this.handleSearchFormSubmit}>
                                 <div className="input-search input-search-dark">
                                     <i className="input-search-icon wb-search" aria-hidden="true"></i>
-                                    <input className="form-control" id="inputSearch" name="search" value={this.state.searchTerm} placeholder="Rechercher..." type="text" onChange={this.searchUpdated} />
+                                    <input className="form-control" id="inputSearch" name="search" value={this.state.search} placeholder="Rechercher..." type="text" onChange={this.searchUpdated} />
                                     <button type="button" className="input-search-close icon wb-close" aria-label="Close"></button>
                                 </div>
                             </form>

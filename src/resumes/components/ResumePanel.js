@@ -87,7 +87,7 @@ export default class ResumePanel extends React.Component {
                             {
                                 !btnLoading && hasActiveCandidacy &&
                                 <div className="col-sm-6">
-                                    <Link to={'jobs/' + jobId + '/candidacies/' + convertStatusAPIToParams(existsCandidacy.candidacy.status) + '/1/cv/' + existsCandidacy.candidacy.id + '/'} className="btn btn-success btn-block">
+                                    <Link to={'/jobs/' + jobId + '/candidacies/' + convertStatusAPIToParams(existsCandidacy.candidacy.status) + '/1/cv/' + existsCandidacy.candidacy.id + '/'} className="btn btn-success btn-block">
                                         Consulter la candidature
                                     </Link>
                                 </div>

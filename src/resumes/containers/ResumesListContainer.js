@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import ResumesList from '../components/ResumesList'
 import { listJob } from '../../job/JobActions'
-import { listResume, existsCandidacyResume } from '../ResumeActions'
+import { listResume } from '../ResumeActions'
 
 const mapStateToProps = (state) => {
     return {

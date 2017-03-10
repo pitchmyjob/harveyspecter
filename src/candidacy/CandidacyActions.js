@@ -65,7 +65,11 @@ export const createCommentCandidacy = (values) => {
 
 export const requestCandidacy = (jobId, applicantId, candidacyId=null) => {
     const values = {job: jobId, applicant: applicantId}
-    const meta = (candidacyId ? {id: candidacyId} : {})
+
+    let meta = {action: 'request'}
+    if (candidacyId) {
+        meta['id'] = candidacyId
+    }
 
     return {
         type: UPDATE_STATUS_CANDIDACY,
@@ -80,6 +84,7 @@ export const approveCandidacy = (id) => {
         payload: request.put('/pro/candidacy/' + id + '/approve/'),
         meta: {
             id: id,
+            action: 'approve',
         },
     }
 }
@@ -90,6 +95,7 @@ export const disapproveCandidacy = (id) => {
         payload: request.put('/pro/candidacy/' + id + '/disapprove/'),
         meta: {
             id: id,
+            action: 'disapprove',
         },
     }
 }

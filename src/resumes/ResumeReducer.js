@@ -3,6 +3,8 @@ import { LIST_RESUME_PENDING, LIST_RESUME_FULFILLED, LIST_RESUME_REJECTED,
          EXISTS_CANDIDACY_RESUME_PENDING, EXISTS_CANDIDACY_RESUME_FULFILLED, EXISTS_CANDIDACY_RESUME_REJECTED
 } from './ResumeConstants'
 
+import { UPDATE_STATUS_CANDIDACY_FULFILLED } from '../candidacy/CandidacyConstants'
+
 const INITIAL_STATE = {
     resumeList: {pending: false, fetched: false, error: null, resumes: [], pagination: null},
     resumeActive: {pending: false, fetched: false, error: null, resume: null},
@@ -34,6 +36,12 @@ export default (state=INITIAL_STATE, action) => {
             return {...state, existsCandidacy: {pending: false, fetched: true, error: null, candidacy: action.payload.data}}
         case EXISTS_CANDIDACY_RESUME_REJECTED:
             return {...state, existsCandidacy: {pending: false, fetched: false, error: action.payload.response, candidacy: null}}
+
+        // UPDATE STATUS
+        case UPDATE_STATUS_CANDIDACY_FULFILLED:
+            if (action.meta.action === 'request') {
+                return {...state, existsCandidacy: {pending: false, fetched: true, error: null, candidacy: action.payload.data}}
+            }
 
         // DEFAULT
         default:

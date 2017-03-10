@@ -35,7 +35,7 @@ export default class ProUpdateForm extends React.Component {
                 <div className="page-content container-fluid">
                     <div className="row">
                         <div className="col-lg-12 col-xs-12 masonry-item m-b-30" >
-                            <div class="card card-shadow background-bottom">
+                            <div className="card card-shadow background-bottom">
                                 <div className="card-header-transparent cover overlay">
                                   <div className="cover-background h-250" style={{backgroundImage: "url(https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/base/assets/images/test/testimage1.jpg)"}}></div>
                                   <div className="overlay-panel overlay-background overlay-bottom">

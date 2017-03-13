@@ -94,7 +94,18 @@ export default (state=INITIAL_STATE, action) => {
         case UPDATE_STATUS_CANDIDACY_PENDING:
             return {...state, candidacyStateUpdate: {pending: true, fetched: false, error: null, candidacyId: action.meta.id}}
         case UPDATE_STATUS_CANDIDACY_FULFILLED:
-            return {...state, candidacyStateUpdate: {pending: false, fetched: true, error: null, candidacyId: null}, candidacyList: {...state.candidacyList, candidacies: state.candidacyList.candidacies.filter((candidacy) => { return candidacy.id !== action.meta.id })}}
+            // Changes candidacy status if UPDATE STATUS has been called on panel
+            let candidacy = {...state.candidacyActive.candidacy}
+            if (candidacy) {
+                candidacy['status'] = action.payload.data.status
+            }
+
+            return {
+                ...state,
+                candidacyStateUpdate: {pending: false, fetched: true, error: null, candidacyId: null},
+                candidacyList: {...state.candidacyList, candidacies: state.candidacyList.candidacies.filter((candidacy) => { return candidacy.id !== action.meta.id })},
+                candidacyActive: {...state.candidacyActive, candidacy: candidacy},
+            }
         case UPDATE_STATUS_CANDIDACY_REJECTED:
             return {...state, candidacyStateUpdate: {pending: false, fetched: false, error: action.payload.response, candidacyId: null}}
 

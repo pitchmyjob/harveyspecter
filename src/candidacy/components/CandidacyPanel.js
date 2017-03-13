@@ -14,8 +14,8 @@ export default class CandidacyPanel extends React.Component {
     }
 
     render() {
-        const { nextCommentsCandidacy } = this.props
-        const { candidacyActive, commentsCandidacyList, currentUser } = this.props
+        const { nextCommentsCandidacy, requestCandidacy, approveCandidacy, disapproveCandidacy } = this.props
+        const { candidacyActive, candidacyStateUpdate, commentsCandidacyList, currentUser } = this.props
 
         let candidacyResult = null
         if (candidacyActive.error) {
@@ -24,6 +24,44 @@ export default class CandidacyPanel extends React.Component {
         else if (candidacyActive.fetched) {
             const { candidacy } = candidacyActive
             const showVideoTab = ['V', 'S', 'N'].indexOf(candidacy.status) !== -1
+
+            const statusUpdating = (candidacyStateUpdate.candidacyId === candidacy.id)
+            let btnActions = null
+            if (!statusUpdating) {
+                if (candidacy.status === 'L') {
+                    btnActions = (
+                        <div>
+                            <a className="dropdown-item" href="#" role="menuitem" onClick={() => requestCandidacy(this.props.params.jobId, candidacy.applicant.id, candidacy.id)}>
+                                Envoyer une demande
+                            </a>
+                            <a className="dropdown-item" href="#" role="menuitem" onClick={() => disapproveCandidacy(candidacy.id)}>
+                                Candidature non retenu
+                            </a>
+                        </div>
+                    )
+                }
+                else if (candidacy.status === 'R') {
+                    btnActions = (
+                        <div>
+                            <a className="dropdown-item" href="#" role="menuitem" onClick={() => disapproveCandidacy(candidacy.id)}>
+                                Candidature non retenu
+                            </a>
+                        </div>
+                    )
+                }
+                else if (candidacy.status === 'V') {
+                    btnActions = (
+                        <div>
+                            <a className="dropdown-item" href="#" role="menuitem" onClick={() => approveCandidacy(candidacy.id)}>
+                                Candidature retenu
+                            </a>
+                            <a className="dropdown-item" href="#" role="menuitem" onClick={() => disapproveCandidacy(candidacy.id)}>
+                                Candidature non retenu
+                            </a>
+                        </div>
+                    )
+                }
+            }
 
             candidacyResult = (
                 <div className="app-work app-panel" >
@@ -43,13 +81,21 @@ export default class CandidacyPanel extends React.Component {
                             </div>
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
+                            {
+                                statusUpdating &&
                                 <div className="dropdown pull-xs-left">
-                                    <button type="button" className="btn btn-pure btn-inverse icon md-chevron-down" data-toggle="dropdown" aria-hidden="true"></button>
+                                    <span className="loader loader-circle"></span>
+                                </div>
+                            }
+                            {
+                                btnActions &&
+                                <div className="dropdown pull-xs-left">
+                                    <button type="button" className="btn btn-pure btn-inverse icon wb-menu" data-toggle="dropdown" aria-hidden="true"></button>
                                     <div className="dropdown-menu dropdown-menu-right bullet" role="menu">
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-edit" aria-hidden="true"></i>Envoyer le CV</a>
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-delete" aria-hidden="true"></i> Supprimer</a>
+                                        {btnActions}
                                     </div>
                                 </div>
+                            }
                             <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
                         </div>
                     </header>

@@ -21,11 +21,13 @@ export default class MessageJobAsideList extends React.Component {
                 if (jobList.jobs.length > 0) {
                     jobListResult = jobList.jobs.map((job) => {
                         return (
-                            <MessageJobAsideListItem
-                                key={job.id}
-                                job={job}
-                                isActive={(job.id === currentJob)}
-                            />
+
+                                <MessageJobAsideListItem
+                                    key={job.id}
+                                    job={job}
+                                    isActive={(job.id === currentJob)}
+                                />
+                          
                         )
                     })
 

@@ -16,6 +16,7 @@ import JobListContainer from './job/containers/JobListContainer'
 import JobUpdateFormContainer from './job/containers/JobUpdateFormContainer'
 import JobPublishFormContainer from './job/containers/JobPublishFormContainer'
 import JobQuestionFormContainer from './jobquestion/containers/JobQuestionFormContainer'
+import MessageListContainer from './message/containers/MessageListContainer'
 import ProCreateFormContainer from './pro/containers/ProCreateFormContainer'
 import ProUpdateFormContainer from './pro/containers/ProUpdateFormContainer'
 import UserActivateContainer from './user/containers/UserActivateContainer'
@@ -43,6 +44,7 @@ export default (
                 <Route path="jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="jobs/(:page/)" component={JobListContainer} />
+                <Route path="messages/(:jobId/)" component={MessageListContainer} />
                 <Route path="resumes/" component={Resumes} />
                 <Route path="resumes/:jobId/:page/" component={ResumesListContainer}>
                     <Route path="cv/:applicantId/" component={ResumePanelContainer} />

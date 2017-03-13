@@ -5,7 +5,7 @@ import 'react-sliding-pane/dist/react-sliding-pane.css'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
-import ResumePanelContactForm from './ResumePanelContactForm'
+import ResumePanelContactFormContainer from '../containers/ResumePanelContactFormContainer'
 import { convertStatusAPIToParams, getCandidacyTagClass, getCandidacyStateLabel } from '../../candidacy/utils'
 
 export default class ResumePanel extends React.Component {
@@ -90,24 +90,30 @@ export default class ResumePanel extends React.Component {
                             }
                             {
                                 !btnLoading && !hasActiveCandidacy &&
-                                <div className="col-sm-6">
-                                    <button className="btn btn-primary btn-block" onClick={() => this.props.requestCandidacy(jobId, applicantId)}>
-                                        Inviter à passer video
-                                    </button>
-                                </div>
-                            }
-                            {
-                                !btnLoading &&
-                                <div className="col-sm-6">
-                                    <button className="btn btn-primary btn-block" onClick={() => this.toggleContactForm()}>Contacter</button>
+                                <div>
+                                    <div className="col-sm-6">
+                                        <button className="btn btn-primary btn-block" onClick={() => this.props.requestCandidacy(jobId, applicantId)}>
+                                            Inviter à passer video
+                                        </button>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <button className="btn btn-primary btn-block" onClick={() => this.toggleContactForm()}>Contacter</button>
+                                    </div>
                                 </div>
                             }
                             {
                                 !btnLoading && hasActiveCandidacy &&
-                                <div className="col-sm-6">
-                                    <Link to={'/jobs/' + jobId + '/candidacies/' + convertStatusAPIToParams(existsCandidacy.candidacy.status) + '/1/cv/' + existsCandidacy.candidacy.id + '/'} className="btn btn-success btn-block">
-                                        Consulter la candidature
-                                    </Link>
+                                <div>
+                                    <div className="col-sm-6">
+                                        <Link className="btn btn-primary btn-block">
+                                            Contacter
+                                        </Link>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <Link to={'/jobs/' + jobId + '/candidacies/' + convertStatusAPIToParams(existsCandidacy.candidacy.status) + '/1/cv/' + existsCandidacy.candidacy.id + '/'} className="btn btn-success btn-block">
+                                            Consulter la candidature
+                                        </Link>
+                                    </div>
                                 </div>
                             }
                         </div>
@@ -249,7 +255,11 @@ export default class ResumePanel extends React.Component {
                     </div>
                     {
                         this.state.showContactForm &&
-                        <ResumePanelContactForm onClose={this.toggleContactForm}/>
+                        <ResumePanelContactFormContainer
+                            jobId={jobId}
+                            applicantId={applicantId}
+                            onClose={this.toggleContactForm}
+                        />
                     }
                 </div>
             )

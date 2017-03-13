@@ -6,6 +6,7 @@ import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import CandidacyPanelCV from './panel/CandidacyPanelCV'
 import CandidacyPanelComments from './panel/CandidacyPanelComments'
+import { getCandidacyTagClass, getCandidacyStateLabel } from '../utils'
 
 export default class CandidacyPanel extends React.Component {
     componentDidMount() {
@@ -97,6 +98,9 @@ export default class CandidacyPanel extends React.Component {
                                 </div>
                             }
                             <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
+                            <p>
+                                <span className={'font-size-14 tag tag-' + getCandidacyTagClass(candidacy.status)}>{getCandidacyStateLabel(candidacy.status)}</span>
+                            </p>
                         </div>
                     </header>
                     <div className="slidePanel-inner p-0">

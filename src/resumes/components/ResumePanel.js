@@ -6,7 +6,7 @@ import 'react-sliding-pane/dist/react-sliding-pane.css'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import ResumePanelContactForm from './ResumePanelContactForm'
-import { convertStatusAPIToParams } from '../../candidacy/utils'
+import { convertStatusAPIToParams, getCandidacyTagClass, getCandidacyStateLabel } from '../../candidacy/utils'
 
 export default class ResumePanel extends React.Component {
     constructor(props) {
@@ -33,10 +33,19 @@ export default class ResumePanel extends React.Component {
         const { jobId, applicantId } = this.props.params
 
         let btnLoading = true
+        let candidacyStatus = null
         let hasActiveCandidacy = false
         if (existsCandidacy.error || existsCandidacy.fetched) {
             if (existsCandidacy.fetched) {
                 hasActiveCandidacy = existsCandidacy.candidacy.status !== 'M'
+
+                candidacyStatus = (
+                    <p>
+                        <span className={'font-size-14 tag tag-' + getCandidacyTagClass(existsCandidacy.candidacy.status)}>
+                            {getCandidacyStateLabel(existsCandidacy.candidacy.status)}
+                        </span>
+                    </p>
+                )
             }
 
             btnLoading = false
@@ -68,6 +77,7 @@ export default class ResumePanel extends React.Component {
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
                             <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
+                            {candidacyStatus}
                         </div>
                     </header>
                     <div className="slidePanel-inner p-t-20">

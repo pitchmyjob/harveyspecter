@@ -33,3 +33,39 @@ export const convertStatusAPIToParams = (status) => {
         return 'rejected'
     }
 }
+
+export const getCandidacyTagClass = (status) => {
+    if (status === 'L') {
+        return 'default'
+    }
+    else if (status === 'R') {
+        return 'warning'
+    }
+    else if (status === 'V') {
+        return 'primary'
+    }
+    else if (status === 'S') {
+        return 'success'
+    }
+    else if (status === 'N') {
+        return 'danger'
+    }
+}
+
+export const getCandidacyStateLabel = (status) => {
+    if (status === 'L') {
+        return 'Aimé'
+    }
+    else if (status === 'R') {
+        return 'En attente'
+    }
+    else if (status === 'V') {
+        return 'Vidéo'
+    }
+    else if (status === 'S') {
+        return 'Retenu'
+    }
+    else if (status === 'N') {
+        return 'Non retenu'
+    }
+}

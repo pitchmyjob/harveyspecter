@@ -67,13 +67,6 @@ export default class ResumePanel extends React.Component {
                             </div>
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
-                                <div className="dropdown pull-xs-left">
-                                    <button type="button" className="btn btn-pure btn-inverse icon md-chevron-down" data-toggle="dropdown" aria-hidden="true"></button>
-                                    <div className="dropdown-menu dropdown-menu-right bullet" role="menu">
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-edit" aria-hidden="true"></i>Envoyer le CV</a>
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-delete" aria-hidden="true"></i> Supprimer</a>
-                                    </div>
-                                </div>
                             <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
                         </div>
                     </header>

@@ -6,7 +6,7 @@ import { listCandidacy, retrieveCounterCandidacy, requestCandidacy, approveCandi
 const mapStateToProps = (state) => {
     return {
         candidacyList: state.candidacy.candidacyList,
-        candidacyActive: state.candidacy.candidacyActive,
+        candidacyStateUpdate: state.candidacy.candidacyStateUpdate,
         candidacyCounter: state.candidacy.candidacyCounter,
     }
 }

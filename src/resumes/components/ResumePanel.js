@@ -58,7 +58,7 @@ export default class ResumePanel extends React.Component {
                             </a>
                             <div className="pull-xs-left">
                                 <div className="font-size-20 m-b-0">{resume.user.first_name} {resume.user.last_name}</div>
-                                <p className="m-b-5 text-nowrap">
+                                <p className="m-b-5 text-nowrap job-title">
                                     <span className="text-break font-size-18">{resume.title}</span>
                                 </p>
                                 <p className="m-b-5 text-nowrap"><i className="icon wb-map m-r-10" aria-hidden="true"></i>
@@ -68,7 +68,7 @@ export default class ResumePanel extends React.Component {
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
                                 <div className="dropdown pull-xs-left">
-                                    <button type="button" className="btn btn-pure icon md-chevron-down" data-toggle="dropdown" aria-hidden="true"></button>
+                                    <button type="button" className="btn btn-pure btn-inverse icon md-chevron-down" data-toggle="dropdown" aria-hidden="true"></button>
                                     <div className="dropdown-menu dropdown-menu-right bullet" role="menu">
                                         <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-edit" aria-hidden="true"></i>Envoyer le CV</a>
                                         <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-delete" aria-hidden="true"></i> Supprimer</a>

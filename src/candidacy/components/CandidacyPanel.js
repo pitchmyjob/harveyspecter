@@ -34,7 +34,7 @@ export default class CandidacyPanel extends React.Component {
                             </a>
                             <div className="pull-xs-left">
                                 <div className="font-size-20 m-b-0">{candidacy.applicant.user.first_name} {candidacy.applicant.user.last_name}</div>
-                                <p className="m-b-5 text-nowrap">
+                                <p className="m-b-5 text-nowrap job-title">
                                     <span className="text-break font-size-18">{candidacy.applicant.title}</span>
                                 </p>
                                 <p className="m-b-5 text-nowrap"><i className="icon wb-map m-r-10" aria-hidden="true"></i>

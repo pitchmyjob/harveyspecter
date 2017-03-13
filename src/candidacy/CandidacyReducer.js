@@ -10,6 +10,7 @@ import { LIST_CANDIDACY_PENDING, LIST_CANDIDACY_FULFILLED, LIST_CANDIDACY_REJECT
 const INITIAL_STATE = {
     candidacyList: {pending: false, fetched: false, error: null, candidacies: [], pagination: null},
     candidacyActive: {pending: false, fetched: false, error: null, candidacy: null},
+    candidacyStateUpdate: {pending: false, fetched: false, error: null, candidacyId: null},
     candidacyCounter: {pending: false, fetched: false, error: null, results: {not_selected: null, like: null, request: null, video: null, selected: null} },
     commentsCandidacyList: {pending: false, fetched: false, nextPending: false, nextFetched: false, error: null, comments: [], pagination: null},
     commentCandidacyActive: {pending: false, fetched: false, error: null, comment: null},
@@ -91,11 +92,22 @@ export default (state=INITIAL_STATE, action) => {
 
         // UPDATE STATUS
         case UPDATE_STATUS_CANDIDACY_PENDING:
-            return {...state, candidacyActive: {pending: true, fetched: false, error: null, candidacy: state.candidacyList.candidacies.find((candidacy) => { return candidacy.id === action.meta.id })}}
+            return {...state, candidacyStateUpdate: {pending: true, fetched: false, error: null, candidacyId: action.meta.id}}
         case UPDATE_STATUS_CANDIDACY_FULFILLED:
-            return {...state, candidacyActive: {pending: false, fetched: true, error: null, candidacy: null}, candidacyList: {...state.candidacyList, candidacies: state.candidacyList.candidacies.filter((candidacy) => { return candidacy.id !== action.meta.id })}}
+            // Changes candidacy status if UPDATE STATUS has been called on panel
+            let candidacy = {...state.candidacyActive.candidacy}
+            if (candidacy) {
+                candidacy['status'] = action.payload.data.status
+            }
+
+            return {
+                ...state,
+                candidacyStateUpdate: {pending: false, fetched: true, error: null, candidacyId: null},
+                candidacyList: {...state.candidacyList, candidacies: state.candidacyList.candidacies.filter((candidacy) => { return candidacy.id !== action.meta.id })},
+                candidacyActive: {...state.candidacyActive, candidacy: candidacy},
+            }
         case UPDATE_STATUS_CANDIDACY_REJECTED:
-            return {...state, candidacyActive: {pending: false, fetched: false, error: action.payload.response, candidacy: null}}
+            return {...state, candidacyStateUpdate: {pending: false, fetched: false, error: action.payload.response, candidacyId: null}}
 
         // DEFAULT
         default:

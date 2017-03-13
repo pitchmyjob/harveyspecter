@@ -106,7 +106,7 @@ export default class CandidacyList extends React.Component {
 
     render() {
         const { requestCandidacy, approveCandidacy, disapproveCandidacy } = this.props
-        const { candidacyList, candidacyActive, candidacyCounter } = this.props
+        const { candidacyList, candidacyStateUpdate, candidacyCounter } = this.props
 
         let candidacyListResult = null
         if (candidacyList.error) {
@@ -122,7 +122,7 @@ export default class CandidacyList extends React.Component {
                     return <CandidacyListItem
                                 key={candidacy.id}
                                 candidacy={candidacy}
-                                statusUpdating={candidacyActive.candidacy === candidacy}
+                                statusUpdating={candidacyStateUpdate.candidacyId === candidacy.id}
                                 params={this.props.params}
                                 requestCandidacy={requestCandidacy}
                                 approveCandidacy={approveCandidacy}

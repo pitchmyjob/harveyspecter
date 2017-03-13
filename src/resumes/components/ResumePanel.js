@@ -6,7 +6,7 @@ import 'react-sliding-pane/dist/react-sliding-pane.css'
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import ResumePanelContactForm from './ResumePanelContactForm'
-import { convertStatusAPIToParams } from '../../candidacy/utils'
+import { convertStatusAPIToParams, getCandidacyTagClass, getCandidacyStateLabel } from '../../candidacy/utils'
 
 export default class ResumePanel extends React.Component {
     constructor(props) {
@@ -33,10 +33,19 @@ export default class ResumePanel extends React.Component {
         const { jobId, applicantId } = this.props.params
 
         let btnLoading = true
+        let candidacyStatus = null
         let hasActiveCandidacy = false
         if (existsCandidacy.error || existsCandidacy.fetched) {
             if (existsCandidacy.fetched) {
                 hasActiveCandidacy = existsCandidacy.candidacy.status !== 'M'
+
+                candidacyStatus = (
+                    <p>
+                        <span className={'font-size-14 tag tag-' + getCandidacyTagClass(existsCandidacy.candidacy.status)}>
+                            {getCandidacyStateLabel(existsCandidacy.candidacy.status)}
+                        </span>
+                    </p>
+                )
             }
 
             btnLoading = false
@@ -58,7 +67,7 @@ export default class ResumePanel extends React.Component {
                             </a>
                             <div className="pull-xs-left">
                                 <div className="font-size-20 m-b-0">{resume.user.first_name} {resume.user.last_name}</div>
-                                <p className="m-b-5 text-nowrap">
+                                <p className="m-b-5 text-nowrap job-title">
                                     <span className="text-break font-size-18">{resume.title}</span>
                                 </p>
                                 <p className="m-b-5 text-nowrap"><i className="icon wb-map m-r-10" aria-hidden="true"></i>
@@ -67,14 +76,8 @@ export default class ResumePanel extends React.Component {
                             </div>
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
-                                <div className="dropdown pull-xs-left">
-                                    <button type="button" className="btn btn-pure icon md-chevron-down" data-toggle="dropdown" aria-hidden="true"></button>
-                                    <div className="dropdown-menu dropdown-menu-right bullet" role="menu">
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-edit" aria-hidden="true"></i>Envoyer le CV</a>
-                                        <a className="dropdown-item" href="#" role="menuitem"><i className="icon md-delete" aria-hidden="true"></i> Supprimer</a>
-                                    </div>
-                                </div>
                             <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
+                            {candidacyStatus}
                         </div>
                     </header>
                     <div className="slidePanel-inner p-t-20">

@@ -6,7 +6,7 @@ import MessageJobAsideListItem from './MessageJobAsideListItem'
 
 export default class MessageJobAsideList extends React.Component {
     render() {
-        const { jobList, currentJobId } = this.props
+        const { jobList, currentJobId, handleJobClick } = this.props
 
         let jobListResult = null
         if (jobList.error) {
@@ -27,6 +27,7 @@ export default class MessageJobAsideList extends React.Component {
                                 key={job.id}
                                 job={job}
                                 isActive={(job.id === currentJobId)}
+                                handleJobClick={handleJobClick}
                             />
                         )
                     })

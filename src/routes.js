@@ -45,8 +45,8 @@ export default (
                 <Route path="jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
                 <Route path="jobs/(:page/)" component={JobListContainer} />
-                <Route path="messages/(:jobId/)" component={MessageListContainer}>
-                    <Route path="panel/" component={MessagePanelContainer} />
+                <Route path="messages/(:jobId/:page/)" component={MessageListContainer}>
+                    <Route path="candidacy/(:candidacyId)/" component={MessagePanelContainer} />
                 </Route>
                 <Route path="resumes/" component={Resumes} />
                 <Route path="resumes/:jobId/:page/" component={ResumesListContainer}>

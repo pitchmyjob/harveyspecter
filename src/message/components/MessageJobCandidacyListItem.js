@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { toLocaleString } from '../../utils/date'
 
 export default class MessageJobCandidacyListItem extends React.Component {
     render() {
-        const { jobCandidacyMessage, isActive } = this.props
+        const { jobCandidacyMessage, isActive, urlParams } = this.props
 
         return (
             <tr className={(isActive ? ' active' : '') + (!jobCandidacyMessage.is_read.is_read ? ' unread' : '')}>
@@ -15,7 +16,11 @@ export default class MessageJobCandidacyListItem extends React.Component {
                 </td>
                 <td>
                     <div className="content">
-                        <div className="title">{jobCandidacyMessage.applicant.first_name} {jobCandidacyMessage.applicant.last_name}</div>
+                        <div className="title">
+                            <Link to={'/messages/' + urlParams.jobId + '/' + urlParams.page + '/candidacy/' + jobCandidacyMessage.candidacy + '/'}>
+                                {jobCandidacyMessage.applicant.first_name} {jobCandidacyMessage.applicant.last_name}
+                            </Link>
+                        </div>
                         <div className="abstract">{jobCandidacyMessage.message}</div>
                     </div>
                 </td>

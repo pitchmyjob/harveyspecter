@@ -8,7 +8,7 @@ import { toLocaleDateString } from '../../utils/date'
 
 export default class MessageJobCandidacyList extends React.Component {
     render() {
-        const { jobCandidacyMessageList, currentJob, currentCandidacy } = this.props
+        const { jobCandidacyMessageList, currentJob, urlParams, currentCandidacy } = this.props
 
         let resultList = null
         if (jobCandidacyMessageList.error) {
@@ -25,6 +25,7 @@ export default class MessageJobCandidacyList extends React.Component {
                                 key={jobCandidacyMessage.id}
                                 jobCandidacyMessage={jobCandidacyMessage}
                                 isActive={(jobCandidacyMessage.id === currentCandidacy)}
+                                urlParams={urlParams}
                             />
                         )
                     })
@@ -50,8 +51,8 @@ export default class MessageJobCandidacyList extends React.Component {
                         <h1 className="page-title">{currentJob.title}</h1>
                         <div className="tags">
                             {
-                                currentJob.skills.map((skill) => {
-                                    return <span className="tag tag-default m-r-5 m-b-5">{skill}</span>
+                                currentJob.skills.map((skill, index) => {
+                                    return <span key={index} className="tag tag-default m-r-5 m-b-5">{skill}</span>
                                 })
                             }
                             - <span>Publié</span> le {toLocaleDateString(currentJob.created)}

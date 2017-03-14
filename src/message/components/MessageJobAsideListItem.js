@@ -3,10 +3,10 @@ import { Link } from 'react-router'
 
 export default class MessageJobAsideListItem extends React.Component {
     render() {
-        const { job, isActive } = this.props
+        const { job, isActive, handleJobClick } = this.props
 
         return (
-            <Link to={'/messages/' + job.id + '/'} className={'list-group-item' + (isActive ? ' active' : '')}>
+            <Link className={'list-group-item' + (isActive ? ' active' : '')} onClick={() => handleJobClick(job.id)}>
                 <div className="list-content">
                     <span className="item-right">
                         <span className="tag tag-success up">6</span>

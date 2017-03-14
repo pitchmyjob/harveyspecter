@@ -10,8 +10,6 @@ const config = {
     onSubmit: (values, dispatch, props) => {
         // Adds candidacyId to form values
         values['candidacy'] = props.candidacyId
-        console.log(props.candidacyId)
-        console.log(values)
 
         return dispatch(createMessage(values))
             .then((response) => {

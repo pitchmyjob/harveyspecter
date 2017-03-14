@@ -4,8 +4,6 @@ import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
 import MessagePanelMessageListItem from './MessagePanelMessageListItem'
 
-import { toLocaleString } from '../../utils/date'
-
 export default class MessagePanelMessageList extends React.Component {
     constructor(props) {
         super(props)

@@ -8,13 +8,7 @@ import LoadingError from '../../core/components/LoadingError'
 import MessagePanelMessageList from './MessagePanelMessageList'
 import MessagePanelFormContainer from '../containers/MessagePanelFormContainer'
 
-import { toLocaleString } from '../../utils/date'
-
 export default class MessagePanel extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     componentDidMount() {
         this.props.retrieveCandidacy(this.props.params.candidacyId)
         this.props.listCandidacyMessage(this.props.params.candidacyId)

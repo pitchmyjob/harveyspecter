@@ -2,13 +2,15 @@ import React from 'react'
 
 import Loader from '../../core/components/Loader'
 import LoadingError from '../../core/components/LoadingError'
+import Pagination from '../../core/components/Pagination'
 import MessageJobCandidacyListItem from './MessageJobCandidacyListItem'
 
 import { toLocaleDateString } from '../../utils/date'
 
 export default class MessageJobCandidacyList extends React.Component {
     render() {
-        const { jobCandidacyMessageList, currentJob, urlParams, currentCandidacy } = this.props
+        const { searchUpdated, handleSearchFormSubmit, handlePageClick } = this.props
+        const { jobCandidacyMessageList, currentJob, urlParams, currentCandidacy, searchValue, currentPage } = this.props
 
         let resultList = null
         if (jobCandidacyMessageList.error) {
@@ -58,10 +60,10 @@ export default class MessageJobCandidacyList extends React.Component {
                             - <span>Publié</span> le {toLocaleDateString(currentJob.created)}
                         </div>
                         <div className="page-header-actions">
-                            <form>
+                            <form onSubmit={handleSearchFormSubmit}>
                                 <div className="input-search input-search-dark">
                                     <i className="input-search-icon md-search" aria-hidden="true"></i>
-                                    <input type="text" className="form-control" placeholder="Rechercher..." />
+                                    <input type="text" className="form-control" placeholder="Rechercher..." value={searchValue} onChange={searchUpdated} />
                                 </div>
                             </form>
                         </div>
@@ -76,7 +78,15 @@ export default class MessageJobCandidacyList extends React.Component {
                             {resultList}
                         </tbody>
                     </table>
-                    <ul className="pagination pagination-gap m-b-20"></ul>
+                    {
+                        jobCandidacyMessageList.pagination && jobCandidacyMessageList.pagination.count > 0 &&
+                        <Pagination
+                            forcePage={currentPage}
+                            pageCount={jobCandidacyMessageList.pagination.num_pages}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={2}
+                            onPageChange={handlePageClick} />
+                    }
                 </div>
             </div>
         )

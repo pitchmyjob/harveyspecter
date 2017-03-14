@@ -2,10 +2,13 @@ import request from '../utils/request'
 
 import { LIST_JOB_CANDIDACY_MESSAGE, LIST_CANDIDACY_MESSAGE, NEXT_CANDIDACY_MESSAGE, CREATE_MESSAGE } from './MessageConstants'
 
-export const listJobCandidacyMessage = (jobId, page = null) => {
+export const listJobCandidacyMessage = (jobId, page = null, search = null) => {
     let args = {params: {}}
     if (page) {
         args['params']['page'] = page
+    }
+    if (search) {
+        args['params']['search'] = search
     }
 
     return {

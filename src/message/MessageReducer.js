@@ -31,7 +31,7 @@ export default (state=INITIAL_STATE, action) => {
                     pending: false,
                     fetched: true,
                     error: null,
-                    jobCandidacyMessages: action.payload.data,
+                    jobCandidacyMessages: action.payload.data.results,
                     pagination: {...action.payload.data, results: undefined}
                 }
             }

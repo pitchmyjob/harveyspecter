@@ -126,6 +126,11 @@ export default class MessageList extends React.Component {
                             currentJob={currentJob}
                             urlParams={this.props.params}
                             currentCandidacy={candidacyId}
+                            searchUpdated={this.searchUpdated}
+                            handleSearchFormSubmit={this.handleSearchFormSubmit}
+                            handlePageClick={this.handlePageClick}
+                            searchValue={this.state.search}
+                            currentPage={this.state.page}
                         />
                     }
                     {

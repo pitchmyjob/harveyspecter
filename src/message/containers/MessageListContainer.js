@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
         listJob: () => {
             return dispatch(listJob(null, null, 'is_visible'))
         },
-        listJobCandidacyMessage: (jobId, page = null) => {
-            return dispatch(listJobCandidacyMessage(jobId, page))
+        listJobCandidacyMessage: (jobId, page = null, search = null) => {
+            return dispatch(listJobCandidacyMessage(jobId, page, search))
         },
     }
 }

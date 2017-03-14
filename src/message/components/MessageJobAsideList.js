@@ -6,14 +6,16 @@ import MessageJobAsideListItem from './MessageJobAsideListItem'
 
 export default class MessageJobAsideList extends React.Component {
     render() {
-        const { jobList, currentJob } = this.props
+        const { jobList, currentJobId } = this.props
 
         let jobListResult = null
         if (jobList.error) {
             jobListResult = (
-                <a className="list-group-item" href="#">
-                    <LoadingError />
-                </a>
+                <div className="list-group-item">
+                    <div className="list-content">
+                        <LoadingError />
+                    </div>
+                </div>
             )
         }
         else if (jobList.fetched) {
@@ -21,13 +23,11 @@ export default class MessageJobAsideList extends React.Component {
                 if (jobList.jobs.length > 0) {
                     jobListResult = jobList.jobs.map((job) => {
                         return (
-
-                                <MessageJobAsideListItem
-                                    key={job.id}
-                                    job={job}
-                                    isActive={(job.id === currentJob)}
-                                />
-                          
+                            <MessageJobAsideListItem
+                                key={job.id}
+                                job={job}
+                                isActive={(job.id === currentJobId)}
+                            />
                         )
                     })
 
@@ -35,21 +35,44 @@ export default class MessageJobAsideList extends React.Component {
                 }
                 else {
                     jobListResult = (
-                        <a className="list-group-item" href="#">
-                            Aucune offre en cours
-                        </a>
+                        <div className="list-group-item">
+                            <div className="list-content">
+                                Aucune offre en cours
+                            </div>
+                        </div>
                     )
                 }
             }
         }
         else {
             jobListResult = (
-                <a className="list-group-item" href="#">
-                    <Loader />
-                </a>
+                <div className="list-group-item">
+                    <div className="list-content">
+                        <Loader />
+                    </div>
+                </div>
             )
         }
 
-        return jobListResult
+        return (
+            <div className="page-aside">
+                <div className="page-aside-switch">
+                    <i className="icon md-chevron-left" aria-hidden="true"></i>
+                    <i className="icon md-chevron-right" aria-hidden="true"></i>
+                </div>
+                <div className="page-aside-inner page-aside-scroll">
+                    <div data-role="container">
+                        <div data-role="content">
+                            <div className="page-aside-section">
+                                <h5 className="page-aside-title">Par offre active</h5>
+                                <div className="list-group">
+                                    {jobListResult}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }

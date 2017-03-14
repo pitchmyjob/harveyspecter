@@ -76,7 +76,7 @@ export default class ResumePanel extends React.Component {
                             </div>
                         </div>
                         <div className="slidePanel-actions" aria-label="actions" role="group">
-                            <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"onClick={() => this.props.router.goBack()}></button>
+                            <button type="button" className="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true" onClick={() => this.props.router.goBack()}></button>
                             {candidacyStatus}
                         </div>
                     </header>

@@ -30,6 +30,7 @@ export const getNotificationMessage = (notification) => {
         case 'APPLICANT_CANDIDACY_DISAPPROVED':
             break
         case 'APPLICANT_CANDIDACY_NEW_MESSAGE':
+            message = 'à ajouté un message'
             break
         case 'PRO_JOB_ADDED':
             message = 'à créé une offre ' + action_object.title
@@ -54,6 +55,7 @@ export const getNotificationMessage = (notification) => {
             message = 'à supprimé le collaborateur ' + action_object.first_name + ' ' + action_object.last_name
             break
         case 'PRO_CANDIDACY_NEW_MESSAGE':
+            message = 'à ajouté un message'
             break
         case 'PRO_CANDIDACY_NEW_COMMENT':
             break

@@ -2,15 +2,19 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import NotificationNavBar from '../../notification/components/NotificationNavBar'
+import MessageNavBar from '../../message/components/MessageNavBar'
 
 export default class NavBar extends React.Component {
     componentDidMount() {
         this.props.listNotification()
         this.props.retrieveCounterNotification()
+        this.props.retrieveCounterMessage()
+        this.props.listNotificationMessage()
     }
 
     render() {
-        const { currentUser, notificationList, notificationCounter, marketAsReadNotification } = this.props
+        const { marketAsReadNotification, markAsReadMessage } = this.props
+        const { currentUser, notificationList, notificationCounter, messageCounter, notificationMessageList } = this.props
 
         return (
             <nav className="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse" role="navigation">
@@ -54,101 +58,16 @@ export default class NavBar extends React.Component {
                             </li>
                         </ul>
                         <ul className="nav navbar-toolbar navbar-right navbar-toolbar-right">
-                            <NotificationNavBar notifications={notificationList} counter={notificationCounter} onMarkAsRead={marketAsReadNotification} />
-                            <li className="nav-item dropdown ">
-                                <a className="nav-link" data-toggle="dropdown" href="#" title="Messages" aria-expanded="false" data-animation="scale-up" role="button">
-                                    <i className="icon wb-envelope" aria-hidden="true"></i>
-                                    <span className="tag tag-pill tag-info up">3</span>
-                                </a>
-                                <div className="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-                                    <div className="dropdown-menu-header" role="presentation">
-                                        <h5>MESSAGES</h5>
-                                        <span className="tag tag-round tag-info">New 3</span>
-                                    </div>
-                                    <div className="list-group" role="presentation">
-                                        <div data-role="container">
-                                            <div data-role="content">
-                                                <a className="list-group-item" href="#" role="menuitem">
-                                                    <div className="media">
-                                                        <div className="media-left p-r-10">
-                                                            <span className="avatar avatar-sm avatar-online">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/2.jpg" alt="..." />
-                                                                <i></i>
-                                                            </span>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <h6 className="media-heading">Mary Adams</h6>
-                                                            <div className="media-meta">
-                                                                <time>30 minutes ago</time>
-                                                            </div>
-                                                            <div className="media-detail">Anyways, i would like just do it</div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a className="list-group-item" href="#" role="menuitem">
-                                                    <div className="media">
-                                                        <div className="media-left p-r-10">
-                                                            <span className="avatar avatar-sm avatar-off">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/3.jpg" alt="..." />
-                                                                <i></i>
-                                                            </span>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <h6 className="media-heading">Caleb Richards</h6>
-                                                            <div className="media-meta">
-                                                                <time>12 hours ago</time>
-                                                            </div>
-                                                            <div className="media-detail">I checheck the document. But there seems</div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a className="list-group-item" href="#" role="menuitem">
-                                                    <div className="media">
-                                                        <div className="media-left p-r-10">
-                                                            <span className="avatar avatar-sm avatar-busy">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/4.jpg" alt="..." />
-                                                                <i></i>
-                                                            </span>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <h6 className="media-heading">June Lane</h6>
-                                                            <div className="media-meta">
-                                                                <time>2 days ago</time>
-                                                            </div>
-                                                            <div className="media-detail">Lorem ipsum Id consectetur et minim</div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a className="list-group-item" href="#" role="menuitem">
-                                                    <div className="media">
-                                                        <div className="media-left p-r-10">
-                                                            <span className="avatar avatar-sm avatar-away">
-                                                                <img src="https://s3-eu-west-1.amazonaws.com/spitchapp-dev/harvey/static/global/portraits/5.jpg" alt="..." />
-                                                                <i></i>
-                                                            </span>
-                                                        </div>
-                                                        <div className="media-body">
-                                                            <h6 className="media-heading">Edward Fletcher</h6>
-                                                            <div className="media-meta">
-                                                                <time>3 days ago</time>
-                                                            </div>
-                                                            <div className="media-detail">Dolor et irure cupidatat commodo nostrud nostrud.</div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="dropdown-menu-footer" role="presentation">
-                                        <a className="dropdown-menu-footer-btn" href="#" role="button">
-                                            <i className="icon wb-settings" aria-hidden="true"></i>
-                                        </a>
-                                        <a className="dropdown-item" href="#" role="menuitem">
-                                            See all messages
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
+                            <NotificationNavBar
+                                notifications={notificationList}
+                                counter={notificationCounter}
+                                onMarkAsRead={marketAsReadNotification}
+                            />
+                            <MessageNavBar
+                                messages={notificationMessageList}
+                                counter={messageCounter}
+                                onMarkAsRead={markAsReadMessage}
+                            />
                             <li className="nav-item dropdown">
                                 <a className="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                                     <span className="avatar avatar-online">

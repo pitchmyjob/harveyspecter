@@ -1,13 +1,18 @@
 import { LIST_JOB_CANDIDACY_MESSAGE_PENDING, LIST_JOB_CANDIDACY_MESSAGE_FULFILLED, LIST_JOB_CANDIDACY_MESSAGE_REJECTED,
          LIST_CANDIDACY_MESSAGE_PENDING, LIST_CANDIDACY_MESSAGE_FULFILLED, LIST_CANDIDACY_MESSAGE_REJECTED,
          NEXT_CANDIDACY_MESSAGE_PENDING, NEXT_CANDIDACY_MESSAGE_FULFILLED, NEXT_CANDIDACY_MESSAGE_REJECTED,
-         CREATE_MESSAGE_PENDING, CREATE_MESSAGE_FULFILLED, CREATE_MESSAGE_REJECTED
+         CREATE_MESSAGE_PENDING, CREATE_MESSAGE_FULFILLED, CREATE_MESSAGE_REJECTED,
+         RETRIEVE_COUNTER_MESSAGE_PENDING, RETRIEVE_COUNTER_MESSAGE_FULFILLED, RETRIEVE_COUNTER_MESSAGE_REJECTED,
+         LIST_NOTIFICATION_MESSAGE_PENDING, LIST_NOTIFICATION_MESSAGE_FULFILLED, LIST_NOTIFICATION_MESSAGE_REJECTED,
+         MARK_AS_READ_MESSAGE
 } from './MessageConstants'
 
 const INITIAL_STATE = {
     messageActive: {pending: false, fetched: false, error: null, message: null},
     jobCandidacyMessageList: {pending: false, fetched: false, error: null, jobCandidacyMessages: [], pagination: null},
     candidacyMessageList: {pending: false, fetched: false, nextPending: false, nextFetched: false, error: null, candidacyMessages: [], pagination: null},
+    messageCounter: {pending: false, fetched: false, error: null, unreadCount: 0},
+    notificationMessageList: {pending: false, fetched: false, error: null, notificationMessages: [], pagination: null},
 }
 
 export default (state=INITIAL_STATE, action) => {
@@ -132,6 +137,72 @@ export default (state=INITIAL_STATE, action) => {
             }
         case CREATE_MESSAGE_REJECTED:
             return {...state, messageActive: {pending: false, fetched: false, error: action.payload.response, message: null}}
+
+        // RETRIEVE COUNTER
+        case RETRIEVE_COUNTER_MESSAGE_PENDING:
+            return {...state, messageCounter: {pending: true, fetched: false, error: null, unreadCount: 0}}
+        case RETRIEVE_COUNTER_MESSAGE_FULFILLED:
+            return {...state, messageCounter: {pending: false, fetched: true, error: null, unreadCount: action.payload.data.unread_count}}
+        case RETRIEVE_COUNTER_MESSAGE_REJECTED:
+            return {...state, messageCounter: {pending: false, fetched: false, error: action.payload.response, unreadCount: 0}}
+
+        // LIST NOTIFICATION MESSAGES
+        case LIST_NOTIFICATION_MESSAGE_PENDING:
+            return {
+                ...state,
+                notificationMessageList: {
+                    ...state.notificationMessages,
+                    pending: true,
+                    fetched: false,
+                    error: null,
+                    notificationMessages: []
+                }
+            }
+        case LIST_NOTIFICATION_MESSAGE_FULFILLED:
+            return {
+                ...state,
+                notificationMessageList: {
+                    pending: false,
+                    fetched: true,
+                    error: null,
+                    notificationMessages: action.payload.data.results,
+                    pagination: {...action.payload.data, results: undefined}
+                }
+            }
+        case LIST_NOTIFICATION_MESSAGE_REJECTED:
+            return {
+                ...state,
+                notificationMessageList: {
+                    pending: false,
+                    fetched: false,
+                    error: action.payload.response,
+                    notificationMessages: [],
+                    pagination: null
+                }
+            }
+
+        // MARK AS READ
+        case MARK_AS_READ_MESSAGE:
+            const isUnread = state.notificationMessageList.notificationMessages.find((message) => {
+                return message.id === action.messageId && !message.is_read.is_read
+            })
+
+            return {
+                ...state,
+                notificationMessageList: {
+                    ...state.notificationMessageList,
+                    notificationMessages: state.notificationMessageList.notificationMessages.map((message) => {
+                        if (message.id === action.messageId) {
+                            return {...message, is_read: {...message.is_read, is_read: true}}
+                        }
+                        return {...message}
+                    })
+                },
+                messageCounter: {
+                    ...state.messageCounter,
+                    unreadCount: (isUnread ? state.messageCounter.unreadCount - 1 : state.messageCounter.unreadCount)
+                },
+            }
 
         // DEFAULT
         default:

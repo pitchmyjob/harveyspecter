@@ -6,7 +6,7 @@ import LoadingError from '../../core/components/LoadingError'
 import { getNotificationURL, getNotificationMessage } from '../../notification/utils'
 import { toLocaleString } from '../../utils/date'
 
-export default class NotificationCard extends React.Component {
+export default class NotificationNavBar extends React.Component {
     render() {
         const { notifications, counter, onMarkAsRead } = this.props
 
@@ -81,13 +81,6 @@ export default class NotificationCard extends React.Component {
                             <div data-role="content">{notificationResult}</div>
                         </div>
                     </div>
-                    {/*
-                    <div className="dropdown-menu-footer">
-                        <Link to="#" className="dropdown-item" role="menuitem">
-                            Toutes les notifications
-                        </Link>
-                    </div>
-                    */}
                 </div>
             </li>
         )

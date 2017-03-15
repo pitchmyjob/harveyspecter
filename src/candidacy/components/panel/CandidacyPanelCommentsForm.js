@@ -4,7 +4,7 @@ import { Field } from 'redux-form'
 import { renderTextarea } from '../../../utils/forms/renderers'
 import { isRequired } from '../../../utils/forms/validators'
 
-export default class JobForm extends React.Component {
+export default class CandidacyPanelCommentsForm extends React.Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props
 

@@ -105,7 +105,7 @@ export default class ResumePanel extends React.Component {
                                 !btnLoading && hasActiveCandidacy &&
                                 <div>
                                     <div className="col-sm-6">
-                                        <Link className="btn btn-primary btn-block">
+                                        <Link to={'/messages/' + jobId + '/1/candidacy/' + existsCandidacy.candidacy.id + '/'} className="btn btn-primary btn-block">
                                             Contacter
                                         </Link>
                                     </div>

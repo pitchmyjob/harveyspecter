@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-import { LIST_JOB, RETRIEVE_JOB, RETRIEVE_COUNTER_JOB, CREATE_JOB, UPDATE_JOB, DESTROY_JOB, PUBLISH_JOB } from './JobConstants'
+import { LIST_JOB, RETRIEVE_JOB, RETRIEVE_COUNTER_JOB, CREATE_JOB, UPDATE_JOB, DESTROY_JOB, PUBLISH_JOB, LIST_INVITATION_EMAIL, CREATE_INVITATION_EMAIL } from './JobConstants'
 
 export const listJob = (page = null, search = null, filter = null) => {
     let args = {params: {}}
@@ -64,3 +64,18 @@ export const publishJob = (id) => {
         payload: request.put('/jobs/publish/', {job: id}),
     }
 }
+
+export const listInvitationEmail = (id) => {
+    return {
+        type:LIST_INVITATION_EMAIL,
+        payload: request.get('/jobs/' + id + '/invitation/')
+    }
+}
+
+export const createInvitationEmail = (id, values) => {
+    return {
+        type:CREATE_INVITATION_EMAIL,
+        payload: request.post('/jobs/' + id + '/invitation/', values)
+    }
+}
+

@@ -28,6 +28,7 @@ import UserUpdateFormContainer from './user/containers/UserUpdateFormContainer'
 import ResumesListContainer from './resumes/containers/ResumesListContainer'
 import ResumePanelContainer from './resumes/containers/ResumePanelContainer'
 import Resumes from './resumes/containers/ResumesContainer'
+import InvitationPanelContainer from './job/containers/InvitationPanelContainer'
 
 export default (
     <div>
@@ -44,7 +45,9 @@ export default (
                 </Route>
                 <Route path="jobs/:jobId/question/" component={JobQuestionFormContainer} />
                 <Route path="jobs/:id/publish/" component={JobPublishFormContainer} />
-                <Route path="jobs/(:page/)" component={JobListContainer} />
+                <Route path="jobs/(:page/)" component={JobListContainer}>
+                    <Route path="invitation/:job/" component={InvitationPanelContainer} />
+                </Route>
                 <Route path="messages/(:jobId/:page/)" component={MessageListContainer}>
                     <Route path="candidacy/(:candidacyId)/" component={MessagePanelContainer} />
                 </Route>

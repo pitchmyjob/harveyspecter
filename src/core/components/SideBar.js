@@ -19,7 +19,7 @@ export default class SideBar extends React.Component {
                                     </Link>
                                 </li>
                                 <li className="site-menu-item has-sub">
-                                    <Link to="/jobs/">
+                                    <Link to="/jobs/1/">
                                         <i className="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                                         <span className="site-menu-title">Mes offres</span>
                                     </Link>

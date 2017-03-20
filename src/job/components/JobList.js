@@ -164,6 +164,7 @@ export default class JobList extends React.Component {
                         </div>
                     </div>
                 </div>
+                {this.props.children}
             </div>
         )
     }

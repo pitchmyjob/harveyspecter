@@ -22,7 +22,7 @@ export const getButtonAction = (code, id) => {
             )
         case 'V':
             return (
-                <button data-toggle="slidePanel" className="btn btn-block btn-success">Inviter par e-mail</button>
+                <Link to={'/jobs/1/invitation/' + id + '/' } data-toggle="slidePanel" className="btn btn-block btn-success">Inviter par e-mail</Link>
             )
         case 'E':
             return (
